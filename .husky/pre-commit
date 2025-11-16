@@ -1,4 +1,7 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+echo ":mag: Running Pre-Commit Hooks..."
 
-npx lint-staged
+pnpm install || { echo ':x: pnpm install failed!'; exit 1; }
+npx lint-staged || { echo ':x: Lint staged files failed!'; exit 1; }
+pnpm build || { echo ':x: Build failed! Please fix errors before committing.'; exit 1; }
+
+echo ":white_check_mark: Pre-Commit checks passed successfully!"

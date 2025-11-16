@@ -1,0 +1,17 @@
+echo ":mag: Running Commitlint..."
+
+npx commitlint --edit "$1"
+status=$?
+
+if [ $status -ne 0 ]; then
+  echo ":x: Commitlint failed. Please fix your commit message."
+  exit 1
+fi
+
+echo ""
+echo ":memo: Commit message preview:"
+echo "--------------------------------"
+cat "$1"
+echo "--------------------------------"
+
+exit 0
