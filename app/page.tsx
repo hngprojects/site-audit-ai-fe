@@ -1,5 +1,9 @@
-import { redirect } from "next/navigation";
+const Home = () => {
+  return (
+    <main>
+      <h1>Home</h1>
+    </main>
+  );
+};
 
-export default function Home() {
-  redirect("/waitlist");
-}
+export default Home;
