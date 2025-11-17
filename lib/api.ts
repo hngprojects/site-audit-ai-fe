@@ -10,7 +10,9 @@ if (!WAITLIST_API_URL) {
 
 export const submitWaitlistEmail = async (email: string) => {
   try {
-    const response = await axios.post(WAITLIST_API_URL, { email });
+    const response = await axios.post(WAITLIST_API_URL + "/waitlist", {
+      email,
+    });
     return response.data;
   } catch (error) {
     throw error;
