@@ -1,10 +1,11 @@
+import Hero from "@/components/waitlist/Hero";
 import Benefits from "@/components/waitlist/benefits";
 
 const WaitlistPage = () => {
   return (
     <main>
-      <h1>Waitlist</h1>
-      <Benefits />
+      <Hero />
+      {/* <Benefits /> */}
     </main>
   );
 };
