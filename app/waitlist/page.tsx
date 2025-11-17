@@ -1,3 +1,4 @@
+"use client";
 import Benefits from "@/components/waitlist/benefits";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -29,8 +30,14 @@ const WaitlistPage = () => {
     // API call will go here in the next step
     // For now, simulate an API call
     try {
-      // Simulate a delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const response = await fetch("http://172.237.115.230/waitlist", {
+        // Updated API endpoint
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
       setMessage("Successfully joined the waitlist!");
       setEmail(""); // Clear email input on success
     } catch (error) {
