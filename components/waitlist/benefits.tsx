@@ -3,7 +3,7 @@ import BenefitsCard from "./benefit-card";
 
 const Benefits = () => {
   return (
-    <section className="max-w-[1440px] mx-auto font-sans">
+    <section className="max-w-[1440px] mx-auto font-sans px-5">
       <div className="max-w-[860px] mx-auto flex flex-col gap-16">
         <div className="flex flex-col gap-4 text-center">
           <h2 className="text-2xl text-[40px] leading-10 font-semibold ">
