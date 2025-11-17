@@ -3,6 +3,7 @@
 import Hero from "@/components/waitlist/Hero";
 import Benefits from "@/components/waitlist/benefits";
 import { useState } from "react";
+import axios from "axios"; // Import axios
 
 const WaitlistPage = () => {
   const [email, setEmail] = useState("");
@@ -27,26 +28,24 @@ const WaitlistPage = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://172.237.115.230/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
+      // Use axios instead of fetch
+      const response = await axios.post("http://172.237.115.230/waitlist", {
+        email,
       });
 
-      if (!response.ok) {
-        const errorData = await response
-          .json()
-          .catch(() => ({ message: "An unknown error occurred." }));
-        throw new Error(errorData.message || "Failed to join the waitlist.");
-      }
+      // Axios automatically throws for 4xx/5xx status codes, so a direct check for response.ok is less common
+      // but you might still want to check response.status if specific non-error codes are considered failures.
+      // For now, we'll assume a successful axios.post means status 2xx.
 
       setMessage("Successfully joined the waitlist!");
       setEmail("");
     } catch (error) {
       let errorMessage = "Failed to join the waitlist. Please try again.";
-      if (error instanceof Error) {
+      if (axios.isAxiosError(error) && error.response) {
+        // If it's an Axios error with a response, get message from backend
+        errorMessage = error.response.data.message || error.message;
+      } else if (error instanceof Error) {
+        // Generic JavaScript error
         errorMessage = error.message;
       }
       setMessage(errorMessage);
