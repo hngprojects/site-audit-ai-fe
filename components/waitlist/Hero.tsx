@@ -4,9 +4,52 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useCountdown } from "@/hooks/use-countdown";
+import { useState } from "react";
+import axios from "axios";
+import { submitWaitlistEmail } from "@/lib/api";
 
 const Hero = () => {
   const timeLeft = useCountdown("2025-12-15T00:00:00");
+
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage("");
+    setIsError(false);
+
+    if (!validateEmail(email)) {
+      setMessage("Please enter a valid email address.");
+      setIsError(true);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await submitWaitlistEmail(email);
+
+      setMessage("Successfully joined the waitlist!");
+      setEmail("");
+    } catch (error) {
+      let errorMessage = "Failed to join the waitlist. Please try again.";
+      if (axios.isAxiosError(error) && error.response) {
+        errorMessage = error.response.data.message || error.message;
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      setMessage(errorMessage);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="flex flex-col items-center justify-center max-w-[1440px] mx-auto px-4 mt-16 font-sans gap-13">
@@ -25,19 +68,35 @@ const Hero = () => {
             professionals.
           </p>
         </div>
-        <form action="">
+
+        <form onSubmit={handleSubmit}>
           <div className="flex flex-col sm:flex-row gap-2 mx-auto max-w-[343px] md:max-w-[600px]">
             <Input
               type="email"
               placeholder="Enter your email..."
               name="email"
               className="w-full h-12 p-4 rounded-[12px] border border-[#C7C8C9] font-sans font-medium text-base"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
             />
-            <Button className="md:w-[148px] h-12 bg-[#FF5A3D] rounded-[12px] pt-3.5 pr-6 pb-3.5 pl-6 text-white text-[14px] font-medium font-sans hover:bg-[#FF5A3D]/90">
-              Join the waitlist
+            <Button
+              className="md:w-[148px] h-12 bg-[#FF5A3D] rounded-[12px] pt-3.5 pr-6 pb-3.5 pl-6 text-white text-[14px] font-medium font-sans hover:bg-[#FF5A3D]/90"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "Joining..." : "Join the waitlist"}{" "}
             </Button>
           </div>
         </form>
+
+        {message && (
+          <div className="text-center mt-4">
+            <p className={isError ? "text-red-500" : "text-green-500"}>
+              {message}
+            </p>
+          </div>
+        )}
         <div className="flex justify-center items-center gap-2  mt-6">
           <div className="flex -space-x-2 items-center justify-center ">
             <Avatar className="border border-white">

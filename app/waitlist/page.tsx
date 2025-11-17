@@ -1,3 +1,5 @@
+"use client";
+
 import Hero from "@/components/waitlist/Hero";
 import Benefits from "@/components/waitlist/benefits";
 
