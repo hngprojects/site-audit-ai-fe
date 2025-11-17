@@ -4,18 +4,59 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useCountdown } from "@/hooks/use-countdown";
+import { useState } from "react"; // ADDED: For internal state management
+import axios from "axios"; // ADDED: For Axios error checking
+import { submitWaitlistEmail } from "@/lib/api"; // ADDED: Import new API function
 
-// Define the props interface for the Hero component
-interface HeroProps {
-  email: string;
-  setEmail: (email: string) => void;
-  isLoading: boolean;
-  handleSubmit: (e: React.FormEvent) => Promise<void>;
-}
+// REMOVED: HeroProps interface, as state is now managed internally
+// interface HeroProps { ... }
 
-// Update the Hero component to accept these props
-const Hero = ({ email, setEmail, isLoading, handleSubmit }: HeroProps) => {
+// MODIFIED: Hero component no longer accepts props
+const Hero = () => {
   const timeLeft = useCountdown("2025-12-15T00:00:00");
+
+  // ADDED: State management directly to Hero component
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+
+  // ADDED: validateEmail function
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  // ADDED: handleSubmit function
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage("");
+    setIsError(false);
+
+    if (!validateEmail(email)) {
+      setMessage("Please enter a valid email address.");
+      setIsError(true);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await submitWaitlistEmail(email); // MODIFIED: Call our new API function
+
+      setMessage("Successfully joined the waitlist!");
+      setEmail("");
+    } catch (error) {
+      let errorMessage = "Failed to join the waitlist. Please try again.";
+      if (axios.isAxiosError(error) && error.response) {
+        errorMessage = error.response.data.message || error.message;
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      setMessage(errorMessage);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="flex flex-col items-center justify-center max-w-[1440px] mx-auto px-4 mt-16 font-sans gap-13">
@@ -34,29 +75,36 @@ const Hero = ({ email, setEmail, isLoading, handleSubmit }: HeroProps) => {
             professionals.
           </p>
         </div>
+        {/* MODIFIED: form now uses its own state and handleSubmit */}
         <form onSubmit={handleSubmit}>
-          {" "}
-          {/* Add onSubmit handler */}
           <div className="flex flex-col sm:flex-row gap-2 mx-auto max-w-[343px] md:max-w-[600px]">
             <Input
               type="email"
               placeholder="Enter your email..."
               name="email"
               className="w-full h-12 p-4 rounded-[12px] border border-[#C7C8C9] font-sans font-medium text-base"
-              value={email} // Bind input value to prop
-              onChange={(e) => setEmail(e.target.value)} // Update email via prop
-              disabled={isLoading} // Disable input when loading
+              value={email} // MODIFIED: Binds to internal state
+              onChange={(e) => setEmail(e.target.value)} // MODIFIED: Updates internal state
+              disabled={isLoading} // MODIFIED: Disables based on internal state
             />
             <Button
               className="md:w-[148px] h-12 bg-[#FF5A3D] rounded-[12px] pt-3.5 pr-6 pb-3.5 pl-6 text-white text-[14px] font-medium font-sans hover:bg-[#FF5A3D]/90"
-              type="submit" // Ensure button is type submit
-              disabled={isLoading} // Disable button when loading
+              type="submit"
+              disabled={isLoading} // MODIFIED: Disables based on internal state
             >
               {isLoading ? "Joining..." : "Join the waitlist"}{" "}
-              {/* Update button text */}
+              {/* MODIFIED: Updates button text based on internal state */}
             </Button>
           </div>
         </form>
+        {/* ADDED: Message display directly within Hero */}
+        {message && (
+          <div className="text-center mt-4">
+            <p className={isError ? "text-red-500" : "text-green-500"}>
+              {message}
+            </p>
+          </div>
+        )}
         <div className="flex justify-center items-center gap-2  mt-6">
           <div className="flex -space-x-2 items-center justify-center ">
             <Avatar className="border border-white">
