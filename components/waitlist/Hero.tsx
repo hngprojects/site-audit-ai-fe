@@ -69,28 +69,28 @@ const Hero = () => {
         </div>
 
         <div className="flex items-center justify-center gap-2 md:gap-5 mt-6 font-sans">
-          <div className="w-16 md:w-[100px] h-16 md:h-[100px] bg-[#FCFCFC] border border-[#BBBCBC] rounded-2xl flex flex-col items-center justify-center">
+          <div className="w-16 md:w-[100px] h-16 md:h-[100px] bg-[#FCFCFC] border border-[#BBBCBC] rounded-md md:rounded-2xl flex flex-col items-center justify-center">
             <span className="text-xl md:text-3xl font-bold text-[#1C1C1C]">
               {timeLeft.days.toString().padStart(2, "0")}
             </span>
             <span className="text-xs md:text-sm text-[#494949]">Days</span>
           </div>
           <span className="text-[32px] font-bold">:</span>
-          <div className="w-16 md:w-[100px] h-16 md:h-[100px] border bg-[#FCFCFC] border-[#BBBCBC] rounded-2xl flex flex-col items-center justify-center">
+          <div className="w-16 md:w-[100px] h-16 md:h-[100px] border bg-[#FCFCFC] border-[#BBBCBC] rounded-md md:rounded-2xl flex flex-col items-center justify-center">
             <span className="text-xl md:text-3xl font-bold text-[#1C1C1C]">
               {timeLeft.hours.toString().padStart(2, "0")}
             </span>
             <span className="text-xs md:text-sm text-[#494949]">Hours</span>
           </div>
           <span className="text-[32px] font-bold">:</span>
-          <div className="w-16 md:w-[100px] h-16 md:h-[100px] border bg-[#FCFCFC] border-[#BBBCBC] rounded-2xl flex flex-col items-center justify-center">
+          <div className="w-16 md:w-[100px] h-16 md:h-[100px] border bg-[#FCFCFC] border-[#BBBCBC] rounded-md md:rounded-2xl flex flex-col items-center justify-center">
             <span className="text-xl md:text-3xl font-bold text-[#1C1C1C]">
               {timeLeft.minutes.toString().padStart(2, "0")}
             </span>
             <span className="text-xs md:text-sm text-[#494949]">Minutes</span>
           </div>
           <span className="text-[32px] font-bold">:</span>
-          <div className="w-16 md:w-[100px] h-16 md:h-[100px] border bg-[#FCFCFC] border-[#BBBCBC] rounded-2xl flex flex-col items-center justify-center">
+          <div className="w-16 md:w-[100px] h-16 md:h-[100px] border bg-[#FCFCFC] border-[#BBBCBC] rounded-md md:rounded-2xl flex flex-col items-center justify-center">
             <span className="text-xl md:text-3xl font-bold text-[#1C1C1C]">
               {timeLeft.seconds.toString().padStart(2, "0")}
             </span>
