@@ -1,28 +1,28 @@
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const socialIcons = [
   {
-    icon: Facebook,
+    icon: "/assets/images/facebook.svg",
     name: "Facebook",
-    link: "https://facebook.com/side-audit-ai",
+    link: "https://facebook.com/sitelytics",
   },
-  { icon: Twitter, name: "Twitter", link: "https://x.com/side-audit-ai" },
+  { icon: "/assets/images/x.svg", name: "X", link: "https://x.com/sitelytics" },
   {
-    icon: Linkedin,
+    icon: "/assets/images/linkedIn.svg",
     name: "LinkedIn",
-    link: "https://linkedin.com/side-audit-ai",
+    link: "https://linkedin.com/company/sitelytics",
   },
   {
-    icon: Instagram,
+    icon: "/assets/images/instagram.svg",
     name: "Instagram",
-    link: "https://instagram.com/side-audit-ai",
+    link: "https://instagram.com/sitelytics",
   },
 ];
 
 const WaitlistFooter = () => {
   return (
-    <footer className="flex flex-col items-center justify-center gap-4 h-32 md:flex-row md:justify-between md:px-12">
+    <footer className="max-w-[1440px] mx-auto font-sans py-8 flex flex-col items-center justify-center gap-6 min:h-32 md:flex-row md:justify-between md:px-12 md:my-12">
       <p className="text-[#676767] text-sm md:text-xl">
         &copy;{new Date().getFullYear()} HNG Tech Limited. All rights reserved.
       </p>
@@ -35,14 +35,12 @@ const WaitlistFooter = () => {
               aria-label={name}
             >
               <Link href={address}>
-                <Icon
-                  size={16}
+                <Image
                   className="md:w-5 md:h-5 w-4 h-4 text-white"
-                  fill={
-                    name == "Facebook" || name == "LinkedIn"
-                      ? "white"
-                      : "#FF5A3D"
-                  }
+                  src={Icon}
+                  alt={`${name} icon`}
+                  width={8}
+                  height={8}
                 />
               </Link>
             </li>

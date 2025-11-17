@@ -6,8 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "/waitlist/", label: "Home" },
-  { href: "/waitlist/benefits", label: "Benefits" },
+  { href: "/waitlist", label: "Home" },
+  { href: "/waitlist#benefits", label: "Benefits" },
 ];
 
 const WaitlistHeader = () => {
@@ -44,13 +44,15 @@ const WaitlistHeader = () => {
     );
 
   return (
-    <header className="p-4 flex justify-between items-center relative bg-white z-50 md:grid md:grid-cols-3 md:items-center md:px-12 md:py-6">
-      <Image
-        src="/assets/images/logo.png"
-        alt="Site Audit AI Logo"
-        width={140}
-        height={140}
-      />
+    <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center relative bg-white z-50 md:grid md:grid-cols-3 md:items-center md:px-12 md:py-6">
+      <Link href="/waitlist">
+        <Image
+          src="/assets/images/Logo.svg"
+          alt="Site Audit AI Logo"
+          width={140}
+          height={140}
+        />
+      </Link>
 
       {/* Desktop Navigation */}
       <nav className="hidden absolute left-1/2 transform -translate-x-1/2 w-45 md:flex md:justify-between text-base">
