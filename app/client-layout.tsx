@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import LandingHeader from "@/components/landing/LandingHeader";
-import LandingFooter from "@/components/landing/LandingFooter";
+import LandingHeader from "@/components/landing/landing-header";
+import LandingFooter from "@/components/landing/landing-footer";
 
 export default function ClientLayout({
   children,
