@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
-import { useCountdown } from "@/hooks/useCountdown";
+import { useCountdown } from "@/hooks/use-countdown";
 
 const Hero = () => {
   const timeLeft = useCountdown("2025-12-15T00:00:00");
