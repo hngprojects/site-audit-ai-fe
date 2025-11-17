@@ -1,52 +1,22 @@
 "use client";
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import Image from "next/image";
+import { useCountdown } from "@/hooks/useCountdown";
 
 const Hero = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const targetDate = new Date("2025-12-15T00:00:00").getTime();
-
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor(
-          (difference % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        setTimeLeft({ days, hours, minutes, seconds });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const timeLeft = useCountdown("2025-12-15T00:00:00");
 
   return (
-    <section className="flex flex-col items-center justify-cente min-h-[800px] px-4 mt-16 overflow-x-hidden">
+    <section className="flex flex-col items-center justify-center max-w-[1440px] mx-auto px-4 mt-16 font-sans gap-13">
       <div className="md:max-w-4xl mx-auto text-center">
         <div className="flex flex-col gap-2 items-center mb-8">
           <div className="inline-flex items-center justify-center w-[103px] h-[22px]  py-1 text-[12px]  font-semibold text-[#FF5A3D] bg-[#FFEFEC] rounded-[12px] tracking-normal font-sans">
             COMING SOON
           </div>
 
-          <h1 className="text-2xl md:text-5xl font-semibold text-[#1C1C1C] font-sans">
+          <h1 className="text-2xl md:text-[64px] font-semibold text-[#1C1C1C] font-sans">
             Get Early Access
           </h1>
           <p className="font-sans text-sm md:text-base text-[#676767] max-w-[600px] font-normal px-4 md:px-0">
@@ -56,7 +26,7 @@ const Hero = () => {
           </p>
         </div>
         <form action="">
-          <div className="flex flex-col sm:flex-row gap-2 mx-auto max-w-[343px] md:max-w-[600px] border">
+          <div className="flex flex-col sm:flex-row gap-2 mx-auto max-w-[343px] md:max-w-[600px]">
             <Input
               type="email"
               placeholder="Enter your email..."
@@ -68,20 +38,32 @@ const Hero = () => {
             </Button>
           </div>
         </form>
-        <div className="flex justify-center items-center gap-2  mt-2">
-          <div className="flex -space-x-2 mt-4 items-center justify-center">
-            <Avatar className="w-11 h-11 border border-white">
-              <AvatarImage src="/assets/images/avatar-1.jpg" alt="User 1" />
+        <div className="flex justify-center items-center gap-2  mt-6">
+          <div className="flex -space-x-2 items-center justify-center ">
+            <Avatar className="border border-white">
+              <AvatarImage
+                src="/assets/images/avatar-1.jpg"
+                alt="User 1"
+                className="w-11 h-11"
+              />
             </Avatar>
-            <Avatar className="w-11 h-11 border border-white">
-              <AvatarImage src="/assets/images/avatar-2.jpg" alt="User 2" />
+            <Avatar className="border border-white">
+              <AvatarImage
+                src="/assets/images/avatar-2.jpg"
+                alt="User 2"
+                className="w-11 h-11"
+              />
             </Avatar>
-            <Avatar className="w-11 h-11 border border-white">
-              <AvatarImage src="/assets/images/avatar-3.jpg" alt="User 3" />
+            <Avatar className="border border-white">
+              <AvatarImage
+                src="/assets/images/avatar-3.jpg"
+                alt="User 3"
+                className="w-11 h-11"
+              />
             </Avatar>
           </div>
 
-          <p className="text-xs text-[#494949] mt-4 font-sans ">
+          <p className="text-xs text-[#494949] leading-3.5 font-sans font-semibold">
             Join 4.5K+ others on the waitlist
           </p>
         </div>
@@ -116,10 +98,12 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <img
+      <Image
         src="/assets/images/iPhone_16.svg"
         alt="iPhone 16"
-        className="mt-[53px] max-w-xs md:max-w-sm"
+        width={100}
+        height={100}
+        className="w-full h-automax-w-xs md:max-w-sm"
       />
     </section>
   );

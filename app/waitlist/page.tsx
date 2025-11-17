@@ -5,7 +5,7 @@ const WaitlistPage = () => {
   return (
     <main>
       <Hero />
-      {/* <Benefits /> */}
+      <Benefits />
     </main>
   );
 };
