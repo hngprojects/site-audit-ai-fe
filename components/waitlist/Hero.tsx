@@ -4,29 +4,22 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useCountdown } from "@/hooks/use-countdown";
-import { useState } from "react"; // ADDED: For internal state management
-import axios from "axios"; // ADDED: For Axios error checking
-import { submitWaitlistEmail } from "@/lib/api"; // ADDED: Import new API function
+import { useState } from "react";
+import axios from "axios";
+import { submitWaitlistEmail } from "@/lib/api";
 
-// REMOVED: HeroProps interface, as state is now managed internally
-// interface HeroProps { ... }
-
-// MODIFIED: Hero component no longer accepts props
 const Hero = () => {
   const timeLeft = useCountdown("2025-12-15T00:00:00");
 
-  // ADDED: State management directly to Hero component
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
 
-  // ADDED: validateEmail function
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  // ADDED: handleSubmit function
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage("");
@@ -40,7 +33,7 @@ const Hero = () => {
 
     setIsLoading(true);
     try {
-      await submitWaitlistEmail(email); // MODIFIED: Call our new API function
+      await submitWaitlistEmail(email);
 
       setMessage("Successfully joined the waitlist!");
       setEmail("");
@@ -75,7 +68,7 @@ const Hero = () => {
             professionals.
           </p>
         </div>
-        {/* MODIFIED: form now uses its own state and handleSubmit */}
+
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col sm:flex-row gap-2 mx-auto max-w-[343px] md:max-w-[600px]">
             <Input
@@ -83,21 +76,20 @@ const Hero = () => {
               placeholder="Enter your email..."
               name="email"
               className="w-full h-12 p-4 rounded-[12px] border border-[#C7C8C9] font-sans font-medium text-base"
-              value={email} // MODIFIED: Binds to internal state
-              onChange={(e) => setEmail(e.target.value)} // MODIFIED: Updates internal state
-              disabled={isLoading} // MODIFIED: Disables based on internal state
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
             />
             <Button
               className="md:w-[148px] h-12 bg-[#FF5A3D] rounded-[12px] pt-3.5 pr-6 pb-3.5 pl-6 text-white text-[14px] font-medium font-sans hover:bg-[#FF5A3D]/90"
               type="submit"
-              disabled={isLoading} // MODIFIED: Disables based on internal state
+              disabled={isLoading}
             >
               {isLoading ? "Joining..." : "Join the waitlist"}{" "}
-              {/* MODIFIED: Updates button text based on internal state */}
             </Button>
           </div>
         </form>
-        {/* ADDED: Message display directly within Hero */}
+
         {message && (
           <div className="text-center mt-4">
             <p className={isError ? "text-red-500" : "text-green-500"}>

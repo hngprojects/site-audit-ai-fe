@@ -13,7 +13,6 @@ export const submitWaitlistEmail = async (email: string) => {
     const response = await axios.post(WAITLIST_API_URL, { email });
     return response.data;
   } catch (error) {
-    // Re-throw to be handled by the calling component
     throw error;
   }
 };
