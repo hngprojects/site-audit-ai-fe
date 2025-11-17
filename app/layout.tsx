@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Rethink_Sans } from "next/font/google";
 import "./globals.css";
-import WaitlistHeader from "@/components/waitlist/WaitlistHeader";
-import WaitlistFooter from "@/components/waitlist/WaitlistFooter";
+import ClientLayout from "./ClientLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,9 +39,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${rethinkSans.variable} antialiased`}
       >
-        <WaitlistHeader />
-        {children}
-        <WaitlistFooter />
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
