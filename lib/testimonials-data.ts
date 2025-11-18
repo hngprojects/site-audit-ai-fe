@@ -1,3 +1,6 @@
+/**
+ * @file This file contains the data for the testimonials section.
+ */
 export const testimonialsData = [
   {
     quote:
