@@ -11,7 +11,7 @@ const BuiltFor = () => {
       <div className=" mx-auto flex flex-col items-center justify-center gap-4 md:gap-10 px-0 md:px-10 ">
         <div className="flex flex-col gap-2 md:gap-4 items-center text-center">
           <h2 className="text-2xl md:text-[40px] leading-10 font-semibold ">
-            Who <span className="text-[#1A2373]">Sitelytics</span> Is Built For
+            Why Choose<span className="text-[#1A2373]">Sitelytics</span>
           </h2>
           <p className="text-sm md:text-lg leading-6 max-w-sm md:max-w-sm lg:max-w-3xl text-gray-500 font-normal">
             No technical skills required—Sitelytics gives beginners,

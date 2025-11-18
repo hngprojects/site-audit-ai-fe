@@ -1,13 +1,15 @@
 import BuiltFor from "@/components/landing/built-for";
+import React from "react";
+import Testimonials from "../components/landing/testimonials";
 import HowITWorks from "@/components/landing/how-it-works";
 
 const Home = () => {
   return (
     <main>
-      <div className="min-h-dvh"></div>
-      <HowITWorks />
+      {/* You can adjust the order of these components as needed */}
+      <Testimonials />
       <BuiltFor />
-      <div className="min-h-dvh"></div>
+      <HowITWorks />
     </main>
   );
 };
