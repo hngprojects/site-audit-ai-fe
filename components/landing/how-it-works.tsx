@@ -20,7 +20,7 @@ const HowITWorks = () => {
         </div>
 
         <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-0">
-          <div className="flex flex-col md:flex-row lg:flex-col gap-6">
+          <ul className="flex flex-col md:flex-row lg:flex-col gap-6">
             {howItWorksData.map((item) => (
               <EachStep
                 key={item.id}
@@ -29,7 +29,7 @@ const HowITWorks = () => {
                 description={item.description}
               />
             ))}
-          </div>
+          </ul>
 
           <div className="">
             <Image
@@ -58,16 +58,18 @@ const EachStep = ({
   description: string;
 }) => {
   return (
-    <div className="flex flex-col items-center lg:items-start gap-4 p-6 rounded-[12px] bg-[#FCFCFC] w-full max-w-[550px] cursor-pointer">
-      <p className="text-lg text-center lg:text-left leading-6 font-semibold text-[#979797]">
-        Step {id}
-      </p>
-      <h3 className="text-lg lg:text-2xl text-center lg:text-left leading-6 lg:leading-8 font-semibold text-[#1C1C1C]">
-        {title}
-      </h3>
-      <p className="text-sm lg:text-lg text-center lg:text-left leading-5 lg:leading-6 font-normal text-[#676767]">
-        {description}
-      </p>
-    </div>
+    <li>
+      <button className="flex flex-col items-center lg:items-start gap-4 p-6 rounded-[12px] bg-[#FCFCFC] w-full max-w-[550px] cursor-pointer">
+        <p className="text-lg text-center lg:text-left leading-6 font-semibold text-[#979797]">
+          Step {id}
+        </p>
+        <h3 className="text-lg lg:text-2xl text-center lg:text-left leading-6 lg:leading-8 font-semibold text-[#1C1C1C]">
+          {title}
+        </h3>
+        <p className="text-sm lg:text-lg text-center lg:text-left leading-5 lg:leading-6 font-normal text-[#676767]">
+          {description}
+        </p>
+      </button>
+    </li>
   );
 };
