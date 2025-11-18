@@ -28,7 +28,6 @@ const Hero = () => {
                 width={100}
                 height={100}
                 className="w-[160px] h-auto"
-                // style={{ objectFit: "contain" }}
               />
             </Link>
             <Link href="/">
@@ -38,7 +37,6 @@ const Hero = () => {
                 width={100}
                 height={100}
                 className="w-[160px] h-auto"
-                // style={{ objectFit: "contain" }}
               />
             </Link>
           </div>
