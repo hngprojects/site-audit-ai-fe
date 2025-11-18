@@ -1,5 +1,5 @@
 import React from "react";
-import Testimonials from "../components/landing/testimonials"; // Adjust path if necessary
+import Testimonials from "../components/landing/testimonials";
 
 const Home = () => {
   return (

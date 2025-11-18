@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { testimonialsData } from "@/lib/testimonials-data";
 
-// A reusable card component to keep the code DRY
 const TestimonialCard = ({
   testimonial,
 }: {
@@ -36,7 +35,6 @@ const TestimonialCard = ({
   </div>
 );
 
-// A reusable arrow component
 const StaticArrows = () => (
   <div className="flex justify-center space-x-5 mt-6">
     <div className="p-2 rounded-full bg-[#E0E1E2]">
@@ -62,7 +60,6 @@ const Testimonials = () => {
   return (
     <section className="bg-white py-12 md:py-20">
       <div className="container mx-auto px-4">
-        {/* --- Header --- */}
         <div className="block md:flex md:justify-between md:items-end mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl md:text-4xl font-bold text-[#1C1C1C] mb-4">
@@ -72,7 +69,7 @@ const Testimonials = () => {
               See what our early users are already saying about Sitelytics.
             </p>
           </div>
-          {/* Desktop-only static arrows */}
+
           <div className="hidden lg:flex space-x-5">
             <div className="p-2 rounded-full bg-[#E0E1E2]">
               <Image
@@ -93,16 +90,12 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* --- Layouts for different screen sizes --- */}
-
-        {/* Desktop Layout: 3 cards (visible only on lg screens and up) */}
         <div className="hidden lg:grid grid-cols-3 gap-10">
           {testimonialsData.map((testimonial) => (
             <TestimonialCard key={testimonial.name} testimonial={testimonial} />
           ))}
         </div>
 
-        {/* Tablet Layout: 2 cards (visible only on md to lg screens) */}
         <div className="hidden md:block lg:hidden">
           <div className="grid grid-cols-2 gap-10">
             {testimonialsData.slice(0, 2).map((testimonial) => (
@@ -115,7 +108,6 @@ const Testimonials = () => {
           <StaticArrows />
         </div>
 
-        {/* Mobile Layout: 1 card (visible only below md screens) */}
         <div className="md:hidden">
           {testimonialsData.length > 0 && (
             <TestimonialCard testimonial={testimonialsData[0]} />
