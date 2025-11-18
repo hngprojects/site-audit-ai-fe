@@ -1,6 +1,3 @@
-/**
- * @file This file contains the data for the Frequently Asked Questions section.
- */
 export const faqData = [
   {
     question: "How accurate are the Sitelytics' Audits?",

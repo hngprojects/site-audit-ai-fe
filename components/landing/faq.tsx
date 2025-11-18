@@ -13,7 +13,6 @@ const Faq = () => {
   return (
     <section className="bg-white py-20 lg:py-[100px]">
       <div className="container mx-auto px-4 md:px-8">
-        {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-16">
           <h2 className="text-3xl lg:text-[40px] font-bold text-[#1C1C1C] mb-4">
             Frequently Asked Questions
@@ -24,7 +23,6 @@ const Faq = () => {
           </p>
         </div>
 
-        {/* Accordion Implementation */}
         <div className="w-full max-w-[1006px] mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {faqData.map((item, index) => (
