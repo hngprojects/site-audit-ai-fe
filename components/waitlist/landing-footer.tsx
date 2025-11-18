@@ -1,20 +1,17 @@
-"use client";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { socialIcons } from "@/lib/social-icon-data";
-import LandingFooter from "./landing-footer";
 
-const WaitlistFooter = () => {
-  const pathname = usePathname();
-
-  if (pathname === "/waitlist") {
-    return (
+const LandingFooter = () => {
+  return (
+    <footer className="bg-[#0A0A0B] ">
       <div
         id="footer-nav"
         className=" max-w-[1440px] mx-auto font-sans py-8 flex flex-col items-center justify-center gap-6 min:h-32 md:flex-row md:justify-between md:px-12 md:my-12"
       >
-        <p className="text-[#676767] text-sm md:text-xl">
+        <p className="text-[#f5e9e9] text-sm md:text-xl">
           &copy;{new Date().getFullYear()} HNG Tech Limited. All rights
           reserved.
         </p>
@@ -40,10 +37,8 @@ const WaitlistFooter = () => {
           </ul>
         </nav>
       </div>
-    );
-  } else {
-    return <LandingFooter />;
-  }
+    </footer>
+  );
 };
 
-export default WaitlistFooter;
+export default LandingFooter;
