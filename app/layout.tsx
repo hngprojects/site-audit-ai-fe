@@ -20,13 +20,21 @@ const rethinkSans = Rethink_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Sitelytics",
+  title: "Sitelytics - Website audit with AI",
   description:
-    "Sitelytics is a platform that helps you audit your website and improve your SEO.",
+    "an easy-to-use app that checks your website's health. It finds problems, suggests quick fixes, and helps your website perform better - no tech skills needed.",
   icons: {
     icon: "/assets/images/logo.png",
     shortcut: "/assets/images/logo.png",
     apple: "/assets/images/logo.png",
+  },
+  openGraph: {
+    title: "Sitelytics - Website audit with AI",
+    description:
+      "an easy-to-use app that checks your website's health. It finds problems, suggests quick fixes, and helps your website perform better - no tech skills needed.",
+    siteName: "Sitelytics",
+    locale: "en_US",
+    type: "website",
   },
 };
 
