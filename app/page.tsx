@@ -1,7 +1,9 @@
+import Hero from "@/components/landing/hero";
+
 const Home = () => {
   return (
     <main>
-      <h1>Home</h1>
+      <Hero />
     </main>
   );
 };
