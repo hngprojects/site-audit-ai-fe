@@ -1,7 +1,13 @@
+import Hero from "@/components/waitlist/Hero";
+//import Testimonials from '@/components/landing/testimonials';
+import Faq from "@/components/landing/faq";
+
 const Home = () => {
   return (
     <main>
-      <h1>Home</h1>
+      {/* <Hero /> */}
+      {/* <Testimonials /> */}
+      <Faq />
     </main>
   );
 };
