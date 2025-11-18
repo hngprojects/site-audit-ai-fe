@@ -1,7 +1,11 @@
+import HowITWorks from "@/components/landing/how-it-works";
+
 const Home = () => {
   return (
     <main>
-      <h1>Home</h1>
+      <div className="min-h-dvh"></div>
+      <HowITWorks />
+      <div className="min-h-dvh"></div>
     </main>
   );
 };
