@@ -1,11 +1,11 @@
 import HowITWorks from "@/components/landing/how-it-works";
+import KeyFeatures from "@/components/landing/key-features";
 
 const Home = () => {
   return (
     <main>
-      <div className="min-h-dvh"></div>
       <HowITWorks />
-      <div className="min-h-dvh"></div>
+      <KeyFeatures />
     </main>
   );
 };
