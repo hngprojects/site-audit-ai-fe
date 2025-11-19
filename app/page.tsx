@@ -8,6 +8,7 @@ import Faq from "@/components/landing/faq";
 const Home = () => {
   return (
     <main>
+      {/* You can adjust the order of these components as needed */}
       <Hero />
       <KeyFeatures />
       <HowITWorks />
