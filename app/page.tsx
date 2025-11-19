@@ -11,7 +11,6 @@ const Home = () => {
       <BuiltFor />
       <HowITWorks />
       <KeyFeatures />
-      <HowITWorks />
       <Faq />
     </main>
   );
