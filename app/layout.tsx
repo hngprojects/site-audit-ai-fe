@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   description:
     "an easy-to-use app that checks your website's health. It finds problems, suggests quick fixes, and helps your website perform better - no tech skills needed.",
   icons: {
-    icon: "/assets/images/logo.png",
-    shortcut: "/assets/images/logo.png",
-    apple: "/assets/images/logo.png",
+    icon: "/assets/images/Logo.svg",
+    shortcut: "/assets/images/Logo.svg",
+    apple: "/assets/images/Logo.svg",
   },
   openGraph: {
     title: "Sitelytics - Website audit with AI",
