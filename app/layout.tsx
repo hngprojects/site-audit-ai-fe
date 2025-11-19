@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   description:
     "Sitelytics is a platform that helps you audit your website and improve your SEO.",
   icons: {
-    icon: "/assets/images/logo.png",
-    shortcut: "/assets/images/logo.png",
-    apple: "/assets/images/logo.png",
+    icon: "/assets/images/Logo.svg",
+    shortcut: "/assets/images/Logo.svg",
+    apple: "/assets/images/Logo.svg",
   },
 };
 
