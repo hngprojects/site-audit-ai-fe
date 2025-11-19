@@ -1,3 +1,4 @@
+import BuiltFor from "@/components/landing/built-for";
 import React from "react";
 import Hero from "@/components/waitlist/Hero";
 import KeyFeatures from "@/components/landing/key-features";
@@ -9,6 +10,8 @@ const Home = () => {
   return (
     <main>
       {/* You can adjust the order of these components as needed */}
+      <Testimonials />
+      <BuiltFor />
       <Hero />
       <KeyFeatures />
       <HowITWorks />
