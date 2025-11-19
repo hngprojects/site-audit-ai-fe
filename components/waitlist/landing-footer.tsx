@@ -16,23 +16,23 @@ const LandingFooter = () => {
       <div>
         <div
           id="footer-app"
-          className=" hidden max-w-6xl max-h-[410px] bg-[#E85238] rounded-4xl md:mx-20 lg:mx-40 relative top-24 font-sans  flex-col md:flex-row items-center justify-between"
+          className=" max-w-6xl md:max-h-[410px] bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans flex flex-col md:flex-row md:items-center gap-5 justify-between"
         >
           {/* left column */}
-          <div className="p-8 md:p-12 flex flex-col  h-full gap-6">
+          <div className="md:w-3/4 flex-1 p-8 md:p-12 flex flex-col  h-full gap-6">
             <div className="">
-              <h2 className="text-[clamp(24px,3.35vw+0.2px,48px)] max-w-[500px] font-sans font-semibold text-white leading-12">
+              <h2 className="text-2xl md:text-[clamp(24px,3.35vw+0.2px,48px)] max-w-[500px] font-sans font-semibold text-white md:leading-12">
                 Audit Your Website Instantly
               </h2>
-              <p className="text-[18px] max-w-[497px] text-white mt-4">
+              <p className="text-sm lg:text-[18px] max-w-[497px] text-white mt-4">
                 Download the app and let AI analyze your site, uncover
                 opportunities, and boost performance, all in seconds.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 mt-6 md:mt-0">
+            <div className="flex flex-row gap-4 mt-6 md:mt-0">
               <Link
                 href="#"
-                className="bg-black text-white px-6 py-3 rounded-lg flex items-center gap-2 text-[11px]"
+                className="bg-black text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
               >
                 <Image
                   src="/assets/images/google-play.svg"
@@ -42,12 +42,14 @@ const LandingFooter = () => {
                 />
                 <div>
                   Get it on{" "}
-                  <p className="text-base font-semibold">Google Play</p>
+                  <p className="text-sm md:text-base font-semibold">
+                    Google Play
+                  </p>
                 </div>
               </Link>
               <Link
                 href="#"
-                className="bg-black  text-white px-6 py-3 rounded-lg flex items-center gap-2 text-[11px]"
+                className="bg-black  text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
               >
                 <Image
                   src="/assets/images/apple.svg"
@@ -57,29 +59,32 @@ const LandingFooter = () => {
                 />
                 <div>
                   Download on the{" "}
-                  <p className="text-base font-semibold">App Store</p>
+                  <p className="text-xs md:text-base font-semibold">
+                    App Store
+                  </p>
                 </div>
               </Link>
             </div>
           </div>
 
           {/* right coluumn */}
-
-          <div>
+          {/* Right side - Responsive phone images */}
+          <div className="flex-1 flex items-center justify-end">
             <Image
-              src="/assets/images/wavey.svg"
+              src="/assets/images/landing/appstore.svg"
               alt="Footer"
-              width={500}
-              height={500}
-              className="absolu h-[450px] w-lg overflow-x-visible trans"
+              width={400}
+              height={400}
+              className="absolute bottom-0 right-0 hidden md:block"
             />
-            <Image
-              src="/assets/images/group_phone.svg"
-              alt="Footer"
-              width={500}
-              height={500}
-              className="absolute bottom-0 right-0 "
-            />
+            <div className="md:hidden relative w-full max-w-sm aspect-video">
+              <Image
+                src="/assets/images/landing/appstore.svg"
+                alt="Sitelytics mobile app screens"
+                fill
+                className="w-full h-full object-contain absolute bottom-0 right-0"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -93,18 +98,18 @@ const LandingFooter = () => {
               className="flex items-center gap-2"
             >
               <Image
-                src="/assets/images/landing/new_logo.svg"
+                src="/assets/images/Logo.svg"
                 alt="Site Audit AI Logo"
-                width={140}
-                height={140}
-                className="w-[77.69]"
+                width={135}
+                height={58}
+                className=""
               />
             </Link>
           </div>
           <div className="flex flex-col sm:flex-row  gap-8 sm:gap-20">
             {footerLinks.map((column) => (
               <div key={column.title}>
-                <h3 className="text-lg sm:text-[clamp(16px,2.299vw-1.11px,32px)] text-[#E5E9EC] font-bold sm:mb-[16.45px]">
+                <h3 className="text-sm sm:text-[clamp(16px,2.299vw-1.11px,32px)] text-[#E5E9EC] font-bold sm:mb-[16.45px]">
                   {column.title}
                 </h3>
                 <ul className="space-y-2">
@@ -112,7 +117,7 @@ const LandingFooter = () => {
                     <li key={link.name}>
                       <Link
                         href={link.href}
-                        className="text-xs sm:text-[clamp(14px,1.149vw+5.45px,22px)] text-[#9FA1A2] font-medium"
+                        className="text-xs sm:text-[clamp(14px,1.149vw+5.45px,22px)] text-[#9FA1A2] font-medium hover:text-white"
                       >
                         {link.name}
                       </Link>

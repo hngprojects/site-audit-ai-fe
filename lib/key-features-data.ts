@@ -29,20 +29,13 @@ export const keyFeaturesData: KeyFeaturesDataProps[] = [
   },
   {
     id: 5,
-    title: "Multi Language Selector",
-    subtitle:
-      "Use the tool in the language you understand best. Switch easily between different languages",
-    bgImageUrl: "/assets/images/landing/key-features-5.jpg",
-  },
-  {
-    id: 6,
     title: "Categorized Reports",
     subtitle:
       "Your entire website health, in one reports. See what's wrong, why it matters, and who can fix it (in simple words)",
     bgImageUrl: "/assets/images/landing/key-features-6.jpg",
   },
   {
-    id: 7,
+    id: 6,
     title: "Real-Time Tracker",
     subtitle:
       "Watch your website health update in real time. See changes as you fix issues to improve your website.",
