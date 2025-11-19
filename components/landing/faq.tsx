@@ -1,0 +1,49 @@
+"use client";
+
+import React from "react";
+import { faqData } from "@/lib/faq-data";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const Faq = () => {
+  return (
+    <section className="bg-white py-20 lg:py-[100px] font-sans">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex flex-col items-center text-center mb-16">
+          <h2 className="text-3xl lg:text-[40px] font-bold text-[#1C1C1C] mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-base lg:text-lg text-[#676767] opacity-80 max-w-lg">
+            Have Questions? Here are quick answers to some of the most common
+            queries
+          </p>
+        </div>
+
+        <div className="w-full max-w-[1006px] mx-auto">
+          <Accordion type="single" collapsible className="w-full">
+            {faqData.map((item, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border-t border-[#BBBCBC] first:border-t-0"
+              >
+                <AccordionTrigger className="py-8 text-left text-lg md:text-2xl font-semibold text-[#1C1C1C] hover:no-underline">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="pb-8 text-base text-[#676767] pr-16">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Faq;

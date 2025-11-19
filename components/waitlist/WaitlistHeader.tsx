@@ -45,7 +45,7 @@ const WaitlistHeader = () => {
 
   return (
     <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center relative bg-white z-50 md:grid md:grid-cols-3 md:items-center md:px-12 md:py-6">
-      <Link href="/waitlist">
+      <Link href="/">
         <Image
           src="/assets/images/Logo.svg"
           alt="Site Audit AI Logo"
