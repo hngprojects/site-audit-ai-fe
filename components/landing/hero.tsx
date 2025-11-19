@@ -1,77 +1,37 @@
-// hero component for the landing page
-
 import Link from "next/link";
-import { Separator } from "../ui/separator";
 import Image from "next/image";
 
 const Hero = () => {
   return (
     <section className="max-w-[1440px] mx-auto font-sans">
-      <div className="px-20 flex items-center gap-5">
-        <div className="flex flex-col gap-10  max-w-[632px]">
+      <div className="px-4 md:px-8 lg:px-20 flex flex-col lg:flex-row items-center gap-5 lg:gap-5">
+        <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           <div className="flex flex-col gap-4">
-            <h1 className="text-[64px] font-bold leading-20">
+            <h1 className="text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight lg:leading-20">
               Improve Your Website With An Instant AI Audit
             </h1>
-            <p className="text-2xl text-gray-500 font-normal leading-8">
-              Paste your website URL and get a complete free website audit in
-              seconds that instantly identifies performance, accessibility, SEO,
-              and design problems, then connects you with verified professionals
-              to fix them fast.
+            <p className="text-base md:text-lg lg:text-2xl text-gray-500 font-normal leading-6 md:leading-7 lg:leading-8">
+              Paste your site URL and get a quick, free audit that shows
+              what&apos;s working, what&apos;s not, and connects you with
+              experts who can fix it.
             </p>
           </div>
-          <div className="flex items-center gap-4">
-            <Link href="/">
-              <Image
-                src="/assets/images/hero/g-playstore.svg"
-                alt="Google Play Store"
-                width={100}
-                height={100}
-                className="w-[160px] h-auto"
-              />
+          <div className="flex items-center justify-center lg:justify-start gap-4 w-full">
+            <Link
+              href="/waitlist"
+              className="bg-[#FF5A3D] py-3 px-7 text-white rounded-xl w-full lg:w-auto text-center"
+            >
+              Join waitlist
             </Link>
-            <Link href="/">
-              <Image
-                src="/assets/images/hero/a-appstore.svg"
-                alt="App Store"
-                width={100}
-                height={100}
-                className="w-[160px] h-auto"
-              />
-            </Link>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex h-5 items-center space-x-3 ">
-              <div className="flex flex-col gap-1 items-center">
-                <h1 className="text-[28px] font-bold leading-8">8K +</h1>
-                <p className="text-base font-normal leading-6 text-gray-500">
-                  Active testers
-                </p>
-              </div>
-              <Separator orientation="vertical" />
-              <div className="flex flex-col gap-1 items-center">
-                <h1 className="text-[28px] font-bold leading-8">10K +</h1>
-                <p className="text-base font-normal leading-6 text-gray-500">
-                  Downloads
-                </p>
-              </div>
-              <Separator orientation="vertical" />
-              <div className="flex flex-col gap-1 items-center">
-                <h1 className="text-[28px] font-bold leading-8">12K +</h1>
-                <p className="text-base font-normal leading-6 text-gray-500">
-                  Reviews
-                </p>
-              </div>
-            </div>
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full lg:w-auto flex justify-center lg:justify-start">
           <Image
             src="/assets/images/hero/hero-image.svg"
             alt="Hero Image"
             width={500}
             height={500}
-            className="w-[606px] h-[630px]"
+            className="w-full max-w-[606px] h-auto lg:w-full lg:h-auto"
             style={{ objectFit: "cover" }}
           />
         </div>

@@ -11,7 +11,7 @@ import {
 
 const Faq = () => {
   return (
-    <section className="bg-white py-20 lg:py-[100px]">
+    <section className="bg-white py-20 lg:py-[100px] font-sans">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col items-center text-center mb-16">
           <h2 className="text-3xl lg:text-[40px] font-bold text-[#1C1C1C] mb-4">
