@@ -8,7 +8,8 @@ const Hero = () => {
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight lg:leading-20">
-              Improve Your Website With An Instant AI Audit
+              <span className="text-[#1A2373]">Improve</span> Your Website With
+              An Instant AI Audit
             </h1>
             <p className="text-base md:text-lg lg:text-2xl text-gray-500 font-normal leading-6 md:leading-7 lg:leading-8">
               Paste your site URL and get a quick, free audit that shows
