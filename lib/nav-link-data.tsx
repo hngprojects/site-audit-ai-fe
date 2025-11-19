@@ -5,5 +5,5 @@ export const navLinksWaitlist = [
 
 export const navLinksLanding = [
   { href: "/", label: "Home" },
-  { href: "/how-it-works", label: "How It Works" },
+  { href: "/#how-it-works", label: "How It Works" },
 ];
