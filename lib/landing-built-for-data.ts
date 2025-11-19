@@ -1,37 +1,37 @@
 export const landingBuiltforData = [
   {
     id: 1,
-    title: "Digital Marketers ",
-    icon: "/assets/images/landing/digital.svg",
+    title: "More visibliity for your business ",
+    icon: "/assets/images/landing/visibility.svg",
     description:
-      "Quickly check website issues and take action; save time, reduce stress, and boost campaign results.",
+      "Boost your chances of being found online, no big ad budget required.",
   },
   {
     id: 2,
-    icon: "/assets/images/landing/agency.svg",
-    title: "Agencies",
+    icon: "/assets/images/landing/visitors.svg",
+    title: "Turn visitors into customers",
     description:
-      "Monitor all your clients’ websites in one dashboard; keep every site running smoothly and ensure your clients’ websites perform at their best.",
+      "Fix what stops people from booking, buying or contacting you.",
   },
   {
     id: 3,
-    icon: "/assets/images/landing/freelancers.svg",
-    title: "Freelancers ",
+    icon: "/assets/images/landing/reliable.svg",
+    title: "Reliable expert help ",
     description:
-      "Fix issues without stress - helping you work smarter and deliver better reults ",
+      "Connect with verified professionals who can fix your issues immediately.",
   },
   {
     id: 4,
-    icon: "/assets/images/landing/business.svg",
-    title: "Business Owners",
+    icon: "/assets/images/landing/enjoy.svg",
+    title: "Enjoy free website audit",
     description:
-      "Check your website for free, spot problems that hurt traffic and conversions; improve site performance effortlessly and grow your revenue.",
+      "Get an AI-powered scan at zero cost. No commitments, no hidden fees.",
   },
   {
     id: 5,
-    icon: "/assets/images/landing/developers.svg",
-    title: "Developers",
+    icon: "/assets/images/landing/simple.svg",
+    title: "Simple and beginner friendly",
     description:
-      " Get instant AI insights on site issues; optimize performance faster and deliver measurable results.",
+      " Just enter your URL and you are all set. No extra friction. No confusion.",
   },
 ];

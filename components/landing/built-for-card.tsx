@@ -13,13 +13,13 @@ const BuiltForCard = ({ title, description, icon }: BuiltForCardProps) => {
         alt={title}
         width={100}
         height={100}
-        className="w-10 h-10"
+        className="w-10 h-10 lg:place-self-start place-self-center"
       />
-      <div className="flex flex-col gap-2">
-        <h3 className="text-lg md:text-2xl leading-6 md:leading-7 font-semibold text-center md:text-left">
+      <div className="flex flex-col gap-2 text-center lg:text-start">
+        <h3 className="text-lg md:text-2xl leading-6 md:leading-7 font-semibold">
           {title}
         </h3>
-        <p className="text-sm md:text-base leading-5 md:leading-6 text-gray-500 font-normal text-center md:text-left">
+        <p className="text-sm md:text-base leading-5 md:leading-6 text-gray-500 font-normal">
           {description}
         </p>
       </div>
