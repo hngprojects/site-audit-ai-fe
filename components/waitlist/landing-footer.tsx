@@ -97,7 +97,7 @@ const LandingFooter = () => {
                 alt="Site Audit AI Logo"
                 width={140}
                 height={140}
-                className="w-[77.69]"
+                className="w-[77.69px] md:w-[135px]"
               />
             </Link>
           </div>
