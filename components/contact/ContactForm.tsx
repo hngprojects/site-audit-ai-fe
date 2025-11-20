@@ -22,6 +22,8 @@ import {
   SelectValue,
 } from "../ui/select";
 import { countriesPhone } from "@/lib/county-phone";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   fullname: z
@@ -48,7 +50,7 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
-  // 1. Define your form.
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -60,11 +62,24 @@ export default function ContactForm() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
+
+    // Simulate API request
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     console.log(values);
+    // Reset all inputs back to empty
+    form.reset({
+      fullname: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+
+    setLoading(false);
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
@@ -187,9 +202,11 @@ export default function ContactForm() {
         />
         <Button
           type="submit"
+          disabled={loading}
           className="min-w-[343px] bg-[#FF5A3D] hover:bg-[#FF5A3D]/80 py-4 h-12 cursor-pointer "
         >
           Send Message
+          {loading ? <Loader2 className="animate-spin mr-2" /> : null}
         </Button>
       </form>
     </Form>
