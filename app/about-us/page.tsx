@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const AboutUsPage = () => {
   return (
@@ -16,16 +17,59 @@ const AboutUsPage = () => {
         <div className="container mx-auto px-4 relative">
           <div className="flex flex-wrap lg:flex-nowrap items-center gap-x-[130px]">
             {/* Left Content */}
-            <div className="w-full lg:w-auto">
-              <h1 className="font-bold text-[64px] leading-[80px] text-[#FF5A3D] mb-10">
+            <div className="w-full lg:w-[473px] flex-shrink-0">
+              <h1 className="font-bold text-4xl md:text-[64px] md:leading-[80px] text-[#FF5A3D] mb-10 text-center lg:text-left">
                 About Us
               </h1>
-              {/* "Our Mission" section will go here in the next step */}
+
+              {/* "Our Mission" Section */}
+              <div className="flex flex-col items-center lg:items-start gap-5">
+                <div className="flex flex-col items-center lg:items-start gap-px">
+                  <p className="font-medium text-xl text-[#1C1C1C]">
+                    Sitelytics was built with one mission
+                  </p>
+                  <p className="text-lg text-justify text-[#1C1C1C] leading-[22px]">
+                    To help small businesses succeed online without the stress,
+                    cost, or confusion of traditional website audits. We know
+                    most business owners are not tech experts, and they do not
+                    have to be. Your website is your digital storefront, and
+                    when it is not performing, you lose customers. That is why
+                    we created a mobile app that uses powerful AI to scan your
+                    website in seconds, break down issues in simple language,
+                    and show you exactly how to fix them. And when you need
+                    hands-on help, Sitelytics connects you to trusted
+                    professionals who can handle everything for you, quickly,
+                    affordably, and transparently. We believe every small
+                    business deserves a website that works as hard as they do.
+                    Sitelytics makes that possible.
+                  </p>
+                </div>
+                <button className="bg-[#FF5A3D] text-white text-sm font-medium py-[14px] px-6 rounded-xl w-full lg:w-auto">
+                  Get Started
+                </button>
+              </div>
             </div>
 
-            {/* Right Content (Images) will go here in a future step */}
-            <div className="w-full lg:w-auto">
-              {/* Placeholder for images */}
+            {/* Right Content (Images) */}
+            <div className="relative w-full lg:w-[646px] h-[533px] mt-10 lg:mt-0">
+              <div className="absolute w-[254.77px] h-[480.69px] left-[391.62px] top-[37.46px]">
+                <Image
+                  src="/assets/images/about-us/about-phone-1.png"
+                  alt="Hand holding phone showing Site-Audit AI"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+              <div className="absolute w-[394.27px] h-[507px] left-[23.11px] top-0">
+                <Image
+                  src="/assets/images/about-us/about-phone-2.png"
+                  alt="Hand holding phone showing Site-Audit AI"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
             </div>
           </div>
         </div>
