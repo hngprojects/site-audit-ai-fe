@@ -20,7 +20,7 @@ const WaitlistHeader = () => {
       ? "Join waitlist"
       : pathname === "/how-it-works"
         ? "Get the App"
-        : "";
+        : "Get the App";
   const actionHref =
     pathname === "/" ? "/waitlist" : pathname === "/how-it-works" ? "#" : "";
 
