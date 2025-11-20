@@ -1,5 +1,7 @@
 "use client";
 
+import ContactForm from "@/components/contact/ContactForm";
+
 const ContactPage = () => {
   return (
     <main className="bg-[url(/assets/images/contact/circle-bg.svg)] bg-no-repeat bg-center">
@@ -38,7 +40,7 @@ const ContactPage = () => {
             </div>
           </div>
           <div className="bg-white w-full h-full flex flex-col px-6 py-10 rounded-2xl shadow-[0px_2px_52px_0px_#0000001A]">
-            <div className="flex items-start gap-9">
+            <div className="flex items-start flex-col gap-9">
               <div>
                 <h2 className="text-[48px] font-semibold leading-16">
                   Get in Touch
@@ -47,6 +49,7 @@ const ContactPage = () => {
                   You can reach us anytime
                 </p>
               </div>
+              <ContactForm />
             </div>
           </div>
         </div>
