@@ -5,7 +5,7 @@ const AboutUsHeroMissionSection = () => {
   return (
     <div className="bg-white">
       <section className="relative overflow-hidden py-20 md:py-28">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -translate-y-[136.5px] w-[928px] h-[928px] opacity-50 hidden lg:block">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[928px] h-[928px] opacity-50 hidden lg:block">
           <div className="absolute top-[48px] left-[256px] w-[928px] h-[928px] rounded-full border border-[#FFCCC3]"></div>
           <div className="absolute top-[125.33px] left-[333.33px] w-[773.33px] h-[773.33px] rounded-full border border-[#FFCCC3]"></div>
           <div className="absolute top-[202.67px] left-[410.67px] w-[618.67px] h-[618.67px] rounded-full border border-[#FFCCC3]"></div>
@@ -41,7 +41,7 @@ const AboutUsHeroMissionSection = () => {
                     Sitelytics makes that possible.
                   </p>
                 </div>
-                <button className="bg-[#FF5A3D] text-white text-sm font-medium py-[14px] px-6 rounded-xl w-full lg:w-auto">
+                <button className="bg-white text-[#FF5A3D] border border-[#FF5A3D] text-sm font-medium py-[14px] px-6 rounded-xl w-full lg:w-auto">
                   EXPLORE MORE
                 </button>
               </div>
