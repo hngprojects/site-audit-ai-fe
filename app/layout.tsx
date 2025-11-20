@@ -1,8 +1,11 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Rethink_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/waitlist/header";
 import WaitlistFooter from "@/components/waitlist/WaitlistFooter";
+import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,38 +22,25 @@ const rethinkSans = Rethink_Sans({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Sitelytics - Website audit with AI",
-  description:
-    "an easy-to-use app that checks your website's health. It finds problems, suggests quick fixes, and helps your website perform better - no tech skills needed.",
-  icons: {
-    icon: "/assets/images/Logo.svg",
-    shortcut: "/assets/images/Logo.svg",
-    apple: "/assets/images/Logo.svg",
-  },
-  openGraph: {
-    title: "Sitelytics - Website audit with AI",
-    description:
-      "an easy-to-use app that checks your website's health. It finds problems, suggests quick fixes, and helps your website perform better - no tech skills needed.",
-    siteName: "Sitelytics",
-    locale: "en_US",
-    type: "website",
-  },
-};
+// Metadata needs to be exported separately when using 'use client'
+// export const metadata: Metadata = { ... }; // This can be moved to a separate file or handled differently if needed
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAboutUsPage = pathname.startsWith("/about-us");
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${rethinkSans.variable} antialiased`}
       >
-        <Header />
+        {!isAboutUsPage && <Header />}
         {children}
-        <WaitlistFooter />
+        {!isAboutUsPage && <WaitlistFooter />}
       </body>
     </html>
   );
