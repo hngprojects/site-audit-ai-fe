@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="max-w-[1440px] mx-auto font-sans">
-      <div className="px-4 md:px-8 lg:px-20 flex flex-col lg:flex-row items-center gap-5 lg:gap-5">
+    <section className="max-w-[1344px] px-4 md:px-12 2xl:px-0 mx-auto font-sans">
+      <div className="px-4  md:px-0 flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-5">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight lg:leading-20">
@@ -20,7 +20,7 @@ const Hero = () => {
           <div className="flex items-center justify-center lg:justify-start gap-4 w-full">
             <Link
               href="/waitlist"
-              className="bg-[#FF5A3D] py-3 px-7 text-white rounded-xl w-full lg:w-auto text-center"
+              className="bg-[#FF5A3D] hover:bg-[#FF5A3D]/90 py-3 px-7 text-white rounded-xl w-full lg:w-auto text-center"
             >
               Join waitlist
             </Link>
@@ -31,7 +31,7 @@ const Hero = () => {
             src="/assets/images/hero/hero-image.svg"
             alt="Hero Image"
             width={500}
-            height={500}
+            height={600}
             className="w-full max-w-[606px] h-auto lg:w-full lg:h-auto"
             style={{ objectFit: "cover" }}
           />
