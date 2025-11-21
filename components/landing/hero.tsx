@@ -1,10 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
+import VideoPlayer from "./video-player";
+// import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="max-w-[1344px] px-4 md:px-12 2xl:px-0 mx-auto font-sans">
-      <div className="px-4  md:px-0 flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-5">
+    <section className="max-w-[1344px] px-4 md:px-12 2xl:px-0 mx-auto font-sans pt-16 pb-[27px]">
+      <div className="px-4  md:px-0 flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-10">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight lg:leading-20">
@@ -27,14 +28,31 @@ const Hero = () => {
           </div>
         </div>
         <div className="w-full lg:w-auto flex justify-center lg:justify-start">
-          <Image
+          <VideoPlayer />
+          {/* <Image
             src="/assets/images/hero/hero-image.svg"
             alt="Hero Image"
             width={500}
             height={600}
             className="w-full max-w-[606px] h-auto lg:w-full lg:h-auto"
             style={{ objectFit: "cover" }}
-          />
+          /> */}
+
+          {/* <iframe
+            width="606"
+            height="547"
+            src="https://www.youtube.com/embed/Vn0QWdiWLqk?si=xA4EGCaci3P8CXd9"
+            title="YouTube video player" 
+          ></iframe> */}
+
+          {/* <video
+            src="https://res.cloudinary.com/dsns1khez/video/upload/v1763710071/short_video_animation_ad_2D_animation_Fast_Food_Animation_short_video_ad_owoksj.mp4"
+            controls
+            className="w-full rounded-xl"
+            // autoPlay
+            muted
+            loop
+          /> */}
         </div>
       </div>
     </section>
