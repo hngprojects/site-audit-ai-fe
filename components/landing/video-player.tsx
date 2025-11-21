@@ -26,7 +26,7 @@ export default function VideoPlayer() {
       {/* Video element always rendered */}
       <video
         ref={videoRef}
-        src="https://res.cloudinary.com/dsns1khez/video/upload/v1763710071/short_video_animation_ad_2D_animation_Fast_Food_Animation_short_video_ad_owoksj.mp4"
+        src="https://res.cloudinary.com/dsns1khez/video/upload/v1763735425/HNG-Team_Tokungawa_explainer_1_p7rhvm.mp4"
         loop
         className="w-full rounded-[12px] cursor-pointer"
         onClick={handleVideoClick}
@@ -53,7 +53,7 @@ export default function VideoPlayer() {
           }}
         >
           <Image
-            src="https://res.cloudinary.com/dsns1khez/video/upload/v1763710071/short_video_animation_ad_2D_animation_Fast_Food_Animation_short_video_ad_owoksj.jpg"
+            src="https://res.cloudinary.com/dsns1khez/video/upload/v1763735425/HNG-Team_Tokungawa_explainer_1_p7rhvm.jpg"
             width={606}
             height={547}
             alt="Video Thumbnail"
