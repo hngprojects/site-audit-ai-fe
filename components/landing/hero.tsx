@@ -5,12 +5,12 @@ import VideoPlayer from "./video-player";
 const Hero = () => {
   return (
     <section className="max-w-[1344px] px-4 md:px-12 2xl:px-0 mx-auto font-sans pt-16 pb-[27px]">
-      <div className="px-4  md:px-0 flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-10">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-10">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           <div className="flex flex-col gap-4">
             <h1 className="text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight lg:leading-20">
-              <span className="text-[#1A2373]">Improve</span> Your Website With
-              An Instant AI Audit
+              <span className="text-[rgb(26,35,115)]">Improve</span> Your
+              Website With An Instant AI Audit
             </h1>
             <p className="text-base md:text-lg lg:text-2xl text-gray-500 font-normal leading-6 md:leading-7 lg:leading-8">
               Paste your site URL and get a quick, free audit that shows
@@ -27,33 +27,7 @@ const Hero = () => {
             </Link>
           </div>
         </div>
-        <div className="w-full lg:w-auto flex justify-center lg:justify-start">
-          <VideoPlayer />
-          {/* <Image
-            src="/assets/images/hero/hero-image.svg"
-            alt="Hero Image"
-            width={500}
-            height={600}
-            className="w-full max-w-[606px] h-auto lg:w-full lg:h-auto"
-            style={{ objectFit: "cover" }}
-          /> */}
-
-          {/* <iframe
-            width="606"
-            height="547"
-            src="https://www.youtube.com/embed/Vn0QWdiWLqk?si=xA4EGCaci3P8CXd9"
-            title="YouTube video player" 
-          ></iframe> */}
-
-          {/* <video
-            src="https://res.cloudinary.com/dsns1khez/video/upload/v1763710071/short_video_animation_ad_2D_animation_Fast_Food_Animation_short_video_ad_owoksj.mp4"
-            controls
-            className="w-full rounded-xl"
-            // autoPlay
-            muted
-            loop
-          /> */}
-        </div>
+        <VideoPlayer />
       </div>
     </section>
   );

@@ -1,48 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Play } from "lucide-react";
 import Image from "next/image";
 
 export default function VideoPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [start, setStart] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleVideoClick = () => {
+    if (!videoRef.current) return;
+
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
-    <div className="w-full relative rounded-xl overflow-hidden">
-      {/* Thumbnail + Play Button */}
+    <div className="w-full lg:min-w-[608px] flex justify-center lg:justify-start relative rounded-xl border cursor-pointer">
+      {/* Video element always rendered */}
+      <video
+        ref={videoRef}
+        src="https://res.cloudinary.com/dsns1khez/video/upload/v1763710071/short_video_animation_ad_2D_animation_Fast_Food_Animation_short_video_ad_owoksj.mp4"
+        loop
+        className="w-full rounded-[12px] cursor-pointer"
+        onClick={handleVideoClick}
+      />
+
       {!isPlaying && (
         <button
-          onClick={() => setIsPlaying(true)}
-          className="relative w-full focus:outline-none"
+          onClick={handleVideoClick}
+          className="absolute flex w-full h-full items-center justify-center bg-black/10 rounded-[12px]  cursor-pointer"
         >
-          {/* Thumbnail image */}
+          <div className="bg-white/80 backdrop-blur-md p-4 rounded-full shadow-lg">
+            <Play className="w-8 h-8 text-[#1A2373]" />
+          </div>
+        </button>
+      )}
+
+      {/* Overlay thumbnail + play button only when video is not playing */}
+      {!start && (
+        <button
+          className="absolute inset-0 w-full h-full flex items-center justify-center bg-black/40 rounded-[12px] cursor-pointer "
+          onClick={() => {
+            setStart(true);
+            handleVideoClick();
+          }}
+        >
           <Image
             src="https://res.cloudinary.com/dsns1khez/video/upload/v1763710071/short_video_animation_ad_2D_animation_Fast_Food_Animation_short_video_ad_owoksj.jpg"
             width={606}
             height={547}
             alt="Video Thumbnail"
-            className="w-full object-cover rounded-xl"
+            className="w-full h-full object-cover rounded-[12px]"
           />
-
-          {/* Play icon overlay */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute flex items-center justify-center">
             <div className="bg-white/80 backdrop-blur-md p-4 rounded-full shadow-lg">
               <Play className="w-8 h-8 text-[#1A2373]" />
             </div>
           </div>
         </button>
-      )}
-
-      {/* Actual Video */}
-      {isPlaying && (
-        <video
-          src="https://res.cloudinary.com/dsns1khez/video/upload/v1763710071/short_video_animation_ad_2D_animation_Fast_Food_Animation_short_video_ad_owoksj.mp4"
-          autoPlay
-          controls
-          muted
-          loop
-          className="w-full rounded-xl"
-        />
       )}
     </div>
   );
