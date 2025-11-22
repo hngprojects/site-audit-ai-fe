@@ -6,12 +6,11 @@ import React from "react";
 
 const AboutUsPage = () => {
   return (
-    <div>
+    <div style={{ fontFamily: "var(--font-rethink-sans)" }}>
       <Hero />
       <MobileApp />
       <KeyValues />
       <InstantAuditCTA />
-      {/* We will add the sections here */}
     </div>
   );
 };

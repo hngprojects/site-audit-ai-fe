@@ -1,14 +1,13 @@
 import React from "react";
 import Image from "next/image";
 
-// Data for the key values
 const keyValues = [
   {
     icon: "/assets/icons/about/zoom-out.svg",
     title: "Clarity First",
     description:
       "We turn complex website issues into simple, human-friendly explanations anyone can understand.",
-    bgClass: "bg-[#1A2373] text-white", // Dark background for the first card
+    bgClass: "bg-[#1A2373] text-white",
     iconBgClass: "bg-[#969ABF]",
   },
   {
@@ -16,7 +15,7 @@ const keyValues = [
     title: "Speed & Efficiency",
     description:
       "Our AI scans your website in seconds so you can spot problems and fix them faster than ever.",
-    bgClass: "bg-[#F5F5F5] text-[#1C1C1C]", // Light background for other cards
+    bgClass: "bg-[#F5F5F5] text-[#1C1C1C]",
     iconBgClass: "bg-[#1A2373]",
   },
   {
@@ -56,15 +55,15 @@ const keyValues = [
 const KeyValues = () => {
   return (
     <section className="bg-white py-20">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-[#1C1C1C] text-center mb-16">
+      <div className="container mx-auto px-20">
+        <h2 className="text-[40px] font-bold text-[#1C1C1C] mb-16">
           Our Key Values: the foundation of our work
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {keyValues.map((value, index) => (
             <div
               key={index}
-              className={`flex flex-col p-6 rounded-lg shadow-md ${value.bgClass}`}
+              className={`flex flex-col p-7 rounded-[10px] shadow-md ${value.bgClass}`}
             >
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center mb-4 ${value.iconBgClass}`}
@@ -76,7 +75,7 @@ const KeyValues = () => {
                   height={24}
                 />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
+              <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
               <p className="text-sm opacity-90">{value.description}</p>
             </div>
           ))}
