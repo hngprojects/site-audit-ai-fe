@@ -27,7 +27,7 @@ export const footerLinks = [
     links: [
       { name: "Privacy Policy", href: "/#" },
       { name: "Terms of Service", href: "/#" },
-      { name: "Cookie Policy", href: "/#" },
+      { name: "Cookie Policy", href: "/cookie-policy" },
     ],
   },
 ];
