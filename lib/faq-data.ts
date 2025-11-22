@@ -1,27 +1,3 @@
-export const faqData1 = [
-  {
-    question: "How accurate are the Sitelytics' Audits?",
-    answer:
-      "AI audits are highly reliable for quickly identifying patterns, errors, and optimization opportunities across your website. They excel at spotting technical issues and inconsistencies.",
-  },
-  {
-    question: "Can I fix issues via the app?",
-    answer: "Placeholder answer for 'Can I fix issues via the app?'.",
-  },
-  {
-    question: "Do I need coding knowledge?",
-    answer: "Placeholder answer for 'Do I need coding knowledge?'.",
-  },
-  {
-    question: "How do I hire a professional?",
-    answer: "Placeholder answer for 'How do I hire a professional?'.",
-  },
-  {
-    question: "How long does it take to fix my site?",
-    answer: "Placeholder answer for 'How long does it take to fix my site?'.",
-  },
-];
-
 export const faqData = {
   "Getting Started": [
     {
@@ -156,3 +132,53 @@ export const faqData = {
     },
   ],
 };
+
+export const faqData1 = [
+  {
+    question: "How accurate are the Sitelytics' Audits?",
+    answer:
+      "AI audits are highly reliable for quickly identifying patterns, errors, and optimization opportunities across your website. They excel at spotting technical issues and inconsistencies.",
+  },
+  {
+    question: "Can I fix issues via the app?",
+    answer: "Placeholder answer for 'Can I fix issues via the app?'.",
+  },
+  {
+    question: "Do I need coding knowledge?",
+    answer: "Placeholder answer for 'Do I need coding knowledge?'.",
+  },
+  {
+    question: "How do I hire a professional?",
+    answer: "Placeholder answer for 'How do I hire a professional?'.",
+  },
+  {
+    question: "How long does it take to fix my site?",
+    answer: "Placeholder answer for 'How long does it take to fix my site?'.",
+  },
+];
+
+export const faqData2 = [
+  {
+    question: "How accurate are the audits and reports? ",
+    answer:
+      "We combine AI analysis and industry best practices to give you trusted, reliable insights.",
+  },
+  {
+    question: "Can I fix issues via the app?",
+    answer: "Placeholder answer for 'Can I fix issues via the app?'.",
+  },
+  {
+    question: "Do I need technical skills to use the app?",
+    answer:
+      "Placeholder answer for 'Do I need technical skills to use the app?'.",
+  },
+  {
+    question: "How do I hire a professional?",
+    answer: "Placeholder answer for 'How do I hire a professional?'.",
+  },
+  {
+    question: "What types of websites does this work for?",
+    answer:
+      "Placeholder answer for 'What types of websites does this work for?'.",
+  },
+];

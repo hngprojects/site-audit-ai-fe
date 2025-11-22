@@ -36,13 +36,13 @@ const WaitlistHeader = () => {
   })();
 
   return (
-    <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center bg-white border-b-2 z-50 px-4 md:px-12 sm:py-6 sticky top-0 sm:h-20">
+    <header className="max-w-[1440px] mx-auto font-sans font-medium flex justify-between items-center bg-white z-50 md:px-12 sticky top-0 p-3 sm:px-8">
       <Link href="/" onClick={() => setIsOpen(false)}>
         <Image
           src="/assets/images/Logo.svg"
           alt="Site Audit AI Logo"
-          width={140}
-          height={140}
+          width={115}
+          height={115}
         />
       </Link>
 
@@ -54,7 +54,7 @@ const WaitlistHeader = () => {
         className="sm:hidden p-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5A3D] z-55"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {isOpen ? <X size={25} /> : <Menu size={25} />}
       </button>
 
       {links && links.length && (
@@ -69,7 +69,9 @@ const WaitlistHeader = () => {
         />
       )}
 
-      <span className="hidden sm:flex sm:ml-auto sm:justify-self-end">
+      <span
+        className={`hidden sm:${landing ? "flex" : "hidden"} sm:ml-auto sm:justify-self-end`}
+      >
         <CallToActionButtonHeader
           landing={landing}
           actionText={actionText}
