@@ -3,12 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-import { usePathname } from "next/navigation";
 import { socialIcons } from "@/lib/social-icon-data";
 import { footerLinks } from "@/lib/footer-links-data";
 
 const LandingFooter = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
 
   return (
