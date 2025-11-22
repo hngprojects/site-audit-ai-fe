@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { faqData } from "@/lib/faq-data";
+import { faqData1 } from "@/lib/faq-data";
 import {
   Accordion,
   AccordionContent,
@@ -25,7 +25,7 @@ const Faq = () => {
 
         <div className="w-full max-w-[1006px] mx-auto">
           <Accordion type="single" collapsible className="w-full">
-            {faqData.map((item, index) => (
+            {faqData1.map((item, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}

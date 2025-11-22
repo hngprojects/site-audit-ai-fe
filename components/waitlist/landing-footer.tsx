@@ -7,12 +7,12 @@ import { socialIcons } from "@/lib/social-icon-data";
 import { footerLinks } from "@/lib/footer-links-data";
 
 const LandingFooter = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <footer>
-      <div>
+      <div className={`${pathname === "/faq" ? "hidden" : ""}`}>
         <div
           id="footer-app"
           className=" max-w-6xl md:max-h-[410px] bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans flex flex-col md:flex-row md:items-center gap-5 justify-between"
@@ -88,19 +88,47 @@ const LandingFooter = () => {
         </div>
       </div>
 
-      <section className="bg-[#0A0A0B] pt-40">
+      <section
+        className={`bg-[#0A0A0B] ${pathname === "/faq" ? "pt-16" : "pt-40"}`}
+      >
         <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
             <Link
               href="/"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2"
+              className="hidden xl:flex items-center gap-2"
             >
               <Image
-                src="/assets/images/Logo.svg"
+                src="/assets/images/footer-logo.svg"
                 alt="Site Audit AI Logo"
-                width={135}
-                height={58}
+                width={346}
+                height={108}
+                className=""
+              />
+            </Link>
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="hidden md:flex xl:hidden items-center gap-2"
+            >
+              <Image
+                src="/assets/images/footer-logo.svg"
+                alt="Site Audit AI Logo"
+                width={207}
+                height={108}
+                className=""
+              />
+            </Link>
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="md:hidden flex items-center gap-2"
+            >
+              <Image
+                src="/assets/images/footer-logo.svg"
+                alt="Site Audit AI Logo"
+                width={207}
+                height={108}
                 className=""
               />
             </Link>
@@ -108,7 +136,7 @@ const LandingFooter = () => {
           <div className="flex flex-col sm:flex-row  gap-8 sm:gap-20">
             {footerLinks.map((column) => (
               <div key={column.title}>
-                <h3 className="text-sm sm:text-[clamp(16px,2.299vw-1.11px,32px)] text-[#E5E9EC] font-bold sm:mb-[16.45px]">
+                <h3 className="text-lg md:text-[16px] xl:text-[32px] text-[#FEFFFF] font-bold sm:mb-[16.45px]">
                   {column.title}
                 </h3>
                 <ul className="space-y-2">
@@ -116,7 +144,7 @@ const LandingFooter = () => {
                     <li key={link.name}>
                       <Link
                         href={link.href}
-                        className="text-xs sm:text-[clamp(14px,1.149vw+5.45px,22px)] text-[#9FA1A2] font-medium hover:text-white"
+                        className="text-sm lg:text-[20px] text-[#B9B9B9] font-medium hover:text-white"
                       >
                         {link.name}
                       </Link>
@@ -133,7 +161,7 @@ const LandingFooter = () => {
             id="footer-nav"
             className=" font-sans  flex flex-col items-center justify-center gap-6 min:h-32 md:flex-row md:justify-between border-b border-b-[#f5e9e9]/45 md:my-6 py-8 "
           >
-            <p className="text-[#f5e9e9] text-xs md:text-xl">
+            <p className="text-[#f5e9e9] text-sm md:text-[16px]">
               &copy;{new Date().getFullYear()} HNG Tech Limited. All rights
               reserved.
             </p>
@@ -142,7 +170,7 @@ const LandingFooter = () => {
                 {socialIcons.map(({ icon: Icon, name, link: address }) => (
                   <li
                     key={name}
-                    className="bg-[#FF5A3D] w-7 h-7 flex items-center justify-center rounded-full md:w-10 md:h-10"
+                    className="bg-[#FF5A3D] w-7 h-7 xl:w-[38.38px] xl:h-[38.38px] flex items-center justify-center rounded-full hover:bg-[#FF5A3D]/80"
                     aria-label={name}
                   >
                     <Link href={address}>
