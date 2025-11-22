@@ -18,7 +18,7 @@ export function FAQContent() {
   const categories = Object.keys(faqData);
 
   return (
-    <div className="py-12 px-4 sm:px-6 lg:px-8">
+    <div className="pt-12 pb-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 items-center justify-center gap-4 mb-12 pb-8">
           {categories.map((category) => (
