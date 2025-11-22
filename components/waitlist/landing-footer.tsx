@@ -1,21 +1,17 @@
 "use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 import { socialIcons } from "@/lib/social-icon-data";
 import { footerLinks } from "@/lib/footer-links-data";
 
 const LandingFooter = () => {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <footer>
       <div
-        className={`${pathname === "/faq" || pathname === "/about" ? "hidden" : ""}`}
+        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" ? "hidden" : ""}`}
       >
         <div
           id="footer-app"
@@ -97,11 +93,7 @@ const LandingFooter = () => {
       >
         <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="hidden xl:flex items-center gap-2"
-            >
+            <Link href="/" className="hidden xl:flex items-center gap-2">
               <Image
                 src="/assets/images/footer-logo.svg"
                 alt="Site Audit AI Logo"
@@ -112,7 +104,6 @@ const LandingFooter = () => {
             </Link>
             <Link
               href="/"
-              onClick={() => setIsOpen(false)}
               className="hidden md:flex xl:hidden items-center gap-2"
             >
               <Image
@@ -123,11 +114,7 @@ const LandingFooter = () => {
                 className=""
               />
             </Link>
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="md:hidden flex items-center gap-2"
-            >
+            <Link href="/" className="md:hidden flex items-center gap-2">
               <Image
                 src="/assets/images/footer-logo.svg"
                 alt="Site Audit AI Logo"
