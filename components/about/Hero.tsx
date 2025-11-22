@@ -8,11 +8,15 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Text Content */}
           <div className="md:w-1/2 space-y-6">
-            <div className="relative">
-              <h4 className="text-2xl font-medium text-[#1C1C1C] mb-2">
-                About us
-              </h4>
-              <div className="absolute left-0 bottom-0 w-24 h-1 bg-[#FF5A3D] transform -translate-y-1/2 rotate-[160deg]"></div>
+            <div className="flex items-center">
+              <h4 className="text-2xl font-medium text-[#1C1C1C]">About us</h4>
+              <Image
+                src="/assets/images/about/about-us-vector.png"
+                alt="Decorative vector line"
+                width={50} // Required for Next.js Image, but will be overridden by className
+                height={50} // Required for Next.js Image, but will be overridden by className
+                className="w-12 h-auto ml-2" // Responsive sizing with Tailwind
+              />
             </div>
             <h1 className="text-5xl font-bold text-[#1C1C1C] leading-tight">
               Sitelytics was built with one mission: to help small businesses

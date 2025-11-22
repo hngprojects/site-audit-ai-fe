@@ -24,7 +24,16 @@ const WaitlistHeader = () => {
   const actionHref =
     pathname === "/" ? "/waitlist" : pathname === "/how-it-works" ? "#" : "";
 
-  const links = landing ? navLinksLanding : navLinksWaitlist;
+  const links = (() => {
+    if (pathname === "/about") {
+      return [
+        { href: "/why-sutelytics", label: "Why Sitelytics" },
+        { href: "/how-it-works", label: "How It Works" },
+        { href: "/faq", label: "FAQ" },
+      ];
+    }
+    return landing ? navLinksLanding : navLinksWaitlist;
+  })();
 
   return (
     <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center bg-white z-50 px-4 md:px-12 sm:py-6 sticky top-0 sm:h-20">

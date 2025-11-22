@@ -14,7 +14,9 @@ const LandingFooter = () => {
 
   return (
     <footer>
-      <div className={`${pathname === "/faq" ? "hidden" : ""}`}>
+      <div
+        className={`${pathname === "/faq" || pathname === "/about" ? "hidden" : ""}`}
+      >
         <div
           id="footer-app"
           className=" max-w-6xl md:max-h-[410px] bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans flex flex-col md:flex-row md:items-center gap-5 justify-between"
