@@ -6,7 +6,6 @@ const TermsOfUsePage = () => {
     <div className="bg-white text-[#1C1C1C] font-normal font-['Rethink_Sans']">
       <main className="mx-auto max-w-full px-4 md:px-8 lg:px-20">
         <div className="mx-auto max-w-[1242px] py-10 lg:py-20">
-          {/* Page Header */}
           <header className="mb-10 text-center">
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
               Terms of Service
@@ -16,7 +15,6 @@ const TermsOfUsePage = () => {
             </p>
           </header>
 
-          {/* Page Content */}
           <div className="space-y-10">
             {/* Introduction Section */}
             <section>
@@ -64,6 +62,61 @@ const TermsOfUsePage = () => {
                 If you create an account or use Sitelytics on behalf of a
                 business or organization, you confirm that you are authorized to
                 accept these Terms on their behalf.
+              </p>
+            </section>
+
+            {/* Use of the Service Section */}
+            <section>
+              <h2 className="text-xl font-bold text-[#1C1C1C] md:text-lg lg:text-2xl">
+                Use of the Service
+              </h2>
+              <p className="mt-4 text-sm leading-5 text-justify text-[#1C1C1C] md:text-base md:leading-5 lg:text-xl lg:leading-7">
+                By using Sitelytics, you agree to use the platform only for
+                lawful purposes and in a manner that does not violate the rights
+                of others or interfere with the operation of the service. You
+                may run unlimited free website audits without restrictions.
+                However, certain actions such as requesting assistance from a
+                Sitelytics expert or professional may require a small service
+                fee, which will be clearly communicated before you proceed.
+              </p>
+              <p className="mt-4 text-sm text-[#1C1C1C] md:text-base lg:text-xl">
+                You agree not to:
+              </p>
+              <div className="mt-4 space-y-2">
+                <BulletListItem>
+                  Use the platform to engage in fraudulent, misleading, or
+                  harmful activities
+                </BulletListItem>
+                <BulletListItem>
+                  Attempt to bypass or interfere with any security or audit
+                  mechanisms
+                </BulletListItem>
+                <BulletListItem>
+                  Scrape, copy, or reverse-engineer the platform or its
+                  underlying technology
+                </BulletListItem>
+                <BulletListItem>
+                  Exploit the service in ways that violate these Terms or
+                  applicable laws
+                </BulletListItem>
+                <BulletListItem>
+                  Upload harmful software or scripts
+                </BulletListItem>
+                <BulletListItem>
+                  Use Sitelytics to analyze websites you do not own or manage
+                </BulletListItem>
+                <BulletListItem>
+                  Misuse expert communication channels
+                </BulletListItem>
+                <BulletListItem>
+                  Attempt to bypass any security or audit-limit features
+                </BulletListItem>
+              </div>
+              <p className="mt-4 text-sm leading-5 text-justify text-[#1C1C1C] md:text-base md:leading-5 lg:text-xl lg:leading-7">
+                We reserve the right to suspend or terminate access for users
+                who misuse the platform, violate these Terms, or engage in
+                behavior that affects the functionality or security of
+                Sitelytics.
               </p>
             </section>
           </div>
