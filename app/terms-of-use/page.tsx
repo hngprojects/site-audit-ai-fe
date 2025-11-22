@@ -18,7 +18,21 @@ const TermsOfUsePage = () => {
           {/* Page Content */}
           <div className="space-y-10">
             {/* Introduction Section */}
-            <section>{/* Content will go here */}</section>
+            <section>
+              <h2 className="text-xl font-bold text-[#1C1C1C] md:text-lg lg:text-2xl">
+                Introduction
+              </h2>
+              <p className="mt-4 text-sm leading-5 text-justify text-[#1C1C1C] md:text-base md:leading-5 lg:text-xl lg:leading-7">
+                Welcome to Sitelytics (“Company”, “we”, “our”, “us”). Sitelytics
+                is a website and mobile application that provides automated
+                website audits, performance insights, and optional expert
+                assistance to help users understand and improve their website’s
+                effectiveness. By accessing or using the Sitelytics Website or
+                App, you agree to be bound by these Terms of Service (“Terms”).
+                If you do not agree with these Terms, you must discontinue use
+                of the Service.
+              </p>
+            </section>
           </div>
         </div>
       </main>
