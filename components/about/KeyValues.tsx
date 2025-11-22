@@ -56,10 +56,10 @@ const KeyValues = () => {
   return (
     <section className="bg-white py-20">
       <div className="container mx-auto px-20">
-        <h2 className="text-[40px] font-bold text-[#1C1C1C] mb-16">
+        <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold text-[#1C1C1C] mb-16">
           Our Key Values: the foundation of our work
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {keyValues.map((value, index) => (
             <div
               key={index}

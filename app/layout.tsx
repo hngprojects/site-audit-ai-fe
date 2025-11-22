@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 const rethinkSans = Rethink_Sans({
   variable: "--font-rethink-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
