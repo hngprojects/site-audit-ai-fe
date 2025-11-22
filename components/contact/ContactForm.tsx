@@ -87,7 +87,7 @@ export default function ContactForm() {
           control={form.control}
           name="fullname"
           render={({ field }) => (
-            <FormItem className="w-full mb-6">
+            <FormItem className="w-full mb-5">
               <FormLabel className="text-base text-[#494949] font-semibold leading-5">
                 Full name
               </FormLabel>
@@ -106,7 +106,7 @@ export default function ContactForm() {
           control={form.control}
           name="phone"
           render={({ field }) => (
-            <FormItem className="w-full mb-6">
+            <FormItem className="w-full mb-5">
               <FormLabel className="text-base font-semibold text-[#494949]">
                 Phone Number
               </FormLabel>
@@ -145,7 +145,7 @@ export default function ContactForm() {
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="Phone number"
+                    placeholder="+1(555) 000-0000"
                     className="border-none focus-visible:ring-0 h-12 shadow-none"
                   />
                 </FormControl>
@@ -159,7 +159,7 @@ export default function ContactForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="w-full mb-6">
+            <FormItem className="w-full mb-5">
               <FormLabel className="text-base text-[#494949] font-semibold leading-5">
                 Email
               </FormLabel>
@@ -178,7 +178,7 @@ export default function ContactForm() {
           control={form.control}
           name="message"
           render={({ field }) => (
-            <FormItem className="w-full mb-6">
+            <FormItem className="w-full mb-5">
               <FormLabel className="text-base text-[#494949] font-semibold leading-5">
                 Message
               </FormLabel>
@@ -195,7 +195,6 @@ export default function ContactForm() {
           "
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -203,7 +202,7 @@ export default function ContactForm() {
         <Button
           type="submit"
           disabled={loading}
-          className="min-w-[343px] bg-[#FF5A3D] hover:bg-[#FF5A3D]/80 py-4 h-12 cursor-pointer "
+          className="w-full bg-[#FF5A3D] hover:bg-[#FF5A3D]/80 mt-3 py-4 h-12 cursor-pointer "
         >
           Send Message
           {loading ? <Loader2 className="animate-spin mr-2" /> : null}
