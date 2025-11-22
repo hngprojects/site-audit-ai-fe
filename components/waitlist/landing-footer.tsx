@@ -11,7 +11,7 @@ const LandingFooter = () => {
   return (
     <footer>
       <div
-        className={`${pathname === "/faq" || pathname === "/cookie-policy" ? "hidden" : ""}`}
+        className={`${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "hidden" : ""}`}
       >
         <div
           id="footer-app"
@@ -89,7 +89,7 @@ const LandingFooter = () => {
       </div>
 
       <section
-        className={`bg-[#0A0A0B] ${pathname === "/faq" ? "pt-16" : "pt-40"}`}
+        className={`bg-[#0A0A0B] ${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "pt-16" : "pt-40"}`}
       >
         <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
