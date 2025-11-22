@@ -372,7 +372,13 @@ const TermsOfUsePage = () => {
                 If you have questions about this Privacy Policy or your data,
                 contact: <br />
                 Sitelytics Support <br />
-                Email: support@sitelytics.ai
+                Email:{" "}
+                <a
+                  href="mailto:support@sitelytics.ai"
+                  className="text-[#E85238] font-medium hover:underline"
+                >
+                  support@sitelytics.ai
+                </a>
               </p>
             </section>
           </div>

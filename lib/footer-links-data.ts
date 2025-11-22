@@ -2,7 +2,7 @@ export const footerLinks = [
   {
     title: "Overview",
     links: [
-      { name: "About", href: "/#" },
+      { name: "About", href: "/about" },
       { name: "How it Works", href: "/#" },
       { name: "Waitlist", href: "/waitlist" },
     ],
@@ -26,7 +26,7 @@ export const footerLinks = [
     title: "Legal",
     links: [
       { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Terms of Service", href: "/#" },
+      { name: "Terms of Service", href: "/terms-of-use" },
       { name: "Cookie Policy", href: "/cookie-policy" },
     ],
   },

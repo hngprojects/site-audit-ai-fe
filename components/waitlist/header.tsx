@@ -25,7 +25,7 @@ const WaitlistHeader = () => {
     pathname === "/" ? "/waitlist" : pathname === "/how-it-works" ? "#" : "";
 
   const links = (() => {
-    if (pathname === "/about") {
+    if (pathname === "/about" || "/terms-of-use") {
       return [
         { href: "/why-sutelytics", label: "Why Sitelytics" },
         { href: "/how-it-works", label: "How It Works" },
