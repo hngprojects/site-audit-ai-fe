@@ -138,7 +138,7 @@ const TermsOfUsePage = () => {
             {/* User Obligations and Authorization Section */}
             <section>
               <h2 className="text-xl font-bold text-[#1C1C1C] md:text-lg lg:text-2xl">
-                User Obligations and Authorization
+                4. User Obligations and Authorization
               </h2>
 
               {/* 4.1 Website Authority (Crucial Clause) */}
@@ -174,7 +174,7 @@ const TermsOfUsePage = () => {
             {/* The Expert/Pro Services Section */}
             <section>
               <h2 className="text-xl font-bold text-[#1C1C1C] md:text-lg lg:text-2xl">
-                The Expert/Pro Services
+                5. The Expert/Pro Services
               </h2>
               <p className="mt-4 text-sm leading-5 text-justify text-[#1C1C1C] md:text-base md:leading-5 lg:text-xl lg:leading-7">
                 Sitelytics allows all users to:
