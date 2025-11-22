@@ -1,3 +1,4 @@
+import BulletListItem from "@/components/ui/bullet-list-item";
 import React from "react";
 
 const TermsOfUsePage = () => {
@@ -31,6 +32,38 @@ const TermsOfUsePage = () => {
                 App, you agree to be bound by these Terms of Service (“Terms”).
                 If you do not agree with these Terms, you must discontinue use
                 of the Service.
+              </p>
+            </section>
+
+            {/* Acceptance of Terms Section */}
+            <section>
+              <h2 className="text-xl font-bold text-[#1C1C1C] md:text-lg lg:text-2xl">
+                Acceptance of Terms
+              </h2>
+              <p className="mt-4 text-sm font-medium text-[#1C1C1C] md:text-base lg:text-xl lg:font-normal">
+                By using Sitelytics, you confirm that:
+              </p>
+              <div className="mt-4 space-y-2">
+                <BulletListItem>
+                  You have read and understood these Terms
+                </BulletListItem>
+                <BulletListItem>
+                  Accept and agree to follow all rules, policies, and guidelines
+                  described here
+                </BulletListItem>
+                <BulletListItem>
+                  Understand that Sitelytics may update these Terms from time to
+                  time
+                </BulletListItem>
+                <BulletListItem>
+                  Agree to any changes once you continue using the Service after
+                  updates
+                </BulletListItem>
+              </div>
+              <p className="mt-4 text-sm leading-5 text-justify text-[#1C1C1C] md:text-base md:leading-5 lg:text-xl lg:leading-7">
+                If you create an account or use Sitelytics on behalf of a
+                business or organization, you confirm that you are authorized to
+                accept these Terms on their behalf.
               </p>
             </section>
           </div>
