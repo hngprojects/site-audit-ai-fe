@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { HeroForm } from "./hero-form";
-import Faq from "../landing/faq";
-import { faqData2 } from "@/lib/faq-data";
 
 const Hero = () => {
   const [message, setMessage] = useState("");
