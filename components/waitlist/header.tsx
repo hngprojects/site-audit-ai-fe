@@ -15,14 +15,9 @@ const WaitlistHeader = () => {
   const landing = pathname !== "/waitlist";
   const [isOpen, setIsOpen] = useState(false);
 
-  const actionText =
-    pathname === "/"
-      ? "Join waitlist"
-      : pathname === "/how-it-works"
-        ? "Get the App"
-        : "Get the App";
+  const actionText = "Get the App";
   const actionHref =
-    pathname === "/" ? "/waitlist" : pathname === "/how-it-works" ? "#" : "";
+    "https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link";
 
   const links = (() => {
     return landing ? navLinksLanding : navLinksWaitlist;

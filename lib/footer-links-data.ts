@@ -3,8 +3,8 @@ export const footerLinks = [
     title: "Overview",
     links: [
       { name: "About", href: "/about" },
+      { name: "Why Sitelytics", href: "/#" },
       { name: "How it Works", href: "/#" },
-      { name: "Waitlist", href: "/waitlist" },
     ],
   },
   {
@@ -18,7 +18,6 @@ export const footerLinks = [
     title: "Support",
     links: [
       { name: "Contact us", href: "/contact" },
-      { name: "Help Centre", href: "/#" },
       { name: "FAQs", href: "/faq" },
     ],
   },
