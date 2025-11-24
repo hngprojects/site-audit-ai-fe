@@ -18,14 +18,14 @@ const StepItem = ({
 
   return (
     <div
-      className={`flex flex-col ${flexDirection} gap-8 lg:gap-10 items-center`}
+      className={`flex flex-col ${flexDirection} gap-8 lg:gap-10 items-start`}
     >
       {/* Text Content */}
-      <div className="flex-1 text-center lg:text-left">
+      <div className="flex-1 text-center lg:text-left py-[24px] md:py-[12.75px] lg:py-[24px]">
         <h3 className="text-2xl lg:text-[24px] lg:leading-[28px] font-bold text-[#1C1C1C] mb-4">
           {title}
         </h3>
-        <p className="text-base lg:text-[18px] lg:leading-[22px] text-[#676767]">
+        <p className="text-[18px] leading-[22px] text-[#676767]">
           {description}
         </p>
       </div>
