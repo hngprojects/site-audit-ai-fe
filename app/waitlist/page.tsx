@@ -5,10 +5,12 @@ import Faq from "@/components/landing/faq";
 
 const WaitlistPage = () => {
   return (
-    <main>
-      <Hero />
-      <Faq />
-    </main>
+    <>
+      <main>
+        <Hero />
+        <Faq />
+      </main>
+    </>
   );
 };
 
