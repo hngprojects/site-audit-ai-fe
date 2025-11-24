@@ -36,8 +36,6 @@ const Hero = () => {
           </div>
         )}
       </div>
-
-      <Faq faqData={faqData2} />
     </section>
   );
 };
