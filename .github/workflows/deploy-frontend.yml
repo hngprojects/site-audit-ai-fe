@@ -1,0 +1,169 @@
+# .github/workflows/deploy-frontend.yml
+
+name: Deploy Frontend
+
+# --- TRIGGERS ---
+# Run this workflow on pushes to the 'dev' branch or when manually triggered from the GitHub Actions page.
+on:
+  push:
+    branches: [ dev ]
+
+  pull_request:
+      branches:
+        - dev
+
+  workflow_dispatch:
+
+# --- GLOBALS ---
+# Use a smaller, more efficient runner.
+runs-on: hng-13-runner
+
+# --- ENVIRONMENT VARIABLES ---
+# These are passed from the 'deploy' job to the 'health-check' job.
+
+jobs:
+  # =====================================================
+  # JOB 1: BUILD AND TEST
+  # This job builds your app and runs tests. It produces the static files.
+  # =====================================================
+  build-and-test:
+    name: Build & Test
+    runs-on: hng-13-runner
+
+    steps:
+      # --- ACTION: Checkout Code ---
+      # INTENTION: To download the latest source code from your repository.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --- ACTION: Setup Node.js ---
+      # INTENTION: To configure the correct Node.js version for your project.
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # --- ACTION: Setup pnpm ---
+      # INTENTION: To install pnpm, your fast package manager.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      # --- ACTION: Get pnpm Store Path ---
+      # INTENTION: To retrieve the pnpm store path for caching.
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      # --- ACTION: Cache pnpm Store ---
+      # INTENTION: To cache dependencies between runs, significantly speeding up the pipeline.
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # --- ACTION: Install Dependencies ---
+      # INTENTION: To install all project packages from the locked dependency file.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # --- ACTION: Run Linter ---
+      # INTENTION: To enforce code style and catch potential errors early.
+      - name: Run Linter
+        run: pnpm lint
+
+      # --- ACTION: Run Type Checker ---
+      # INTENTION: To ensure all TypeScript code is type-safe.
+      - name: Run Type Check
+        run: pnpm type-check
+
+      # --- ACTION: Run Tests (Optional) ---
+      # INTENTION: To validate that your application's core logic works as expected.
+      # IMPORTANT: Uncomment this section when you have a test suite (e.g., with Jest or Vitest).
+      # - name: Run Tests
+      #   run: pnpm test
+
+      # --- ACTION: Build Application ---
+      # INTENTION: To create a production-ready static bundle of your Next.js application.
+      - name: Build application
+        run: pnpm run build
+
+      # --- ACTION: Upload Build Artifacts ---
+      # INTENTION: To store the built application files (the 'out/' directory) for deployment.
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-app
+          path: out/
+          retention-days: 1
+
+  # =====================================================
+  # JOB 2: DEPLOY TO SERVER
+  # This job takes the validated build and deploys it to your server.
+  # =====================================================
+  deploy:
+    name: Deploy to Server
+    # This job depends on 'build-and-test' and will only run if it succeeds.
+    needs: build-and-test
+    runs-on: hng-13-runner
+    # Use GitHub Environments for protection and to store secrets.
+    # environment: staging
+
+    steps:
+      # --- ACTION: Download Build Artifacts ---
+      # INTENTION: To retrieve the 'out/' directory built in the previous job.
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-app
+          path: out/
+
+      # --- ACTION: Deploy to Server ---
+      # INTENTION: To connect to your server and upload the new application files.
+      - name: Deploy to Server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_SSH_USER }}
+          key: ${{ secrets.STAGING_SSH_KEY }}
+          source: out/
+          target: ${{ secrets.STAGING_APP_DIR }}
+          strip_components: true
+
+  # =====================================================
+  # JOB 3: HEALTH CHECK
+  # This job verifies that the deployed application is running correctly.
+  # =====================================================
+  health-check:
+    name: Health Check
+    # This job depends on 'deploy' and will only run if it succeeds.
+    needs: deploy
+    runs-on: hng-13-runner
+    # environment: staging
+    env:
+      APP_URL: ${{ secrets.STAGING_URL }}
+
+    steps:
+      - name: Wait for Deployment
+        run: sleep 30s
+
+      - name: Verify health endpoint
+        run: |
+          # Check if the deployed application is responding correctly.
+          echo "Checking health at ${{ env.APP_URL }}..."
+          for attempt in {1..5}; do
+            STATUS_CODE=$(curl -s -o /tmp/health_status -w "%{http_code}" "${{ env.APP_URL }}" || echo "000")
+            if [ "$STATUS_CODE" = "200" ] || [ "$STATUS_CODE" = "304" ]; then
+              echo "✅ Health check succeeded (status $STATUS_CODE)."
+              exit 0
+            else
+              echo "❌ Health check failed (status $STATUS_CODE). Retrying..."
+              sleep 5
+            fi
+          done
+          echo "::error::Service did not pass health check after 5 attempts."
+          exit 1
