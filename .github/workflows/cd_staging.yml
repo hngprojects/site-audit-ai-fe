@@ -2,8 +2,8 @@ name: CD Staging Frontend
 
 on:
   pull_request:
-     branches: [dev]
-     types: [closed]
+    branches: [dev]
+    types: [closed]
   workflow_dispatch:
 
 concurrency:
@@ -25,7 +25,7 @@ jobs:
       ENV_FILE: ${{ secrets.STAGING_ENV_FILE }}
       SSH_PORT: ${{ secrets.STAGING_SSH_PORT }}
       NGINX_LOG_PREFIX: sitemate-staging-fe
-      NODE_VERSION: '20'
+      NODE_VERSION: "20"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -180,4 +180,3 @@ jobs:
         if: always()
         run: |
           echo "Deployed $GITHUB_SHA to $DEPLOY_ENV (${APP_URL})"
-
