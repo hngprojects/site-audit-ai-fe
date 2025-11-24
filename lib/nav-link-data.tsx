@@ -5,7 +5,7 @@ export const navLinksWaitlist = [
 
 export const navLinksLanding = [
   // { href: "/", label: "Home" },
-  { href: "/why-sutelytics", label: "Why Sitelytics" },
+  { href: "/why-sitelytics", label: "Why Sitelytics" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/waitlist#FAQ", label: "FAQ" },
 ];
