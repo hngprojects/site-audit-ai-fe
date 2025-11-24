@@ -25,13 +25,6 @@ const WaitlistHeader = () => {
     pathname === "/" ? "/waitlist" : pathname === "/how-it-works" ? "#" : "";
 
   const links = (() => {
-    if (pathname === "/about") {
-      return [
-        { href: "/why-sutelytics", label: "Why Sitelytics" },
-        { href: "/how-it-works", label: "How It Works" },
-        { href: "/faq", label: "FAQ" },
-      ];
-    }
     return landing ? navLinksLanding : navLinksWaitlist;
   })();
 
@@ -41,8 +34,8 @@ const WaitlistHeader = () => {
         <Image
           src="/assets/images/Logo.svg"
           alt="Site Audit AI Logo"
-          width={140}
-          height={140}
+          width={115}
+          height={115}
         />
       </Link>
 
@@ -54,7 +47,7 @@ const WaitlistHeader = () => {
         className="sm:hidden p-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5A3D] z-55"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {isOpen ? <X size={25} /> : <Menu size={25} />}
       </button>
 
       {links && links.length && (
@@ -69,7 +62,9 @@ const WaitlistHeader = () => {
         />
       )}
 
-      <span className="hidden sm:flex sm:ml-auto sm:justify-self-end">
+      <span
+        className={`hidden sm:${landing ? "flex" : "hidden"} sm:ml-auto sm:justify-self-end`}
+      >
         <CallToActionButtonHeader
           landing={landing}
           actionText={actionText}
