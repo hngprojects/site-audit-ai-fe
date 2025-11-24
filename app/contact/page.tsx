@@ -51,11 +51,11 @@ const ContactPage = () => {
           </p>
           <p className="text-[#494949] font-normal text-xs leading-3.5">
             By contacting us, you agree to our{" "}
-            <a href="#" className="text-[#1A2373] font-bold">
+            <a href="/privacy-policy" className="text-[#1A2373] font-bold">
               terms of service
             </a>{" "}
             and{" "}
-            <a href="#" className="text-[#1A2373] font-bold">
+            <a href="/privacy-policy" className="text-[#1A2373] font-bold">
               privacy policy.
             </a>
           </p>
