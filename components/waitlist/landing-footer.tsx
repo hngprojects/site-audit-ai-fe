@@ -11,19 +11,19 @@ const LandingFooter = () => {
   return (
     <footer>
       <div
-        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" ? "hidden" : ""}`}
+        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" ? "hidden" : "max-w-[80vw] md:max-h-[410px] mx-auto"}`}
       >
         <div
           id="footer-app"
-          className=" max-w-6xl md:max-h-[410px] bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans flex flex-col md:flex-row md:items-center gap-5 justify-between"
+          className="bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans flex flex-col md:flex-row md:items-center gap-5 justify-between"
         >
           {/* left column */}
-          <div className="md:w-3/4 flex-1 p-8 md:p-12 flex flex-col  h-full gap-6">
+          <div className="md:w-3/4 flex-1 py-8 px-4 md:p-12 flex flex-col h-full gap-6">
             <div className="">
-              <h2 className="text-2xl md:text-[clamp(24px,3.35vw+0.2px,48px)] max-w-[500px] font-sans font-semibold text-white md:leading-12">
+              <h2 className="text-[32px] md:text-[clamp(24px,3.35vw+0.2px,48px)] max-w-[500px] font-sans font-semibold text-white md:leading-12">
                 Audit Your Website Instantly
               </h2>
-              <p className="text-sm lg:text-[18px] max-w-[497px] text-white mt-4">
+              <p className="text-sm leading-5 lg:text-[18px] max-w-[497px] text-white mt-4">
                 Download the app and let AI analyze your site, uncover
                 opportunities, and boost performance, all in seconds.
               </p>
@@ -70,7 +70,7 @@ const LandingFooter = () => {
           {/* Right side - Responsive phone images */}
           <div className="flex-1 flex items-center justify-end">
             <Image
-              src="/assets/images/landing/appstore.svg"
+              src="/assets/images/landing/appstore.png"
               alt="Footer"
               width={400}
               height={400}

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import VideoPlayer from "./video-player";
+import Image from "next/image";
+import { GetApp } from "./get-app";
 // import Image from "next/image";
 
 const Hero = () => {
@@ -18,16 +20,40 @@ const Hero = () => {
               experts who can fix it.
             </p>
           </div>
-          <div className="flex items-center justify-center lg:justify-start gap-4 w-full">
-            <Link
-              href="/waitlist"
-              className="bg-[#FF5A3D] hover:bg-[#FF5A3D]/90 py-3 px-7 text-white rounded-xl w-full lg:w-auto text-center"
-            >
-              Join waitlist
-            </Link>
+          <div className="flex items-center flex-col justify-center lg:justify-start gap-4 w-full">
+            <GetApp />
+            <div className="flex items-center gap-4">
+              <div className="w-[25vw]">
+                <p className="font-bold text-2xl">8K +</p>
+                <p className="text-[#676767] text-sm">Active testers</p>
+              </div>
+
+              <span className="w-px h-8 bg-[#676767]"></span>
+
+              <div className="w-[25vw]">
+                <p className="font-bold text-2xl">10K +</p>
+                <p className="text-[#676767] text-sm">Downloads</p>
+              </div>
+
+              <span className="w-px h-8 bg-[#676767]"></span>
+
+              <div className="w-[25vw]">
+                <p className="font-bold text-2xl">12K +</p>
+                <p className="text-[#676767] text-sm">Reviews</p>
+              </div>
+            </div>
           </div>
         </div>
-        <VideoPlayer />
+
+        <div className="grid place-content-center max-w-[325px] max-h-[290px] overflow-hidden justify-center my-8">
+          <Image
+            src="/assets/images/hero-wavey-iphone.svg"
+            width={300}
+            height={290}
+            alt="Wavey Iphone Hero"
+            className="w-full m-auto"
+          />
+        </div>
       </div>
     </section>
   );
