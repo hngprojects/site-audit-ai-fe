@@ -8,7 +8,7 @@ const DesktopNav = ({
   pathname: string;
 }) => {
   return (
-    <nav className="hidden absolute left-1/2 transform -translate-x-1/2 w-45 sm:flex sm:justify-between text-base">
+    <nav className="hidden md:absolute md:left-1/2 md:transform md:-translate-x-1/2 sm:ml-auto sm:flex sm:justify-center sm:gap-8 text-base">
       {links_data.map(({ href, label }) => (
         <NavLink
           key={label}

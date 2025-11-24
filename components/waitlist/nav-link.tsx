@@ -20,11 +20,9 @@ const NavLink = ({
       onClick();
     }
 
-    // Handle smooth scroll for hash links
     if (href.includes("#")) {
       const [path, hash] = href.split("#");
 
-      // If we're on the same page, prevent default and scroll
       if (path === pathname || (path === "/" && pathname === "/")) {
         e.preventDefault();
         const element = document.getElementById(hash);
@@ -32,8 +30,6 @@ const NavLink = ({
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
-      // For cross-page navigation, let Next.js handle it naturally
-      // The browser will handle the hash scroll after navigation
     }
   };
 

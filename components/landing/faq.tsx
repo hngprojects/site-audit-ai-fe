@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { faqData } from "@/lib/faq-data";
+import { faqData1 } from "@/lib/faq-data";
 import {
   Accordion,
   AccordionContent,
@@ -9,9 +8,23 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const Faq = () => {
+type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+interface FaqProps {
+  faqData?: FAQItem[];
+}
+
+const Faq = ({ faqData }: FaqProps) => {
+  const dataToUse = faqData && faqData.length > 0 ? faqData : faqData1;
+
   return (
-    <section className="bg-white py-16 lg:py-[100px] font-sans">
+    <section
+      id={faqData ? "#FAQ" : ""}
+      className="bg-white py-16 lg:py-[100px] font-sans"
+    >
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col items-center text-center mb-16">
           <h2 className="text-3xl lg:text-[40px] font-bold text-[#1C1C1C] mb-4">
@@ -25,7 +38,7 @@ const Faq = () => {
 
         <div className="w-full max-w-[1006px] mx-auto">
           <Accordion type="single" collapsible className="w-full">
-            {faqData.map((item, index) => (
+            {dataToUse.map((item, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}

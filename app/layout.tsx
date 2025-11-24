@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 const rethinkSans = Rethink_Sans({
   variable: "--font-rethink-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -33,6 +34,14 @@ export const metadata: Metadata = {
     description:
       "an easy-to-use app that checks your website's health. It finds problems, suggests quick fixes, and helps your website perform better - no tech skills needed.",
     siteName: "Sitelytics",
+    images: [
+      {
+        url: "https://staging.tokugawa.emerj.net/assets/images/meta-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Sitelytics - Website audit with AI",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },

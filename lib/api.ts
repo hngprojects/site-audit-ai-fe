@@ -8,11 +8,20 @@ if (!WAITLIST_API_URL) {
   );
 }
 
-export const submitWaitlistEmail = async (email: string) => {
+export const submitWaitlistData = async ({
+  email,
+  name,
+  description,
+}: {
+  email: string;
+  name: string;
+  description: string;
+}) => {
   try {
     const response = await axios.post(WAITLIST_API_URL + "/waitlist", {
-      name: email.split("@")[0],
+      name,
       email,
+      description,
     });
     return response.data;
   } catch (error) {
