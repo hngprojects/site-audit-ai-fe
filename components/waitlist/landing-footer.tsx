@@ -8,6 +8,19 @@ import { GetApp } from "../landing/get-app";
 
 const LandingFooter = () => {
   const pathname = usePathname();
+  const HIDDEN_PATHS = [
+    "/faq",
+    "/about",
+    "/cookie-policy",
+    "/privacy-policy",
+    "/terms-of-use",
+    "/release",
+    "/blog",
+  ];
+
+  const showFooterAppSection = !(
+    HIDDEN_PATHS.includes(pathname ?? "") || pathname?.includes("/blog/")
+  );
 
   return (
     <footer className="relative">
