@@ -1,7 +1,6 @@
-import Link from "next/link";
-import VideoPlayer from "./video-player";
 import Image from "next/image";
 import { GetApp } from "./get-app";
+import React from "react";
 // import Image from "next/image";
 
 const Hero = () => {
@@ -20,38 +19,37 @@ const Hero = () => {
               experts who can fix it.
             </p>
           </div>
-          <div className="flex items-center flex-col justify-center lg:justify-start gap-4 w-full">
+          <div className="flex items-center flex-col justify-center md:items-start gap-8 w-full">
             <GetApp />
-            <div className="flex items-center gap-4">
-              <div className="w-[25vw]">
-                <p className="font-bold text-2xl">8K +</p>
-                <p className="text-[#676767] text-sm">Active testers</p>
-              </div>
-
-              <span className="w-px h-8 bg-[#676767]"></span>
-
-              <div className="w-[25vw]">
-                <p className="font-bold text-2xl">10K +</p>
-                <p className="text-[#676767] text-sm">Downloads</p>
-              </div>
-
-              <span className="w-px h-8 bg-[#676767]"></span>
-
-              <div className="w-[25vw]">
-                <p className="font-bold text-2xl">12K +</p>
-                <p className="text-[#676767] text-sm">Reviews</p>
-              </div>
+            <div className="flex items-center justify-center sm:justify-between gap-4 sm:gap-8 w-full max-w-4xl mx-auto py-4 sm:max-w-[80%] md:mx-[unset]">
+              {[
+                { value: "8K +", label: "Active testers" },
+                { value: "10K +", label: "Downloads" },
+                { value: "12K +", label: "Reviews" },
+              ].map((item, idx) => (
+                <React.Fragment key={item.label}>
+                  <div className="flex flex-col items-center sm:items-start text-center sm:text-left flex-1">
+                    <p className="font-bold text-2xl sm:text-3xl">
+                      {item.value}
+                    </p>
+                    <p className="text-[#676767] text-sm sm:text-base">
+                      {item.label}
+                    </p>
+                  </div>
+                  {idx < 2 && <span className="block w-px h-8 bg-[#676767]" />}
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="grid place-content-center max-w-[325px] max-h-[290px] overflow-hidden justify-center my-8">
+        <div className="grid place-content-center max-w-[325px] max-h-[290px] sm:max-w-[100vw] sm:w-full sm:h-full sm:max-h-full overflow-hidden justify-center my-8">
           <Image
             src="/assets/images/hero-wavey-iphone.svg"
             width={300}
             height={290}
             alt="Wavey Iphone Hero"
-            className="w-full m-auto"
+            className="w-full scale-170 m-auto"
           />
         </div>
       </div>

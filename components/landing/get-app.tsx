@@ -3,38 +3,49 @@ import Link from "next/link";
 import React from "react";
 
 export const GetApp = () => {
+  const buttons = [
+    {
+      href: "#",
+      imgSrc: "/assets/images/google-play.svg",
+      alt: "Google Play",
+      line1: "Get it on",
+      line2: "Google Play",
+    },
+    {
+      href: "#",
+      imgSrc: "/assets/images/apple.svg",
+      alt: "App Store",
+      line1: "Download on the",
+      line2: "App Store",
+    },
+  ];
+
   return (
-    <div className="flex flex-row gap-4 mt-6 md:mt-0">
-      <Link
-        href="#"
-        className="bg-black text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
-      >
-        <Image
-          src="/assets/images/google-play.svg"
-          alt="Google Play"
-          width={24}
-          height={24}
-        />
-        <div>
-          Get it on{" "}
-          <p className="text-sm md:text-base font-semibold">Google Play</p>
-        </div>
-      </Link>
-      <Link
-        href="#"
-        className="bg-black  text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
-      >
-        <Image
-          src="/assets/images/apple.svg"
-          alt="App Store"
-          width={24}
-          height={24}
-        />
-        <div>
-          Download on the{" "}
-          <p className="text-xs md:text-base font-semibold">App Store</p>
-        </div>
-      </Link>
+    <div className="flex gap-4 items-center">
+      {buttons.map(({ href, imgSrc, alt, line1, line2 }) => (
+        <Link
+          key={alt}
+          href={href}
+          className="bg-black text-white flex items-center gap-2 rounded-lg px-3 py-1 md:px-4 md:py-2 max-w-40 md:max-w-[unset] shrink-0"
+          aria-label={alt}
+        >
+          <Image
+            src={imgSrc}
+            alt={alt}
+            width={24}
+            height={24}
+            className="w-4 h-4 shrink-0"
+          />
+          <div className="flex flex-col text-left leading-tight">
+            <span className="text-[7px] font-light md:text-xs uppercase">
+              {line1}
+            </span>
+            <span className="text-[10px] md:text-base font-semibold">
+              {line2}
+            </span>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };
