@@ -110,7 +110,6 @@ jobs:
             echo 'Remote directory prepared successfully'
           "
 
-      # ADDED: Missing step from logs - Create deployment package
       - name: Create deployment package (without node_modules)
         run: |
           echo "Creating optimized deployment package..."
