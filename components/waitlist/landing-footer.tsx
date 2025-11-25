@@ -23,24 +23,24 @@ const LandingFooter = () => {
   );
 
   return (
-    <footer>
-      <div className={`${!showFooterAppSection ? "hidden" : ""}`}>
+    <footer className="relative">
+      <div
+        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" || pathname === "/release" || pathname === "/blog" || pathname === "/contact" ? "hidden" : ""}`}
+      >
         <div
           id="footer-app"
-          className="bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans
+          className="bg-[#E85238] rounded-[30px] max-w-[1050px] mx-auto relative top-[50px] font-sans overflow-hidden
+             h-[380px] mb-[-40px] z-10
              flex flex-col sm:flex-row gap-5 sm:items-stretch sm:justify-between"
         >
           {/* left column */}
-          <div className="sm:w-[60%] py-8 px-4 sm:py-4 sm:px-6 flex flex-col h-full gap-4 md:px-6 md:py-6">
+          <div className="sm:w-[60%] py-8 px-4 sm:py-4 sm:px-6 flex flex-col h-full gap-6 md:px-10 md:py-12">
             <div>
-              <h2
-                className="text-[32px] sm:text-[clamp(20px,3.35vw+0.2px,43px)]
-                     max-w-[500px] font-semibold text-white sm:leading-6 md:leading-12"
-              >
-                Audit Your Website Instantly
+              <h2 className="text-[32px] sm:text-[48px] font-bold text-white leading-tight sm:leading-[56px]">
+                Audit Your Website <br /> Instantly
               </h2>
 
-              <p className="text-sm leading-5 lg:text-[18px] max-w-[497px] text-white mt-4 sm:leading-7">
+              <p className="text-sm leading-5 lg:text-[18px] max-w-[497px] text-white mt-4 sm:leading-[22px]">
                 Download the app and let AI analyze your site, uncover
                 opportunities, and boost performance, all in seconds.
               </p>
@@ -50,30 +50,35 @@ const LandingFooter = () => {
           </div>
 
           {/* right column */}
-          <div className="flex-1 flex flex-col justify-end sm:h-full pr-4">
-            <Image
-              src="/assets/images/landing/appstore.png"
-              alt="Footer"
-              width={400}
-              height={400}
-              className="hidden sm:block w-full max-w-[350px] object-contain self-end sm:scale-130 md:scale-100"
-            />
+          <div className="hidden sm:block flex-1 relative">
+            {/* Individual Circles directly positioned */}
+            <div className="absolute w-[202px] h-[202px] right-[89px] top-[91px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[303px] h-[303px] right-[38.5px] top-[40.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[404px] h-[404px] right-[-12px] top-[-10px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[505px] h-[505px] right-[1050px - (607.5px + 505px)] right-[-62.5px] top-[-60.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[606px] h-[606px] right-[1050px - (557px + 606px)] right-[-113px] top-[-111px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
 
-            <div className="sm:hidden w-full max-w-sm aspect-video py-2">
-              <Image
-                src="/assets/images/landing/appstore.png"
-                alt="Sitelytics mobile app screens"
-                width={300}
-                height={300}
-                className="object-contain w-full h-full"
-              />
-            </div>
+            <Image
+              src="/assets/images/landing/cta-phones.png"
+              alt="Phone mockups"
+              width={715.57}
+              height={622.06}
+              className="absolute top-[50px] right-[100px] z-10 scale-145"
+            />
+          </div>
+          <div className="sm:hidden w-full">
+            <Image
+              src="/assets/images/landing/cta-phones.png"
+              alt="Phone mockups"
+              width={850}
+              height={700}
+            />
           </div>
         </div>
       </div>
 
       <section
-        className={`bg-[#0A0A0B] ${!showFooterAppSection ? "pt-16" : "pt-40"}`}
+        className={`bg-[#0A0A0B] h-[625px] ${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "pt-16" : "pt-40"}`}
       >
         <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>

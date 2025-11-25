@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { GetApp } from "./get-app";
 import React from "react";
@@ -6,11 +5,11 @@ import React from "react";
 const Hero = () => {
   return (
     <section className="max-w-[1440px] mx-auto font-sans">
-      <div className="px-4 md:px-8 lg:px-20 py-10 md:py-15 lg:py-16 flex flex-col lg:flex-row items-center gap-5 lg:gap-5">
-        <div className="flex flex-col items-center lg:items-start gap-5 md:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
+      <div className="px-4 md:px-8 lg:px-0 lg:pl-12 pt-10 md:pt-15 lg:pt-20 flex flex-col lg:flex-row justify-between items-center gap-5 md:gap-16 lg:gap-5">
+        <div className="flex flex-col items-center  lg:items-start gap-5 md:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           {/* hero text content  */}
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight lg:leading-20">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-bold leading-tight lg:leading-14 xl:leading-20">
               <span className="text-[#1A2373]">Improve</span> Your Website With
               An Instant AI Audit
             </h1>
@@ -46,15 +45,15 @@ const Hero = () => {
         </div>
 
         {/* hero image  */}
-        <div className="w-full lg:w-auto flex justify-center lg:justify-start">
+        <div className="w-full relative lg:w-auto flex justify-center lg:justify-start min-w-[294px] md:min-w-[680px] lg:min-w-[687px]">
           <Image
-            src="/assets/images/hero/hero-image.svg"
+            src="/assets/images/landing/hand-phone-mobile.svg"
             alt="Hero Image"
             width={500}
-            height={500}
-            className="w-full max-w-[606px] h-auto lg:w-full lg:h-auto"
-            style={{ objectFit: "cover" }}
+            height={687}
+            className="w-full full object-contain"
           />
+          <div className="" />
         </div>
       </div>
     </section>

@@ -6,7 +6,10 @@ const BuiltFor = () => {
   const column2 = landingBuiltforData.slice(2, 3);
   const column3 = landingBuiltforData.slice(3, 5);
   return (
-    <section className="max-w-[1344px] mx-auto pt-10 md:pt-20 pb-6 md:pb-25 px-4 md:px-12 2xl:px-0 relative min-h-screen font-sans">
+    <section
+      id="built-for"
+      className="max-w-[1344px] mx-auto pt-10 md:pt-20 pb-6 md:pb-25 px-4 md:px-12 2xl:px-0 relative min-h-screen font-sans"
+    >
       <div className=" mx-auto flex flex-col items-center justify-center gap-4 md:gap-10 px-0  ">
         <div className="flex flex-col gap-2 md:gap-4 items-center text-center">
           <h2 className="text-2xl md:text-[40px] leading-10 font-semibold ">

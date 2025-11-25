@@ -106,7 +106,7 @@ export default function BlogPage() {
         {/* Download Buttons */}
         <div className="flex flex-row justify-center gap-4 mt-6 md:mt-0">
           <Link
-            href="#"
+            href="https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link"
             className="bg-black text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
           >
             <Image
@@ -121,7 +121,7 @@ export default function BlogPage() {
             </div>
           </Link>
           <Link
-            href="#"
+            href="https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link"
             className="bg-black  text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
           >
             <Image
