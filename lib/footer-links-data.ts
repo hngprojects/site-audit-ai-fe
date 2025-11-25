@@ -11,7 +11,7 @@ export const footerLinks = [
     title: "Products",
     links: [
       { name: "Blog", href: "/#" },
-      { name: "Releases", href: "/#" },
+      { name: "Releases", href: "/release" },
     ],
   },
   {

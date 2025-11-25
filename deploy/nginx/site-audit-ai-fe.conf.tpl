@@ -1,0 +1,52 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name $SERVER_NAME;
+
+    # Logging
+    access_log /var/log/nginx/${NGINX_LOG_PREFIX}-access.log;
+    error_log /var/log/nginx/${NGINX_LOG_PREFIX}-error.log;
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    location / {
+        proxy_pass http://127.0.0.1:$APP_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+        
+        # Timeouts
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+    }
+
+    # Next.js static files
+    location /_next/static {
+        proxy_pass http://127.0.0.1:$APP_PORT;
+        proxy_cache_valid 200 60m;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Public static files
+    location /static {
+        proxy_pass http://127.0.0.1:$APP_PORT;
+        proxy_cache_valid 200 60m;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Favicon and robots
+    location ~* \.(ico|txt)$ {
+        proxy_pass http://127.0.0.1:$APP_PORT;
+        expires 7d;
+        add_header Cache-Control "public, immutable";
+    }
+}

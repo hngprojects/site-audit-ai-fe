@@ -24,7 +24,7 @@ const WaitlistHeader = () => {
   })();
 
   return (
-    <header className="max-w-[1440px] mx-auto font-sans font-medium flex justify-between items-center bg-white z-50 md:px-12 sticky top-0 p-3 sm:px-8">
+    <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center bg-white z-50 px-4 md:px-12 sm:py-6 sticky top-0 sm:h-20">
       <Link href="/" onClick={() => setIsOpen(false)}>
         <Image
           src="/assets/images/Logo.svg"

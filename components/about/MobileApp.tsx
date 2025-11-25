@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const MobileApp = () => {
   return (
-    <section className="bg-[#FFF9F8] py-20">
-      <div className="container mx-auto px-20">
+    <section className="bg-[#FFF9F8] py-13.5 md:py-6.5 lg:py-20">
+      <div className="container mx-auto px-4 md:px-10 lg:px-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
           <div className="hidden lg:block lg:w-1/2 w-full relative">
             <div className="relative pt-[73.22%]">
