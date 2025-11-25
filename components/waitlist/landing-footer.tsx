@@ -10,14 +10,14 @@ const LandingFooter = () => {
   const pathname = usePathname();
 
   return (
-    <footer>
+    <footer className="relative">
       <div
         className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" || pathname === "/release" ? "hidden" : ""}`}
       >
         <div
           id="footer-app"
-          className="bg-[#E85238] rounded-[30px] max-w-[1120px] mx-auto relative font-sans
-             h-[419px] mb-[-100px] z-10
+          className="bg-[#E85238] rounded-[30px] max-w-[1050px] mx-auto relative top-[50px] font-sans overflow-hidden
+             h-[380px] mb-[-40px] z-10
              flex flex-col sm:flex-row gap-5 sm:items-stretch sm:justify-between"
         >
           {/* left column */}
@@ -37,35 +37,35 @@ const LandingFooter = () => {
           </div>
 
           {/* right column */}
-          <div className="hidden sm:block flex-1 relative overflow-hidden">
-            {/* Concentric Circles implemented as styled divs */}
-            <div className="absolute w-[202px] h-[202px] left-[759px] top-[91px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[303px] h-[303px] left-[708.5px] top-[40.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[404px] h-[404px] left-[658px] top-[-10px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[505px] h-[505px] left-[607.5px] top-[-60.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[606px] h-[606px] left-[557px] top-[-111px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+          <div className="hidden sm:block flex-1 relative">
+            {/* Individual Circles directly positioned */}
+            <div className="absolute w-[202px] h-[202px] right-[89px] top-[91px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[303px] h-[303px] right-[38.5px] top-[40.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[404px] h-[404px] right-[-12px] top-[-10px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[505px] h-[505px] right-[1050px - (607.5px + 505px)] right-[-62.5px] top-[-60.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[606px] h-[606px] right-[1050px - (557px + 606px)] right-[-113px] top-[-111px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
 
             <Image
               src="/assets/images/landing/cta-phones.png"
               alt="Phone mockups"
-              layout="fill"
-              objectFit="contain"
-              className="relative z-10"
+              width={715.57}
+              height={622.06}
+              className="absolute top-[50px] right-[100px] z-10 scale-145"
             />
           </div>
           <div className="sm:hidden w-full">
             <Image
               src="/assets/images/landing/cta-phones.png"
               alt="Phone mockups"
-              width={715}
-              height={622}
+              width={850}
+              height={700}
             />
           </div>
         </div>
       </div>
 
       <section
-        className={`bg-[#0A0A0B] ${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "pt-16" : "pt-40"}`}
+        className={`bg-[#0A0A0B] h-[625px] ${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "pt-16" : "pt-40"}`}
       >
         <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
