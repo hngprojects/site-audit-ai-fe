@@ -59,7 +59,7 @@ const StaticArrows = () => (
 const Testimonials = () => {
   return (
     <section className="bg-white py-12 md:py-20">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-3 sm:px-8 md:px-12">
         <div className="block md:flex md:justify-between md:items-end mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl md:text-4xl font-bold text-[#1C1C1C] mb-4">
