@@ -30,7 +30,7 @@ const page = () => {
                   Sitelytics Version Release 0.1
                 </h4>
               </div>
-              <div className="plus p-[7px] md:p-2.5 border border-[#BBBCBC] min-h-11 min-w-11 flex items-center justify-center rounded-[8px]">
+              <div className="plus p-[7px] md:p-2.5 border border-[#BBBCBC] min-h-11 min-w-11 flex items-center justify-center rounded-xl">
                 <span className="plus-icon">
                   <svg
                     width="24"

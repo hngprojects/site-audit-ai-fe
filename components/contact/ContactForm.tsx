@@ -82,7 +82,7 @@ export default function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full">
         <FormField
           control={form.control}
           name="fullname"
@@ -178,7 +178,7 @@ export default function ContactForm() {
           control={form.control}
           name="message"
           render={({ field }) => (
-            <FormItem className="w-full mb-5">
+            <FormItem className="w-full mb-3">
               <FormLabel className="text-base text-[#494949] font-semibold leading-5">
                 Message
               </FormLabel>
