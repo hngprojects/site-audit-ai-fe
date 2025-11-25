@@ -1,4 +1,3 @@
-import React from "react";
 import { landingBuiltforData } from "@/lib/landing-built-for-data";
 import BuiltForCard from "./built-for-card";
 import Image from "next/image";
