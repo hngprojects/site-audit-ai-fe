@@ -7,12 +7,23 @@ import { footerLinks } from "@/lib/footer-links-data";
 
 const LandingFooter = () => {
   const pathname = usePathname();
+  const HIDDEN_PATHS = [
+    "/faq",
+    "/about",
+    "/cookie-policy",
+    "/privacy-policy",
+    "/terms-of-use",
+    "/release",
+    "/blog",
+  ];
+
+  const showFooterAppSection = !(
+    HIDDEN_PATHS.includes(pathname ?? "") || pathname?.includes("/blog/")
+  );
 
   return (
     <footer>
-      <div
-        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" || pathname === "/release" ? "hidden" : ""}`}
-      >
+      <div className={`${!showFooterAppSection ? "hidden" : ""}`}>
         <div
           id="footer-app"
           className=" max-w-6xl md:max-h-[410px] bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans flex flex-col md:flex-row md:items-center gap-5 justify-between"
@@ -89,7 +100,7 @@ const LandingFooter = () => {
       </div>
 
       <section
-        className={`bg-[#0A0A0B] ${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "pt-16" : "pt-40"}`}
+        className={`bg-[#0A0A0B] ${!showFooterAppSection ? "pt-16" : "pt-40"}`}
       >
         <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
