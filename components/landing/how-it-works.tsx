@@ -31,13 +31,13 @@ const HowITWorks = () => {
             ))}
           </ul>
 
-          <div className="">
+          <div className="mx-auto">
             <Image
-              src="/assets/images/landing/phone-mockup1.svg"
+              src="/assets/images/landing/phone-mockup.svg"
               alt="step-by-step"
-              width={623}
-              height={633}
-              className="w-[275.3px] h-[279.7px] md:w-[349.3px] md:h-[354.9px] lg:w-full lg:h-full"
+              width={300}
+              height={300}
+              className="w-full h-full sm:scale-120 md:scale-190"
             />
           </div>
         </div>

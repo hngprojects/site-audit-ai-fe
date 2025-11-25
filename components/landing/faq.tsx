@@ -37,17 +37,17 @@ const Faq = ({ faqData }: FaqProps) => {
         </div>
 
         <div className="w-full max-w-[1006px] mx-auto">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="multiple" className="w-full">
             {dataToUse.map((item, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
                 className="border-t border-[#BBBCBC] first:border-t-0"
               >
-                <AccordionTrigger className="py-8 text-left text-lg md:text-2xl font-semibold text-[#1C1C1C] hover:no-underline">
+                <AccordionTrigger className="hover:text-[#FF5A3D] cursor-pointer hover:no-underline text-[18px] md:text-[20px] lg:text-[24px] py-4 font-medium">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="pb-8 text-base text-[#676767] pr-16">
+                <AccordionContent className="pr-16 text-gray-600 text-base">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>

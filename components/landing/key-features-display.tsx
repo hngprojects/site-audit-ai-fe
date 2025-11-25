@@ -36,13 +36,13 @@ const KeyFeaturesDisplay = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+    <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-[80px]">
       {/*  ====================== MObile Tabs ======================  */}
 
       <div className="block relative lg:hidden w-full" ref={dropdownRef}>
         <button
           onClick={() => setOpen((o) => !o)}
-          className="w-full p-4 rounded-2xl flex items-center justify-between bg-[#1A2373] text-white cursor-pointer hover:bg-[#1A2373]/90"
+          className="w-full p-4 rounded-2xl flex items-center justify-between bg-[#1A2373] text-white cursor-pointer hover:bg-[#C3C5D4CC]"
           title="click me"
         >
           <span className="text-lg font-semibold">{selected.title}</span>
@@ -70,7 +70,7 @@ const KeyFeaturesDisplay = () => {
                          ${
                            selected.id === item.id
                              ? "bg-[#E8E9F1] text-[#1A2373]"
-                             : "text-[#1A2373] hover:bg-[#EFEFF1]"
+                             : "text-[#1A2373] hover:bg-[#C3C5D4CC]"
                          }`}
             >
               {item.title}
@@ -81,7 +81,7 @@ const KeyFeaturesDisplay = () => {
 
       {/*  ====================== Web Tab ======================   */}
 
-      <ul className="hidden lg:flex flex-col md:flex-row lg:flex-col gap-8">
+      <ul className="hidden lg:flex flex-col md:flex-row lg:flex-col gap-8 h-[400px]">
         {keyFeaturesData.map((item) => {
           const isActive = item.id === selected.id;
           return (
@@ -89,7 +89,7 @@ const KeyFeaturesDisplay = () => {
               <button
                 onClick={() => handleSelect(item)}
                 title="click me"
-                className={`hidden lg:flex flex-col items-center lg:items-start gap-4 p-4 rounded-[12px] w-full min-w-[300px] cursor-pointer font-bold text-xl leading-6 transition-all active:scale-95 hover:bg-[#C3C5D4CC] ${
+                className={`hidden lg:flex flex-col items-center lg:items-start gap-4 p-4 rounded-[12px] w-full min-w-[300px] h-[54px] cursor-pointer font-bold text-xl leading-6 transition-all active:scale-95 hover:bg-[#C3C5D4CC] hover:text-white ${
                   isActive
                     ? "bg-[#1A2373] text-white"
                     : "bg-[#EFEFF1] text-[#1A2373]"
@@ -104,15 +104,14 @@ const KeyFeaturesDisplay = () => {
 
       {/*  ====================== ANIMATED BOX ======================   */}
       <div
-        className={`w-full min-h-[270px] lg:w-[852px] lg:min-h-[400px] flex items-end justify-between p-5 lg:pb-10 lg:pl-6 rounded-2xl relative ${fade ? "opacity-100" : "opacity-10"}`}
+        className={`w-full min-h-[270px] lg:w-[852px] lg:h-[400px] flex items-end justify-between p-5 lg:pb-10 lg:pl-6 rounded-2xl relative ${fade ? "opacity-100" : "opacity-10"}`}
         style={{
-          backgroundImage: `url(${selected.bgImageUrl})`,
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.352) 50%, rgba(0, 0, 0, 0.8) 100%), url(${selected.bgImageUrl})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-black/40 rounded-2xl" />
-        <div className="relative z-10 flex flex-col gap-4 items-start justify-center h-full text-left max-w-[444px]">
+        <div className="relative z-10 flex flex-col gap-4 items-start justify-end h-full text-left">
           <h2
             className={`text-lg md:text-xl lg:text-2xl leading-5.5 sm:leading-6 font-bold text-white transition-opacity duration-400 ${
               fade ? "opacity-100" : "opacity-0"

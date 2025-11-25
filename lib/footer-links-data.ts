@@ -4,13 +4,13 @@ export const footerLinks = [
     links: [
       { name: "About", href: "/about" },
       { name: "Why Sitelytics", href: "/#" },
-      { name: "How it Works", href: "/#" },
+      { name: "How it Works", href: "/how-it-works" },
     ],
   },
   {
     title: "Products",
     links: [
-      { name: "Blog", href: "/#" },
+      { name: "Blog", href: "/blog" },
       { name: "Releases", href: "/release" },
     ],
   },

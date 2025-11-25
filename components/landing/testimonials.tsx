@@ -7,7 +7,7 @@ const TestimonialCard = ({
 }: {
   testimonial: (typeof testimonialsData)[0];
 }) => (
-  <div className="flex flex-col justify-between p-4 border border-[#E8E9F1] rounded-2xl h-[268px]">
+  <div className="flex flex-col font-sans justify-between p-4 border border-[#E8E9F1] rounded-2xl h-[268px]">
     <div className="flex-grow">
       <div className="flex justify-between items-start mb-4">
         <Image
@@ -58,8 +58,8 @@ const StaticArrows = () => (
 
 const Testimonials = () => {
   return (
-    <section className="bg-white py-12 md:py-20">
-      <div className="container mx-auto px-4">
+    <section className="bg-white py-12 md:py-20 font-sans">
+      <div className="container mx-auto px-3 sm:px-8 md:px-12">
         <div className="block md:flex md:justify-between md:items-end mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl md:text-4xl font-bold text-[#1C1C1C] mb-4">

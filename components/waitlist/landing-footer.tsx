@@ -4,84 +4,68 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { socialIcons } from "@/lib/social-icon-data";
 import { footerLinks } from "@/lib/footer-links-data";
+import { GetApp } from "../landing/get-app";
 
 const LandingFooter = () => {
   const pathname = usePathname();
+  const HIDDEN_PATHS = [
+    "/faq",
+    "/about",
+    "/cookie-policy",
+    "/privacy-policy",
+    "/terms-of-use",
+    "/release",
+    "/blog",
+  ];
+
+  const showFooterAppSection = !(
+    HIDDEN_PATHS.includes(pathname ?? "") || pathname?.includes("/blog/")
+  );
 
   return (
     <footer>
-      <div
-        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" ? "hidden" : ""}`}
-      >
+      <div className={`${!showFooterAppSection ? "hidden" : ""}`}>
         <div
           id="footer-app"
-          className=" max-w-6xl md:max-h-[410px] bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans flex flex-col md:flex-row md:items-center gap-5 justify-between"
+          className="bg-[#E85238] rounded-4xl mx-auto relative top-24 font-sans
+             flex flex-col sm:flex-row gap-5 sm:items-stretch sm:justify-between"
         >
           {/* left column */}
-          <div className="md:w-3/4 flex-1 p-8 md:p-12 flex flex-col  h-full gap-6">
-            <div className="">
-              <h2 className="text-2xl md:text-[clamp(24px,3.35vw+0.2px,48px)] max-w-[500px] font-sans font-semibold text-white md:leading-12">
+          <div className="sm:w-[60%] py-8 px-4 sm:py-4 sm:px-6 flex flex-col h-full gap-4 md:px-6 md:py-6">
+            <div>
+              <h2
+                className="text-[32px] sm:text-[clamp(20px,3.35vw+0.2px,43px)]
+                     max-w-[500px] font-semibold text-white sm:leading-6 md:leading-12"
+              >
                 Audit Your Website Instantly
               </h2>
-              <p className="text-sm lg:text-[18px] max-w-[497px] text-white mt-4">
+
+              <p className="text-sm leading-5 lg:text-[18px] max-w-[497px] text-white mt-4 sm:leading-7">
                 Download the app and let AI analyze your site, uncover
                 opportunities, and boost performance, all in seconds.
               </p>
             </div>
-            <div className="flex flex-row gap-4 mt-6 md:mt-0">
-              <Link
-                href="#"
-                className="bg-black text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
-              >
-                <Image
-                  src="/assets/images/google-play.svg"
-                  alt="Google Play"
-                  width={24}
-                  height={24}
-                />
-                <div>
-                  Get it on{" "}
-                  <p className="text-sm md:text-base font-semibold">
-                    Google Play
-                  </p>
-                </div>
-              </Link>
-              <Link
-                href="#"
-                className="bg-black  text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
-              >
-                <Image
-                  src="/assets/images/apple.svg"
-                  alt="App Store"
-                  width={24}
-                  height={24}
-                />
-                <div>
-                  Download on the{" "}
-                  <p className="text-xs md:text-base font-semibold">
-                    App Store
-                  </p>
-                </div>
-              </Link>
-            </div>
+
+            <GetApp />
           </div>
 
-          {/* right coluumn */}
-          {/* Right side - Responsive phone images */}
-          <div className="flex-1 flex items-center justify-end">
+          {/* right column */}
+          <div className="flex-1 flex flex-col justify-end sm:h-full pr-4">
             <Image
-              src="/assets/images/landing/appstore.svg"
+              src="/assets/images/landing/appstore.png"
               alt="Footer"
               width={400}
               height={400}
-              className="absolute bottom-0 right-0 hidden md:block"
+              className="hidden sm:block w-full max-w-[350px] object-contain self-end sm:scale-130 md:scale-100"
             />
-            <div className="md:hidden relative w-full max-w-sm aspect-video">
+
+            <div className="sm:hidden w-full max-w-sm aspect-video py-2">
               <Image
-                src="/assets/images/landing/appstore.svg"
+                src="/assets/images/landing/appstore.png"
                 alt="Sitelytics mobile app screens"
-                fill
-                className="w-full h-full object-contain absolute bottom-0 right-0"
+                width={300}
+                height={300}
+                className="object-contain w-full h-full"
               />
             </div>
           </div>
@@ -89,7 +73,7 @@ const LandingFooter = () => {
       </div>
 
       <section
-        className={`bg-[#0A0A0B] ${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "pt-16" : "pt-40"}`}
+        className={`bg-[#0A0A0B] ${!showFooterAppSection ? "pt-16" : "pt-40"}`}
       >
         <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
