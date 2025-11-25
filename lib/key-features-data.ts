@@ -34,11 +34,4 @@ export const keyFeaturesData: KeyFeaturesDataProps[] = [
       "Your entire website health, in one reports. See what's wrong, why it matters, and who can fix it (in simple words)",
     bgImageUrl: "/assets/images/landing/key-features-6.jpg",
   },
-  {
-    id: 6,
-    title: "Real-Time Tracker",
-    subtitle:
-      "Watch your website health update in real time. See changes as you fix issues to improve your website.",
-    bgImageUrl: "/assets/images/landing/key-features-7.jpg",
-  },
 ];

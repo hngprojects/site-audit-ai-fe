@@ -81,7 +81,7 @@ const KeyFeaturesDisplay = () => {
 
       {/*  ====================== Web Tab ======================   */}
 
-      <ul className="hidden lg:flex flex-col md:flex-row lg:flex-col gap-5">
+      <ul className="hidden lg:flex flex-col md:flex-row lg:flex-col gap-8">
         {keyFeaturesData.map((item) => {
           const isActive = item.id === selected.id;
           return (
@@ -89,7 +89,7 @@ const KeyFeaturesDisplay = () => {
               <button
                 onClick={() => handleSelect(item)}
                 title="click me"
-                className={`hidden lg:flex flex-col items-center lg:items-start gap-4 p-4 rounded-[20px] w-full min-w-[300px] cursor-pointer font-bold text-xl leading-6 transition-all active:scale-95 hover:bg-[#1A2373] hover:text-white ${
+                className={`hidden lg:flex flex-col items-center lg:items-start gap-4 p-4 rounded-[12px] w-full min-w-[300px] cursor-pointer font-bold text-xl leading-6 transition-all active:scale-95 hover:bg-[#C3C5D4CC] ${
                   isActive
                     ? "bg-[#1A2373] text-white"
                     : "bg-[#EFEFF1] text-[#1A2373]"
@@ -104,7 +104,7 @@ const KeyFeaturesDisplay = () => {
 
       {/*  ====================== ANIMATED BOX ======================   */}
       <div
-        className={`w-full min-h-[270px] lg:w-[852px] lg:min-h-[500px] flex items-end justify-between p-5 lg:pb-10 lg:pl-6 rounded-2xl relative ${fade ? "opacity-100" : "opacity-10"}`}
+        className={`w-full min-h-[270px] lg:w-[852px] lg:min-h-[400px] flex items-end justify-between p-5 lg:pb-10 lg:pl-6 rounded-2xl relative ${fade ? "opacity-100" : "opacity-10"}`}
         style={{
           backgroundImage: `url(${selected.bgImageUrl})`,
           backgroundSize: "cover",
