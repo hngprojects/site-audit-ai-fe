@@ -30,7 +30,7 @@ export default function BlogPage() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-[24px] py-[14px] rounded-xl border-2 text-sm font-semibold transition-all text-gray-700 cursor-pointer ${
+                className={`px-6 py-3.5 rounded-xl border-2 text-sm font-semibold transition-all text-gray-700 cursor-pointer ${
                   selectedCategory === category
                     ? "border-[#FF5A3D] bg-[#FFF9F8] hover:bg-[#FFE8E0]"
                     : "bg-white border-gray-300 hover:border-gray-400"
@@ -82,7 +82,7 @@ export default function BlogPage() {
 
                   {/* Read More Button */}
                   <Link href={`/blog/${post.id}`}>
-                    <button className="flex-shrink-0 w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center hover:bg-blue-950 transition-colors cursor-pointer">
+                    <button className="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center hover:bg-blue-950 transition-colors cursor-pointer">
                       <ArrowRight className="w-5 h-5" />
                     </button>
                   </Link>
