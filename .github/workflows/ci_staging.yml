@@ -92,16 +92,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-
 
-    #   - name: Upload Build Artifact
-    #     uses: actions/upload-artifact@v4
-    #     with:
-    #       name: nextjs-build
-    #       path: |
-    #         .next/
-    #         public/
-    #         package.json
-    #         pnpm-lock.yaml
-    #       retention-days: 7
 
       - name: Build Success Notification
         run: echo "✅ CI Pipeline completed successfully - Application is ready for deployment"
