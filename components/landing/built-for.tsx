@@ -21,7 +21,7 @@ const BuiltFor = () => {
         </div>
         <div className="h-[316px] bg-[#FFEFEC] rounded-2xl flex lg:hidden w-full  ">
           <Image
-            src="/assets/images/landing/iPhone14-Pro-Max.svg"
+            src="/assets/images/landing/iPhone 14 PM.png"
             alt="Decorative Background"
             width={400}
             height={400}
@@ -47,7 +47,7 @@ const BuiltFor = () => {
                 {/* Box with padding - Fixed version */}
                 <div className="h-[316px] bg-[#FFEFEC] rounded-2xl lg:flex hidden md:w-full">
                   <Image
-                    src="/assets/images/landing/iPhone14-Pro-Max.svg"
+                    src="/assets/images/landing/iPhone 14 PM.png"
                     alt="Decorative Background"
                     width={400}
                     height={400}
