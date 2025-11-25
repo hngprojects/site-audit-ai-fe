@@ -1,14 +1,16 @@
 "use client";
 
 import Hero from "@/components/waitlist/Hero";
-import Benefits from "@/components/waitlist/benefits";
+import Faq from "@/components/landing/faq";
 
 const WaitlistPage = () => {
   return (
-    <main>
-      <Hero />
-      <Benefits />
-    </main>
+    <>
+      <main>
+        <Hero />
+        <Faq />
+      </main>
+    </>
   );
 };
 

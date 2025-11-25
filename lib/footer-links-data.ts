@@ -2,23 +2,22 @@ export const footerLinks = [
   {
     title: "Overview",
     links: [
-      { name: "About", href: "/#" },
+      { name: "About", href: "/about" },
+      { name: "Why Sitelytics", href: "/#" },
       { name: "How it Works", href: "/#" },
-      { name: "Waitlist", href: "/waitlist" },
     ],
   },
   {
     title: "Products",
     links: [
       { name: "Blog", href: "/#" },
-      { name: "Releases", href: "/#" },
+      { name: "Releases", href: "/release" },
     ],
   },
   {
     title: "Support",
     links: [
       { name: "Contact us", href: "/contact" },
-      { name: "Help Centre", href: "/#" },
       { name: "FAQs", href: "/faq" },
     ],
   },
@@ -26,7 +25,7 @@ export const footerLinks = [
     title: "Legal",
     links: [
       { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Terms of Service", href: "/#" },
+      { name: "Terms of Service", href: "/terms-of-use" },
       { name: "Cookie Policy", href: "/cookie-policy" },
     ],
   },

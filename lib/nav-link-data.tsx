@@ -1,9 +1,11 @@
 export const navLinksWaitlist = [
-  { href: "/", label: "Home" },
-  { href: "/waitlist#benefits", label: "Benefits" },
+  { href: "/#how-it-works", label: "How It Works" },
+  { href: "/waitlist#FAQ", label: "FAQ" },
 ];
 
 export const navLinksLanding = [
-  { href: "/", label: "Home" },
+  // { href: "/", label: "Home" },
+  { href: "/about", label: "About Us" },
   { href: "/#how-it-works", label: "How It Works" },
+  { href: "/faq", label: "FAQ" },
 ];

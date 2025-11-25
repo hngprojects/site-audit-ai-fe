@@ -15,34 +15,22 @@ const WaitlistHeader = () => {
   const landing = pathname !== "/waitlist";
   const [isOpen, setIsOpen] = useState(false);
 
-  const actionText =
-    pathname === "/"
-      ? "Join waitlist"
-      : pathname === "/how-it-works"
-        ? "Get the App"
-        : "Get the App";
+  const actionText = "Get the App";
   const actionHref =
-    pathname === "/" ? "/waitlist" : pathname === "/how-it-works" ? "#" : "";
+    "https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link";
 
   const links = (() => {
-    if (pathname === "/about") {
-      return [
-        { href: "/why-sutelytics", label: "Why Sitelytics" },
-        { href: "/how-it-works", label: "How It Works" },
-        { href: "/faq", label: "FAQ" },
-      ];
-    }
     return landing ? navLinksLanding : navLinksWaitlist;
   })();
 
   return (
-    <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center bg-white border-b-2 z-50 px-4 md:px-12 sm:py-6 sticky top-0 sm:h-20">
+    <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center bg-white z-50 px-4 md:px-12 sm:py-6 sticky top-0 sm:h-20">
       <Link href="/" onClick={() => setIsOpen(false)}>
         <Image
           src="/assets/images/Logo.svg"
           alt="Site Audit AI Logo"
-          width={140}
-          height={140}
+          width={115}
+          height={115}
         />
       </Link>
 
@@ -54,7 +42,7 @@ const WaitlistHeader = () => {
         className="sm:hidden p-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5A3D] z-55"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
+        {isOpen ? <X size={25} /> : <Menu size={25} />}
       </button>
 
       {links && links.length && (
@@ -69,7 +57,9 @@ const WaitlistHeader = () => {
         />
       )}
 
-      <span className="hidden sm:flex sm:ml-auto sm:justify-self-end">
+      <span
+        className={`hidden sm:${landing ? "flex" : "hidden"} sm:ml-auto sm:justify-self-end`}
+      >
         <CallToActionButtonHeader
           landing={landing}
           actionText={actionText}
