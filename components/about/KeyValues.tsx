@@ -63,7 +63,7 @@ const KeyValues = () => {
           {keyValues.map((value, index) => (
             <div
               key={index}
-              className={`flex flex-col p-7 rounded-[10px] shadow-md ${value.bgClass}`}
+              className={`flex flex-col p-7 rounded-[10px] ${value.bgClass}`}
             >
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center mb-4 ${value.iconBgClass}`}
