@@ -5,14 +5,14 @@ import React from "react";
 export const GetApp = () => {
   const buttons = [
     {
-      href: "#",
+      href: "https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link",
       imgSrc: "/assets/images/google-play.svg",
       alt: "Google Play",
       line1: "Get it on",
       line2: "Google Play",
     },
     {
-      href: "#",
+      href: "https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link",
       imgSrc: "/assets/images/apple.svg",
       alt: "App Store",
       line1: "Download on the",
