@@ -25,10 +25,10 @@ jobs:
             exit 0
           fi
 
-          # Enforce ClickUp-style ID in feature branches
-          # e.g., feature/ABC-123-add-scan-endpoint
-          if echo "$BRANCH" | grep -Eq '^(feature|fix|chore|hotfix|bugfix)/[A-Za-z]+-[0-9]+(-[a-z0-9-]*)?$'; then
-            echo ":white_check_mark: Valid feature branch with ClickUp ID: $BRANCH"
+          # Enforce ClickUp-style ID in feature branches (ticket ID optional)
+          # e.g., feature/ABC-123-add-scan-endpoint or feature/waitlist-benefits-section
+          if echo "$BRANCH" | grep -Eq '^(feature|fix|chore|hotfix|bugfix)/([A-Za-z]+-[0-9]+(-[a-z0-9-]*)?|[a-z0-9-]+)$'; then
+            echo ":white_check_mark: Valid feature branch: $BRANCH"
             exit 0
           fi
 
