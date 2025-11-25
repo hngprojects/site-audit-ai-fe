@@ -4,7 +4,7 @@ export const footerLinks = [
     links: [
       { name: "About", href: "/about" },
       { name: "Why Sitelytics", href: "/#" },
-      { name: "How it Works", href: "/#" },
+      { name: "How it Works", href: "/how-it-works" },
     ],
   },
   {
