@@ -54,8 +54,8 @@ const keyValues = [
 
 const KeyValues = () => {
   return (
-    <section className="bg-white py-20">
-      <div className="container mx-auto px-20">
+    <section className="bg-white py-16 md:py-16 lg:py-20">
+      <div className="container mx-auto px-4 md:px-10 lg:px-20">
         <h2 className="text-2xl md:text-[32px] lg:text-[40px] font-bold text-[#1C1C1C] mb-16">
           Our Key Values: the foundation of our work
         </h2>

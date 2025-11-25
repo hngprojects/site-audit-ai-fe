@@ -1,9 +1,9 @@
 name: CD Staging Frontend
 
 on:
-  pull_request:
-     branches: [dev]
-     types: [closed]
+  push:
+     branches:
+        - dev
   workflow_dispatch:
 
 concurrency:
@@ -13,31 +13,53 @@ concurrency:
 jobs:
   staging-deployment:
     runs-on: hng-13-runner
+    
     env:
-      DEPLOY_ENV: staging
-      DEPLOY_HOST: ${{ secrets.STAGING_HOST }}
-      DEPLOY_USER: ${{ secrets.STAGING_SSH_USER }}
-      DEPLOY_PATH: ${{ secrets.STAGING_APP_DIR }}
-      SERVICE_NAME: ${{ secrets.STAGING_SERVICE_NAME }}
-      SERVER_NAME: ${{ secrets.STAGING_DOMAIN }}
-      APP_PORT: ${{ secrets.STAGING_APP_PORT }}
-      APP_URL: ${{ secrets.STAGING_APP_URL }}
-      ENV_FILE: ${{ secrets.STAGING_ENV_FILE }}
-      SSH_PORT: ${{ secrets.STAGING_SSH_PORT }}
-      NGINX_LOG_PREFIX: sitemate-staging-fe
-      NODE_VERSION: '20'
+        DEPLOY_ENV: staging
+        DEPLOY_HOST: ${{ secrets.STAGING_HOST }}
+        DEPLOY_USER: ${{ secrets.STAGING_SSH_USER }}
+        DEPLOY_PATH: ${{ secrets.STAGING_APP_DIR }}
+        SERVICE_NAME: ${{ secrets.STAGING_SERVICE_NAME }}
+        SERVER_NAME: ${{ secrets.STAGING_DOMAIN }}
+        APP_PORT: ${{ secrets.STAGING_APP_PORT }}
+        APP_URL: ${{ secrets.STAGING_APP_URL }}
+        ENV_FILE: ${{ secrets.STAGING_ENV_FILE }}
+        SSH_PORT: ${{ secrets.STAGING_SSH_PORT }}
+        NGINX_LOG_PREFIX: sitemate-staging-fe
+        NODE_VERSION: '20'
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Write environment file
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: ./build/
+      
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+            ssh-private-key: ${{ secrets.STAGING_SSH_KEY }}
+              
+      - name: Add remote host to known hosts
         run: |
-          if [ -z "$ENV_FILE" ]; then
-            echo "::error::Missing ENV_FILE secret for $DEPLOY_ENV environment"
-            exit 1
-          fi
-          printf "%s" "$ENV_FILE" > .env.production
+          ssh-keyscan -p "${SSH_PORT:-22}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+      - name: Ensure remote directory exists
+        run: |
+          ssh -p "${SSH_PORT:-22}" ${{ secrets.STAGING_SSH_USER }}@${{ secrets.STAGING_HOST }} "mkdir -p" ${{ secrets.STAGING_APP_DIR }}
 
+      - name: Deploy
+        run: |
+         scp -r ./build/* ${{ secrets.STAGING_SSH_USER }}@${{ secrets.STAGING_HOST }}:${{ secrets.STAGING_APP_DIR }}
+        
+
+      - name: Install envsubst
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext-base
+        
       - name: Prepare config templates
         env:
           APP_ROOT: ${{ env.DEPLOY_PATH }}
@@ -55,30 +77,7 @@ jobs:
           export NPM_START="${APP_ROOT}/node_modules/.bin/next start"
           envsubst '$SERVER_NAME $APP_PORT $APP_ROOT $NGINX_LOG_PREFIX' < deploy/nginx/site-audit-ai-fe.conf.tpl > deploy/nginx/site-audit-ai-fe.conf
           envsubst '$SERVICE_USER $SERVICE_GROUP $APP_PORT $APP_ROOT $DEPLOY_ENV $SERVICE_NAME $NPM_START' < deploy/systemd/site-audit-ai-fe.service.tpl > deploy/systemd/site-audit-ai-fe.service
-
-      - name: Configure SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.STAGING_SSH_KEY }}
-
-      - name: Add remote host to known hosts
-        run: |
-          ssh-keyscan -p "${SSH_PORT:-22}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
-
-      - name: Ensure remote directory exists
-        run: |
-          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
-
-      - name: Rsync application to server
-        run: |
-          rsync -az --delete \
-            --exclude ".git" \
-            --exclude "node_modules" \
-            --exclude ".next" \
-            --exclude ".env.local" \
-            -e "ssh -p ${SSH_PORT:-22}" \
-            ./ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
-
+        
       - name: Copy nginx config
         run: |
           scp -P "${SSH_PORT:-22}" deploy/nginx/site-audit-ai-fe.conf "$DEPLOY_USER@$DEPLOY_HOST:/tmp/site-audit-ai-fe.conf"
@@ -114,11 +113,7 @@ jobs:
                 nvm use ${NODE_VERSION}
               fi
               
-              # Install dependencies
-              npm ci --production=false
-              
-              # Build the Next.js application
-              npm run build
+
               
               # Configure Nginx
               NGINX_SITE="/etc/nginx/sites-available/${SERVICE}.conf"
