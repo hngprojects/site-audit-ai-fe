@@ -24,8 +24,16 @@ const WaitlistHeader = () => {
   })();
 
   return (
-    <header className="max-w-[1440px] mx-auto font-sans font-medium p-4 flex justify-between items-center bg-white z-50 px-4 md:px-12 sm:py-6 sticky top-0 sm:h-20">
-      <Link href="/" onClick={() => setIsOpen(false)}>
+    <header
+      className="
+    max-w-[1440px] mx-auto font-sans font-medium 
+    bg-white sticky top-0 z-50
+    flex items-center justify-between
+    px-4 sm:px-8 md:px-12 h-16 sm:h-20
+    border-b border-[#EDEDED]
+  "
+    >
+      <Link href="/" onClick={() => setIsOpen(false)} className="z-100">
         <Image
           src="/assets/images/Logo.svg"
           alt="Site Audit AI Logo"
