@@ -11,7 +11,7 @@ const LandingFooter = () => {
   return (
     <footer>
       <div
-        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" ? "hidden" : "max-w-[80vw] md:max-h-[410px] mx-auto"}`}
+        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" || pathname === "/release" ? "hidden" : ""}`}
       >
         <div
           id="footer-app"
