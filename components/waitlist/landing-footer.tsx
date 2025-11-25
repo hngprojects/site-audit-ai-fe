@@ -25,7 +25,7 @@ const LandingFooter = () => {
   return (
     <footer className="relative">
       <div
-        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" || pathname === "/release" ? "hidden" : ""}`}
+        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" || pathname === "/release" || pathname === "/blog" || pathname === "/contact" ? "hidden" : ""}`}
       >
         <div
           id="footer-app"
