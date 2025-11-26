@@ -42,7 +42,7 @@ const KeyFeaturesDisplay = () => {
       <div className="block relative lg:hidden w-full" ref={dropdownRef}>
         <button
           onClick={() => setOpen((o) => !o)}
-          className="w-full p-4 rounded-2xl flex items-center justify-between bg-[#1A2373] text-white cursor-pointer hover:bg-[#C3C5D4CC]"
+          className="w-full p-4 rounded-2xl flex items-center justify-between bg-[#1A2373] text-white cursor-pointer"
           title="click me"
         >
           <span className="text-lg font-semibold">{selected.title}</span>
