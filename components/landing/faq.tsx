@@ -47,7 +47,10 @@ const Faq = ({ faqData }: FaqProps) => {
                 <AccordionTrigger className="hover:text-[#FF5A3D] cursor-pointer hover:no-underline text-[18px] md:text-[20px] lg:text-[24px] py-4 font-medium">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="pr-16 text-gray-600 text-base">
+                <AccordionContent
+                  className="pr-16 text-gray-600 text-base"
+                  style={{ whiteSpace: "pre-line" }}
+                >
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
