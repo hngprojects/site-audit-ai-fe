@@ -52,9 +52,11 @@ const Testimonials = () => {
         newItemsVisible = 1;
       }
       setItemsVisible(newItemsVisible);
-      setCurrentIndex((prev) =>
-        Math.min(prev, testimonialsData.length - newItemsVisible)
-      );
+
+      setCurrentIndex((prev) => {
+        const maxIndex = testimonialsData.length - newItemsVisible;
+        return Math.min(prev, maxIndex < 0 ? 0 : maxIndex);
+      });
     };
 
     window.addEventListener("resize", handleResize);
@@ -96,7 +98,8 @@ const Testimonials = () => {
             </p>
           </div>
 
-          <div className="flex space-x-5 justify-center mt-6 md:mt-0 md:justify-start">
+          {/* Desktop Arrows */}
+          <div className="hidden lg:flex space-x-5 justify-end">
             <button
               onClick={handlePrev}
               aria-disabled={!canGoPrev}
@@ -130,21 +133,68 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* We need to ensure there's enough space for the items, so we'll use a wrapper with a fixed height */}
-        <div className="h-[280px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {visibleTestimonials.map((testimonial, index) => (
-              <div
-                key={currentIndex + index}
-                className={cn({
-                  "hidden md:hidden lg:block": index >= 2,
-                  "hidden md:block lg:block": index === 1,
-                })}
-              >
-                <TestimonialCard testimonial={testimonial} />
-              </div>
-            ))}
-          </div>
+        {/* Desktop */}
+        <div className="hidden lg:grid grid-cols-3 gap-10">
+          {visibleTestimonials.map((testimonial, index) => (
+            <TestimonialCard
+              key={currentIndex + index}
+              testimonial={testimonial}
+            />
+          ))}
+        </div>
+
+        {/* Tablet */}
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-10">
+          {visibleTestimonials.map((testimonial, index) => (
+            <TestimonialCard
+              key={currentIndex + index}
+              testimonial={testimonial}
+            />
+          ))}
+        </div>
+
+        {/* Mobile */}
+        <div className="grid md:hidden grid-cols-1 gap-10">
+          {visibleTestimonials.map((testimonial, index) => (
+            <TestimonialCard
+              key={currentIndex + index}
+              testimonial={testimonial}
+            />
+          ))}
+        </div>
+
+        {/* Tablet and Mobile Arrows */}
+        <div className="flex lg:hidden justify-center space-x-5 mt-8">
+          <button
+            onClick={handlePrev}
+            aria-disabled={!canGoPrev}
+            className={cn("p-2 rounded-full transition-colors duration-300", {
+              "bg-[#FF5A3D]": canGoPrev,
+              "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
+            })}
+          >
+            <Image
+              src="/assets/images/landing/arrow-left.svg"
+              alt="Previous"
+              width={24}
+              height={24}
+            />
+          </button>
+          <button
+            onClick={handleNext}
+            aria-disabled={!canGoNext}
+            className={cn("p-2 rounded-full transition-colors duration-300", {
+              "bg-[#FF5A3D]": canGoNext,
+              "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
+            })}
+          >
+            <Image
+              src="/assets/images/landing/arrow-right.svg"
+              alt="Next"
+              width={24}
+              height={24}
+            />
+          </button>
         </div>
       </div>
     </section>
