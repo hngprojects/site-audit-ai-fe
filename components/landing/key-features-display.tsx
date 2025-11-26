@@ -89,10 +89,10 @@ const KeyFeaturesDisplay = () => {
               <button
                 onClick={() => handleSelect(item)}
                 title="click me"
-                className={`hidden lg:flex flex-col items-center lg:items-start gap-4 p-4 rounded-[12px] w-full min-w-[300px] h-[54px] cursor-pointer font-bold text-xl leading-6 transition-all active:scale-95 hover:bg-[#C3C5D4CC] hover:text-white ${
+                className={`hidden lg:flex flex-col items-center lg:items-start gap-4 p-4 rounded-[12px] w-full min-w-[300px] h-[54px] cursor-pointer font-bold text-xl leading-6 transition-all active:scale-95 ${
                   isActive
                     ? "bg-[#1A2373] text-white"
-                    : "bg-[#EFEFF1] text-[#1A2373]"
+                    : "bg-[#EFEFF1] text-[#1A2373] hover:bg-[#C3C5D4CC] hover:text-[#1A2373]"
                 }`}
               >
                 {item.title}
