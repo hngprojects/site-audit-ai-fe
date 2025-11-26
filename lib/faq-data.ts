@@ -135,25 +135,29 @@ export const faqData = {
 
 export const faqData1 = [
   {
-    question: "How accurate are the Sitelytics' Audits?",
+    question: "How accurate are the audits and reports?",
     answer:
-      "AI audits are highly reliable for quickly identifying patterns, errors, and optimization opportunities across your website. They excel at spotting technical issues and inconsistencies.",
+      "We combine AI analysis andindustry best practices to give you trusted, reliable insights",
   },
   {
     question: "Can I fix issues via the app?",
-    answer: "Placeholder answer for 'Can I fix issues via the app?'.",
+    answer:
+      "You can’t edit your website directly inside the app, but you can fix issues in two ways:\n1. Follow the step-by-step recommendations we provide (written for non-technical users).\n2. Hire a verified professional from inside the app to fix everything for you.\nThe app highlights priority issues and gives clear instructions so you always know what to do next.",
   },
   {
-    question: "Do I need coding knowledge?",
-    answer: "Placeholder answer for 'Do I need coding knowledge?'.",
+    question: "Do I need technical skills to use the app?",
+    answer:
+      "No, you don’t need any technical experience. The app explains every issue in plain English, with simple recommendations you can understand immediately. Just paste your website URL and we scan everything for you: SEO, speed, accessibility, broken links, page structure, and more.",
   },
   {
     question: "How do I hire a professional?",
-    answer: "Placeholder answer for 'How do I hire a professional?'.",
+    answer:
+      "Inside your audit report, you’ll see a “Fix for Me” or “Hire a Pro” button.\nYou can:\n⦁\tSelect the issues you want help with\n⦁\tFill a short request form\n⦁\tGet matched with a verified expert\n⦁\tReceive a quote or begin work immediately",
   },
   {
-    question: "How long does it take to fix my site?",
-    answer: "Placeholder answer for 'How long does it take to fix my site?'.",
+    question: "What types of websites does this work for?",
+    answer:
+      "The app works for almost any publicly accessible website. If your site has a URL, we can audit it",
   },
 ];
 
@@ -165,20 +169,22 @@ export const faqData2 = [
   },
   {
     question: "Can I fix issues via the app?",
-    answer: "Placeholder answer for 'Can I fix issues via the app?'.",
+    answer:
+      "The app identifies and explains issues. You'll need to implement fixes on your website directly or work with a developer.",
   },
   {
     question: "Do I need technical skills to use the app?",
     answer:
-      "Placeholder answer for 'Do I need technical skills to use the app?'.",
+      "No, our app is designed to be user-friendly for everyone. You just need to enter your website URL.",
   },
   {
     question: "How do I hire a professional?",
-    answer: "Placeholder answer for 'How do I hire a professional?'.",
+    answer:
+      "We can connect you with vetted professionals through our network who can help implement fixes.",
   },
   {
     question: "What types of websites does this work for?",
     answer:
-      "Placeholder answer for 'What types of websites does this work for?'.",
+      "Our app works for any publicly accessible website, regardless of platform or technology stack.",
   },
 ];
