@@ -21,26 +21,26 @@ export const GetApp = () => {
   ];
 
   return (
-    <div className="flex gap-[16.14px] items-center">
+    <div className="flex gap-5 md:gap-4 items-center">
       {buttons.map(({ href, imgSrc, alt, line1, line2 }) => (
         <Link
           key={alt}
           href={href}
-          className="bg-black text-white flex items-center gap-[14.61px] rounded-[9.73989px] px-[15px] py-[10px] shrink-0"
+          className="bg-black text-white flex items-center gap-2 rounded-[9.75px] md:rounded-xl px-4 py-2 max-w-40"
           aria-label={alt}
         >
           <Image
             src={imgSrc}
             alt={alt}
-            width={24.21}
-            height={24.21}
-            className="w-[24.21px] h-[24.21px] shrink-0"
+            width={24}
+            height={24}
+            className="w-5 h-5 md:w-6 md:h-6"
           />
           <div className="flex flex-col text-left leading-tight">
-            <span className="text-[11px] leading-[12px] font-normal uppercase">
+            <span className="text-[8px] font-light md:text-[10px] uppercase">
               {line1}
             </span>
-            <span className="text-[15px] leading-[16px] font-semibold">
+            <span className="text-[12px] leading-3.5 md:text-base font-semibold md:leading-5">
               {line2}
             </span>
           </div>

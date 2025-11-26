@@ -10,7 +10,7 @@ import Image from "next/image";
 const page = () => {
   return (
     <>
-      <main className="max-w-[1440px] mx-auto font-sans font-medium flex justify-between items-center bg-white z-50 px-4 md:px-12 pt-16">
+      <main className="max-w-[1440px] min-h-dvh mx-auto font-sans font-medium flex justify-between items-start bg-white z-50 px-4 md:px-12 pt-16">
         <Accordion
           type="single"
           collapsible
@@ -62,7 +62,7 @@ const page = () => {
                 </span>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="w-full mt-6 md:mt-8 flex items-end justify-end">
+            <AccordionContent className="w-full mt-6 mb-[82px] md:mt-8 flex items-end justify-end">
               <div className="pr-0 lg:pr-4 flex flex-col gap-10 md:gap-6 md:max-w-[480px] lg:max-w-[1064px]">
                 <div className="max-w-[430px] md:max-w-full md:w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-[101px] md:gap-0 bg-[#FFEFEC] p-4 md:p-2.5 lg:py-2.5 lg:px-4 rounded-[12px] mb-4">
                   <div className="flex flex-col gap-3 md:gap-2 lg:gap-4 pl-2">
