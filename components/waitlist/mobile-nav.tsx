@@ -20,20 +20,31 @@ export const MobileNav = ({
 }) => {
   return (
     <div
-      className={`absolute top-full left-0 w-full bg-white shadow-md sm:hidden flex flex-col items-center py-4 gap-4 border-t border-gray-200 transition-all duration-300
-    ${isOpen ? "opacity-100 translate-y-0 z-50" : "opacity-0 -translate-y-2 pointer-events-none -z-10"}
+      className={`
+    fixed inset-0
+    bg-white 
+    flex flex-col items-center justify-start
+    pt-24 pb-10 gap-8
+    transition-all duration-300
+    z-50
+    ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}
   `}
     >
-      {links_data.map(({ href, label }) => (
-        <NavLink
-          key={label}
-          href={href}
-          label={label}
-          onClick={onclick}
-          mobile={true}
-          pathname={pathname}
-        />
-      ))}
+      <div
+        className="flex-1 flex flex-col items-center gap-8 mt-15
+"
+      >
+        {links_data.map(({ href, label }) => (
+          <NavLink
+            key={label}
+            href={href}
+            label={label}
+            onClick={onclick}
+            mobile={true}
+            pathname={pathname}
+          />
+        ))}
+      </div>
 
       <CallToActionButtonHeader
         landing={landing}

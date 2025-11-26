@@ -1,17 +1,17 @@
 import Image from "next/image";
 import { GetApp } from "./get-app";
 import React from "react";
-// import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="max-w-[1344px] px-4 md:px-12 2xl:px-0 mx-auto font-sans pt-16 pb-[27px]">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-10">
-        <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
+    <section className="max-w-[1440px] mx-auto font-sans">
+      <div className="px-4 md:px-8 lg:px-0 lg:pl-12 pt-10 md:pt-15 lg:pt-20 flex flex-col lg:flex-row justify-between items-center gap-5 md:gap-16 lg:gap-5">
+        <div className="flex flex-col items-center  lg:items-start gap-5 md:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
+          {/* hero text content  */}
           <div className="flex flex-col gap-4">
-            <h1 className="text-3xl md:text-4xl lg:text-[64px] font-bold leading-tight lg:leading-20">
-              <span className="text-[rgb(26,35,115)]">Improve</span> Your
-              Website With An Instant AI Audit
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-bold leading-tight lg:leading-14 xl:leading-20">
+              <span className="text-[#1A2373]">Improve</span> Your Website With
+              An Instant AI Audit
             </h1>
             <p className="text-base md:text-lg lg:text-2xl text-gray-500 font-normal leading-6 md:leading-7 lg:leading-8">
               Paste your site URL and get a quick, free audit that shows
@@ -19,38 +19,41 @@ const Hero = () => {
               experts who can fix it.
             </p>
           </div>
-          <div className="flex items-center flex-col justify-center md:items-start gap-8 w-full">
-            <GetApp />
-            <div className="flex items-center justify-center sm:justify-between gap-4 sm:gap-8 w-full max-w-4xl mx-auto py-4 sm:max-w-[80%] md:mx-[unset]">
-              {[
-                { value: "8K +", label: "Active testers" },
-                { value: "10K +", label: "Downloads" },
-                { value: "12K +", label: "Reviews" },
-              ].map((item, idx) => (
-                <React.Fragment key={item.label}>
-                  <div className="flex flex-col items-center sm:items-start text-center sm:text-left flex-1">
-                    <p className="font-bold text-2xl sm:text-3xl">
-                      {item.value}
-                    </p>
-                    <p className="text-[#676767] text-sm sm:text-base">
-                      {item.label}
-                    </p>
-                  </div>
-                  {idx < 2 && <span className="block w-px h-8 bg-[#676767]" />}
-                </React.Fragment>
-              ))}
-            </div>
+          {/* download app links  */}
+          <GetApp />
+
+          {/* hero stats  */}
+          <div className="w-full flex items-center justify-center lg:justify-start gap-4 sm:gap-3 py-4">
+            {[
+              { value: "8K +", label: "Active testers" },
+              { value: "10K +", label: "Audits" },
+              { value: "12K +", label: "Reviews" },
+            ].map((item, idx) => (
+              <React.Fragment key={item.label}>
+                <div className="flex flex-col gap-1 items-center text-center min-w-[62px] md:min-w-[103px]">
+                  <p className="font-bold text-xl md:text-[28px] md:leading-8.5 text-center">
+                    {item.value}
+                  </p>
+                  <p className="text-[#676767] text-xs leading-3.5 md:text-base md:leading-5">
+                    {item.label}
+                  </p>
+                </div>
+                {idx < 2 && <span className="block w-px h-7 bg-[#676767]" />}
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
-        <div className="grid place-content-center max-w-[325px] max-h-[290px] sm:max-w-[100vw] sm:w-full sm:h-full sm:max-h-full overflow-hidden justify-center my-8">
+        {/* hero image  */}
+        <div className="w-full relative lg:w-auto flex justify-center lg:justify-start min-w-[294px] md:min-w-[680px] lg:min-w-[687px]">
           <Image
-            src="/assets/images/hero-wavey-iphone.svg"
-            width={300}
-            height={290}
-            alt="Wavey Iphone Hero"
-            className="w-full scale-170 m-auto"
+            src="/assets/images/landing/hand-phone-mobile.svg"
+            alt="Hero Image"
+            width={500}
+            height={687}
+            className="w-full full object-contain"
           />
+          <div className="" />
         </div>
       </div>
     </section>
