@@ -1,4 +1,4 @@
-name: CD Staging Frontend
+name: CD Prod Frontend
 
 on:
   workflow_run:
@@ -6,26 +6,26 @@ on:
     types: [completed]
 
 concurrency:
-  group: cd-staging-frontend
+  group: cd-prod-frontend
   cancel-in-progress: true
 
 jobs:
-  staging-deployment:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'dev' }}
+  prod-deployment:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' }}
     runs-on: self-hosted
     env:
-      DEPLOY_ENV: staging
-      DEPLOY_HOST: ${{ secrets.STAGING_HOST }}
-      DEPLOY_USER: ${{ secrets.STAGING_SSH_USER }}
-      DEPLOY_PATH: ${{ secrets.STAGING_APP_DIR }}
-      SERVICE_NAME: ${{ secrets.STAGING_SERVICE_NAME }}
-      SERVER_NAME: ${{ secrets.STAGING_DOMAIN }}
-      APP_PORT: ${{ secrets.STAGING_APP_PORT }}
-      APP_URL: ${{ secrets.STAGING_APP_URL }}
-      ENV_FILE: ${{ secrets.STAGING_ENV_FILE }}
-      NGINX_LOG_PREFIX: sitemate-staging-fe
+      DEPLOY_ENV: prod
+      DEPLOY_HOST: ${{ secrets.PROD_HOST }}
+      DEPLOY_USER: ${{ secrets.PROD_SSH_USER }}
+      DEPLOY_PATH: ${{ secrets.PROD_APP_DIR }}
+      SERVICE_NAME: ${{ secrets.PROD_SERVICE_NAME }}
+      SERVER_NAME: ${{ secrets.PROD_DOMAIN }}
+      APP_PORT: ${{ secrets.PROD_APP_PORT }}
+      APP_URL: ${{ secrets.PROD_APP_URL }}
+      ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
+      NGINX_LOG_PREFIX: sitemate-prod-fe
       NODE_VERSION: '20'
-      EMAIL: ${{ secrets.STAGING_SSL_EMAIL }}
+      EMAIL: ${{ secrets.PROD_SSL_EMAIL }}
 
     steps:
       - name: Checkout repository
@@ -71,7 +71,7 @@ jobs:
       - name: Configure SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.STAGING_SSH_KEY }}
+          ssh-private-key: ${{ secrets.PROD_SSH_KEY }}
               
       - name: Add remote host to known hosts
         run: |
