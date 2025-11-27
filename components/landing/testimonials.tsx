@@ -1,6 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { testimonialsData } from "@/lib/testimonials-data";
+import { cn } from "@/lib/utils";
 
 const TestimonialCard = ({
   testimonial,
@@ -35,28 +37,54 @@ const TestimonialCard = ({
   </div>
 );
 
-const StaticArrows = () => (
-  <div className="flex justify-center space-x-5 mt-6">
-    <div className="p-2 rounded-full bg-[#E0E1E2]">
-      <Image
-        src="/assets/images/landing/arrow-left.svg"
-        alt="Left"
-        width={24}
-        height={24}
-      />
-    </div>
-    <div className="p-2 rounded-full bg-[#FF5A3D]">
-      <Image
-        src="/assets/images/landing/arrow-right.svg"
-        alt="Right"
-        width={24}
-        height={24}
-      />
-    </div>
-  </div>
-);
-
 const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsVisible, setItemsVisible] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      let newItemsVisible;
+      if (window.innerWidth >= 1024) {
+        newItemsVisible = 3;
+      } else if (window.innerWidth >= 768) {
+        newItemsVisible = 2;
+      } else {
+        newItemsVisible = 1;
+      }
+      setItemsVisible(newItemsVisible);
+
+      setCurrentIndex((prev) => {
+        const maxIndex = testimonialsData.length - newItemsVisible;
+        return Math.min(prev, maxIndex < 0 ? 0 : maxIndex);
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const canGoPrev = currentIndex > 0;
+  const canGoNext = currentIndex < testimonialsData.length - itemsVisible;
+
+  const handlePrev = () => {
+    if (canGoPrev) {
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (canGoNext) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }
+  };
+
+  const visibleTestimonials = testimonialsData.slice(
+    currentIndex,
+    currentIndex + itemsVisible
+  );
+
   return (
     <section className="bg-white py-12 md:py-20 font-sans">
       <div className="container mx-auto px-3 sm:px-8 md:px-12">
@@ -70,49 +98,103 @@ const Testimonials = () => {
             </p>
           </div>
 
-          <div className="hidden lg:flex space-x-5">
-            <div className="p-2 rounded-full bg-[#E0E1E2]">
+          {/* Desktop Arrows */}
+          <div className="hidden lg:flex space-x-5 justify-end">
+            <button
+              onClick={handlePrev}
+              aria-disabled={!canGoPrev}
+              className={cn("p-2 rounded-full transition-colors duration-300", {
+                "bg-[#FF5A3D]": canGoPrev,
+                "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
+              })}
+            >
               <Image
                 src="/assets/images/landing/arrow-left.svg"
-                alt="Left"
+                alt="Previous"
                 width={24}
                 height={24}
               />
-            </div>
-            <div className="p-2 rounded-full bg-[#FF5A3D]">
+            </button>
+            <button
+              onClick={handleNext}
+              aria-disabled={!canGoNext}
+              className={cn("p-2 rounded-full transition-colors duration-300", {
+                "bg-[#FF5A3D]": canGoNext,
+                "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
+              })}
+            >
               <Image
                 src="/assets/images/landing/arrow-right.svg"
-                alt="Right"
+                alt="Next"
                 width={24}
                 height={24}
               />
-            </div>
+            </button>
           </div>
         </div>
 
+        {/* Desktop */}
         <div className="hidden lg:grid grid-cols-3 gap-10">
-          {testimonialsData.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+          {visibleTestimonials.map((testimonial, index) => (
+            <TestimonialCard
+              key={currentIndex + index}
+              testimonial={testimonial}
+            />
           ))}
         </div>
 
-        <div className="hidden md:block lg:hidden">
-          <div className="grid grid-cols-2 gap-10">
-            {testimonialsData.slice(0, 2).map((testimonial) => (
-              <TestimonialCard
-                key={testimonial.name}
-                testimonial={testimonial}
-              />
-            ))}
-          </div>
-          <StaticArrows />
+        {/* Tablet */}
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-10">
+          {visibleTestimonials.map((testimonial, index) => (
+            <TestimonialCard
+              key={currentIndex + index}
+              testimonial={testimonial}
+            />
+          ))}
         </div>
 
-        <div className="md:hidden">
-          {testimonialsData.length > 0 && (
-            <TestimonialCard testimonial={testimonialsData[0]} />
-          )}
-          <StaticArrows />
+        {/* Mobile */}
+        <div className="grid md:hidden grid-cols-1 gap-10">
+          {visibleTestimonials.map((testimonial, index) => (
+            <TestimonialCard
+              key={currentIndex + index}
+              testimonial={testimonial}
+            />
+          ))}
+        </div>
+
+        {/* Tablet and Mobile Arrows */}
+        <div className="flex lg:hidden justify-center space-x-5 mt-8">
+          <button
+            onClick={handlePrev}
+            aria-disabled={!canGoPrev}
+            className={cn("p-2 rounded-full transition-colors duration-300", {
+              "bg-[#FF5A3D]": canGoPrev,
+              "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
+            })}
+          >
+            <Image
+              src="/assets/images/landing/arrow-left.svg"
+              alt="Previous"
+              width={24}
+              height={24}
+            />
+          </button>
+          <button
+            onClick={handleNext}
+            aria-disabled={!canGoNext}
+            className={cn("p-2 rounded-full transition-colors duration-300", {
+              "bg-[#FF5A3D]": canGoNext,
+              "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
+            })}
+          >
+            <Image
+              src="/assets/images/landing/arrow-right.svg"
+              alt="Next"
+              width={24}
+              height={24}
+            />
+          </button>
         </div>
       </div>
     </section>
