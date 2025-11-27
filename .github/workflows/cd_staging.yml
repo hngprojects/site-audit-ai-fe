@@ -1,7 +1,7 @@
 name: CD Staging Frontend
 
 on:
-  pull_request:
+  push:
     branches:
       - dev
   workflow_run:
