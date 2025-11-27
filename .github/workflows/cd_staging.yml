@@ -1,9 +1,6 @@
 name: CD Staging Frontend
 
 on:
-  push:
-    branches:
-      - dev
   workflow_run:
     workflows: ["CI Pipeline"]  
     types: [completed]
@@ -14,6 +11,7 @@ concurrency:
 
 jobs:
   staging-deployment:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'dev' }}
     runs-on: self-hosted
     env:
       DEPLOY_ENV: staging
