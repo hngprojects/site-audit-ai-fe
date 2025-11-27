@@ -39,10 +39,10 @@ export const GetApp = () => {
             className="w-[13px] h-[13px] md:w-[13px] md:h-[13px] lg:w-6 lg:h-6"
           />
           <div className="flex flex-col text-left leading-tight">
-            <span className="text-[6px] leading-[7px] font-light md:text-[6px] md:leading-none lg:text-xs lg:leading-tight uppercase">
+            <span className="text-[6px] leading-[7px] font-light md:text-[4.5px] md:leading-none lg:text-[8.5px] lg:leading-[12.11px] uppercase">
               {line1}
             </span>
-            <span className="text-[8px] leading-[9px] font-semibold md:text-[8px] md:leading-none lg:text-base lg:leading-none">
+            <span className="text-[8px] leading-[9px] font-semibold md:text-[8px] md:leading-none lg:text-[14px] lg:leading-[16.14px">
               {line2}
             </span>
           </div>
