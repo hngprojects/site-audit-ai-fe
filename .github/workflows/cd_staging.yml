@@ -12,8 +12,9 @@ concurrency:
 
 jobs:
   staging-deployment:
-    runs-on: hng-13-runner
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    runs-on: self-hosted
+    
     env:
       DEPLOY_ENV: staging
       DEPLOY_HOST: ${{ secrets.STAGING_HOST }}
@@ -24,21 +25,19 @@ jobs:
       APP_PORT: ${{ secrets.STAGING_APP_PORT }}
       APP_URL: ${{ secrets.STAGING_APP_URL }}
       ENV_FILE: ${{ secrets.STAGING_ENV_FILE }}
-      SSH_PORT: ${{ secrets.STAGING_SSH_PORT }}
       NGINX_LOG_PREFIX: sitemate-staging-fe
       NODE_VERSION: '20'
+      EMAIL: ${{ secrets.STAGING_SSL_EMAIL }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup pnpm FIRST
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 8
 
-      # Then setup Node.js with pnpm cache (FIXED: changed from 'npm' to 'pnpm')
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -46,141 +45,12 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-        env:
-          CI: true
-
-      - name: Create Environment File
-        run: |
-          cat << EOF > .env
-          NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
-          NEXT_PUBLIC_WAITLIST_API_URL=${{ secrets.NEXT_PUBLIC_WAITLIST_API_URL }}
-          # Add other required environment variables
-          EOF
-
-      - name: Build Next.js Application
-        run: pnpm run build
-        env:
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-          NEXT_PUBLIC_WAITLIST_API_URL: ${{ secrets.NEXT_PUBLIC_WAITLIST_API_URL }}
-
-      - name: Save Next.js Cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/package.json', '**/pnpm-lock.yaml') }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-
-
-      - name: List build files (for debugging)
-        run: |
-          echo "Current directory structure:"
-          ls -la
-          echo "Build output:"
-          ls -la .next/ || echo "No .next directory"
-          echo "Public directory:"
-          ls -la public/ || echo "No public directory"
- 
-      # FIXED: Use GitHub secrets for SSH key instead of hardcoding
-      - name: Configure SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.STAGING_SSH_KEY }}
-              
-      - name: Add remote host to known hosts
-        run: |
-          ssh-keyscan -p "${SSH_PORT:-22}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
-
-      - name: Test SSH connection
-        run: |
-          echo "Testing SSH connection to $DEPLOY_HOST..."
-          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "echo 'SSH connection successful' && whoami"
-
-      # ADDED: Missing step from logs - Clean and prepare remote directory
-      - name: Clean and prepare remote directory
-        run: |
-          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "
-            echo 'Backing up existing deployment...'
-            if [ -d '$DEPLOY_PATH' ]; then
-              BACKUP_DIR='${DEPLOY_PATH}_backup_$(date +%Y%m%d_%H%M%S)'
-              sudo cp -r '$DEPLOY_PATH' \"\$BACKUP_DIR\" 2>/dev/null || echo 'Backup skipped'
-            fi
-            sudo mkdir -p $DEPLOY_PATH
-            sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH
-            sudo chmod 755 $DEPLOY_PATH
-            echo 'Remote directory prepared successfully'
-          "
-
-      - name: Create deployment package (without node_modules)
-        run: |
-          echo "Creating optimized deployment package..."
-          tar -czf deployment.tar.gz \
-            --exclude='node_modules' \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='*.log' \
-            --exclude='.env.local' \
-            --exclude='.next/cache/webpack' \
-            .next public package.json pnpm-lock.yaml next.config.* tsconfig.json .env 2>/dev/null || true
-          
-          # Show package size
-          du -h deployment.tar.gz | awk '{print "Package created. Size: " $1}'
-
-      - name: Deploy package to server
-        run: |
-          echo "Deploying package to server..."
-          scp -P "${SSH_PORT:-22}" deployment.tar.gz "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
-            
-          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "
-            cd $DEPLOY_PATH &&
-            echo 'Extracting deployment package...' &&
-            tar -xzf deployment.tar.gz &&
-            rm deployment.tar.gz &&
-            echo 'Package extracted successfully'
-          "
-
-      - name: Install pnpm and dependencies on server
-        run: |
-          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "
-            cd $DEPLOY_PATH &&
-            echo 'Fixing ownership of deployment directory...' &&
-            sudo chown -R \$USER:\$USER $DEPLOY_PATH &&
-            echo 'Installing pnpm...' &&
-            # Install pnpm if not present
-            if ! command -v pnpm >/dev/null 2>&1; then
-              curl -fsSL https://get.pnpm.io/install.sh | sh -
-              export PNPM_HOME=\"\$HOME/.local/share/pnpm\"
-              export PATH=\"\$PNPM_HOME:\$PATH\"
-            fi &&
-            echo 'Installing dependencies with pnpm...' &&
-            CI=true pnpm install --prod --no-frozen-lockfile --no-strict-peer-dependencies --ignore-scripts &&
-            echo 'Dependencies installed successfully with pnpm'
-          "
+        run: pnpm install 
 
       - name: Install envsubst
         run: |
           sudo apt-get update
           sudo apt-get install -y gettext-base
-        
-      - name: Check if template files exist
-        run: |
-          echo "Checking for template files..."
-          if [ ! -f "deploy/nginx/site-audit-ai-fe.conf.tpl" ]; then
-            echo "::error::Nginx template file not found: deploy/nginx/site-audit-ai-fe.conf.tpl"
-            echo "Available files in deploy/nginx/:"
-            ls -la deploy/nginx/ 2>/dev/null || echo "deploy/nginx/ directory not found"
-            exit 1
-          fi
-          
-          if [ ! -f "deploy/systemd/site-audit-ai-fe.service.tpl" ]; then
-            echo "::error::Systemd template file not found: deploy/systemd/site-audit-ai-fe.service.tpl"
-            echo "Available files in deploy/systemd/:"
-            ls -la deploy/systemd/ 2>/dev/null || echo "deploy/systemd/ directory not found"
-            exit 1
-          fi
-          
-          echo "Template files found successfully"
 
       - name: Prepare config templates
         env:
@@ -195,20 +65,21 @@ jobs:
           export SERVER_NAME APP_PORT APP_ROOT NGINX_LOG_PREFIX DEPLOY_ENV
           export SERVICE_USER="$SERVICE_USER_VALUE"
           export SERVICE_GROUP="$SERVICE_GROUP_VALUE"
-          export NODE_BIN="${APP_ROOT}/node_modules/.bin"
-          export NPM_START="${APP_ROOT}/node_modules/.bin/next start"
-          
-          # Create deploy directory if it doesn't exist
-          mkdir -p deploy/nginx
-          mkdir -p deploy/systemd
-          
-          echo "Generating nginx configuration..."
+                  
           envsubst '$SERVER_NAME $APP_PORT $APP_ROOT $NGINX_LOG_PREFIX' < deploy/nginx/site-audit-ai-fe.conf.tpl > deploy/nginx/site-audit-ai-fe.conf
-          
-          echo "Generating systemd service..."
-          envsubst '$SERVICE_USER $SERVICE_GROUP $APP_PORT $APP_ROOT $DEPLOY_ENV $SERVICE_NAME $NPM_START' < deploy/systemd/site-audit-ai-fe.service.tpl > deploy/systemd/site-audit-ai-fe.service
-          
+          envsubst '$SERVICE_USER $SERVICE_GROUP $APP_PORT $APP_ROOT $DEPLOY_ENV $SERVICE_NAME' < deploy/systemd/site-audit-ai-fe.service.tpl > deploy/systemd/site-audit-ai-fe.service
           echo "Configuration files generated successfully"
+
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.STAGING_SSH_KEY }}
+              
+      - name: Add remote host to known hosts
+        run: |
+          ssh-keyscan -p "${SSH_PORT:-22}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          echo  Testing SSH Connection
+          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "echo 'SSH connection successful' && whoami"
 
       - name: Copy nginx config
         run: |
@@ -220,38 +91,112 @@ jobs:
           echo "Copying systemd service to server..."
           scp -P "${SSH_PORT:-22}" deploy/systemd/site-audit-ai-fe.service "$DEPLOY_USER@$DEPLOY_HOST:/tmp/site-audit-ai-fe.service"
 
+      - name: Build Next.js Application
+        run: |
+          cat << EOF > .env
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_WAITLIST_API_URL: ${{ secrets.NEXT_PUBLIC_WAITLIST_API_URL }}
+          EOF
+          pnpm run build
+
+      - name: Save Next.js Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/package.json', '**/pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+   
+      - name: Clean and prepare remote directory
+        run: |
+          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "DEPLOY_PATH='$DEPLOY_PATH' DEPLOY_USER='$DEPLOY_USER' bash -s" <<'EOF'
+          set -euo pipefail
+          APP_DIR="$DEPLOY_PATH"
+          BACKUP_DIR="${APP_DIR}_backup"
+
+          echo 'Backing up existing deployment...'
+          if [ -d "$BACKUP_DIR" ]; then
+            echo "Removing previous backup at $BACKUP_DIR"
+            sudo rm -rf "$BACKUP_DIR"
+          fi
+
+          if [ -d "$APP_DIR" ]; then
+            sudo cp -r "$APP_DIR" "$BACKUP_DIR" && echo "Backup created at $BACKUP_DIR" || echo 'Backup skipped'
+          else
+            echo 'No existing deployment to backup'
+          fi
+
+          sudo mkdir -p "$APP_DIR"
+          sudo chown -R "$DEPLOY_USER:$DEPLOY_USER" "$APP_DIR"
+          sudo chmod 755 "$APP_DIR"
+          echo 'Remote directory prepared successfully'
+          EOF
+      
+      - name: Copy build artifacts to server
+        run: |
+          set -euo pipefail
+          rm -f build.tgz
+
+          artifacts=(.next public package.json pnpm-lock.yaml .env)
+          [ -f tsconfig.json ] && artifacts+=(tsconfig.json)
+          next_configs=(next.config.*)
+          [ ${#next_configs[@]} -gt 0 ] && artifacts+=("${next_configs[@]}")
+
+          tar -czf build.tgz "${artifacts[@]}"
+          scp -P "${SSH_PORT:-22}" build.tgz "$DEPLOY_USER@$DEPLOY_HOST:/tmp/build.tgz"
+
+          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "DEPLOY_PATH='$DEPLOY_PATH' bash -s" <<'EOF'
+          set -euo pipefail
+          rm -rf "$DEPLOY_PATH"
+          mkdir -p "$DEPLOY_PATH"
+
+          tar -xzf /tmp/build.tgz -C "$DEPLOY_PATH"
+          rm /tmp/build.tgz
+          EOF
+
       - name: Setup and restart services on server
         run: |
           ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" \
-            "DEPLOY_PATH='$DEPLOY_PATH' SERVICE_NAME='$SERVICE_NAME' DEPLOY_ENV='$DEPLOY_ENV' APP_PORT='$APP_PORT' bash -s" <<'EOF'
+            "DEPLOY_PATH='$DEPLOY_PATH' SERVER_NAME='$SERVER_NAME' EMAIL='$EMAIL' SERVICE_NAME='$SERVICE_NAME' DEPLOY_ENV='$DEPLOY_ENV' APP_PORT='$APP_PORT' bash -s" <<'EOF'
             set -euo pipefail
+
             APP_DIR="${DEPLOY_PATH}"
             SERVICE="${SERVICE_NAME}"
-            
-            echo "Setting up services on server..."
-            echo "Working directory: $(pwd)"
-            echo "App directory: $APP_DIR"
-            
-            # Fix ownership of the app directory
-            sudo chown -R $USER:$USER "$APP_DIR" || echo "Ownership change may have failed, continuing..."
-            
-            # Install system dependencies if not present
-            if ! command -v nginx >/dev/null 2>&1; then
-              echo "Installing nginx..."
-              sudo apt-get update -y
-              sudo apt-get install -y nginx
+            SERVER_NAME="${SERVER_NAME}"
+            EMAIL="${EMAIL}"
+
+            sudo apt-get update -y
+            sudo apt-get install -y nginx certbot python3-certbot-nginx curl
+
+            cd "$APP_DIR"
+            sudo chown -R "$USER:$USER" "$APP_DIR"
+
+            echo 'Installing pnpm...'
+            if ! command -v pnpm >/dev/null 2>&1; then
+              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              export PNPM_HOME="$HOME/.local/share/pnpm"
+              export PATH="$PNPM_HOME:$PATH"
             fi
+
+            echo 'Installing dependencies with pnpm...'
+            pnpm install                       
             
             # Configure Nginx
             echo "Configuring nginx..."
             NGINX_SITE="/etc/nginx/sites-available/${SERVICE}.conf"
             sudo mv /tmp/site-audit-ai-fe.conf "$NGINX_SITE"
             sudo ln -sf "$NGINX_SITE" "/etc/nginx/sites-enabled/${SERVICE}.conf"
-            
-            # Remove default nginx site if it exists
-            if [ -f "/etc/nginx/sites-enabled/default" ]; then
-              sudo rm -f "/etc/nginx/sites-enabled/default"
-            fi
+
+            export SERVER_NAME
+            sudo certbot --nginx \
+              -d ${SERVER_NAME} \
+              --non-interactive \
+              --agree-tos \
+              --email ${EMAIL} \
+              --redirect 
             
             sudo nginx -t
             sudo systemctl reload nginx
@@ -259,7 +204,6 @@ jobs:
             # Configure and restart systemd service
             echo "Configuring systemd service..."
             sudo mv /tmp/site-audit-ai-fe.service "/etc/systemd/system/${SERVICE}.service"
-            sudo chown root:root "/etc/systemd/system/${SERVICE}.service"
             sudo systemctl daemon-reload
             sudo systemctl enable "${SERVICE}"
             sudo systemctl restart "$SERVICE"
