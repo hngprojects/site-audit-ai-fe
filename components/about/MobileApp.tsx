@@ -4,14 +4,16 @@ import Image from "next/image";
 const MobileApp = () => {
   return (
     <section className="bg-[#FFF9F8] py-13.5 md:py-6.5 lg:py-20">
-      <div className="container mx-auto px-4 md:px-10 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-          <div className="hidden lg:block lg:w-1/2 w-full relative">
-            <div className="relative pt-[73.22%]">
+          <div className="hidden lg:block lg:w-1/2 w-full left-[-105px] relative">
+            <div className="relative sm:w-[367px] sm:h-[307px] md:w-[602px] md:h-[406px] lg:w-[667.8px] lg:h-[489px]">
               <Image
                 src="/assets/images/about/mobile-app-composition.png"
                 alt="Mobile App Composition"
                 layout="fill"
+                objectFit="contain"
+                objectPosition="left"
               />
             </div>
           </div>
@@ -28,7 +30,7 @@ const MobileApp = () => {
             </p>
 
             <div className="lg:hidden w-full relative">
-              <div className="relative pt-[73.22%]">
+              <div className="relative pt-[73.22%] -ml-22 ">
                 <Image
                   src="/assets/images/about/mobile-app-composition.png"
                   alt="Mobile App Composition"

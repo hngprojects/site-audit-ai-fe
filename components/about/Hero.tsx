@@ -4,7 +4,7 @@ import Image from "next/image";
 const Hero = () => {
   return (
     <section className="bg-[#FEFFFF] py-13.5 md:py-6.5 lg:py-20">
-      <div className="container mx-auto px-4 md:px-10 lg:px-20">
+      <div className="container mx-auto px-4 md:px-10 lg:px-15 ">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-16">
           {/* Text Content */}
           <div className="lg:w-1/2 max-w-[515px] space-y-4 flex flex-col items-center text-center lg:items-start lg:text-left">
@@ -53,7 +53,7 @@ const Hero = () => {
               alt="People working in an office"
               width={306} // Mobile Figma width
               height={204} // Mobile Figma height
-              className="min-w-[306px] h-auto object-cover rounded-xl border-[6px] border-[#FFEFEC] md:w-[651px] lg:w-full"
+              className="min-w-[306px] sm:h-[204px] md:h-[434px] lg:h-[433px] object-cover rounded-xl border-[6px] border-[#FFEFEC] md:w-[651px] lg:w-[649px]"
             />
           </div>
         </div>{" "}
