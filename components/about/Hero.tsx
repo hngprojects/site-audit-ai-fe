@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section className="bg-[#FEFFFF] py-13.5 md:py-6.5 lg:py-20">
       <div className="container mx-auto px-4 md:px-10 lg:px-20">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-[63px]">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12 lg:gap-16">
           {/* Text Content */}
           <div className="lg:w-1/2 max-w-[515px] space-y-4 flex flex-col items-center text-center lg:items-start lg:text-left">
             <div className="relative w-fit">
