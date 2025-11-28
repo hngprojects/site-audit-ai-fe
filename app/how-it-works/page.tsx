@@ -3,7 +3,7 @@ import StepsSection from "@/components/how-it-works/StepsSection";
 
 const HowItWorksPage = () => {
   return (
-    <div>
+    <div className="max-w-[1344px] mx-auto">
       <HeroSection />
       <StepsSection />
     </div>

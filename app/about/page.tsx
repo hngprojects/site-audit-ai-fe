@@ -12,7 +12,7 @@ const rethinkSans = Rethink_Sans({
 
 const AboutUsPage = () => {
   return (
-    <div className={rethinkSans.className}>
+    <div className={`${rethinkSans.className} max-w-[1344px] mx-auto`}>
       <Hero />
       <MobileApp />
       <KeyValues />
