@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { resourcePosts } from "@/lib/newsletter-demo-data";
+import { resourcePosts } from "@/lib/resources-data";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ResourcesPage() {
@@ -88,7 +88,7 @@ export default function ResourcesPage() {
                   </div>
 
                   {/* Read More Button */}
-                  <Link href={`/resources/${post.id}`}>
+                  <Link href={`/resources/${post.slug}`}>
                     <button className="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center hover:bg-blue-950 transition-colors cursor-pointer">
                       <ArrowRight className="w-5 h-5" />
                     </button>

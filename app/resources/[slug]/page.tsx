@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { resourcePosts } from "@/lib/newsletter-demo-data";
+import { resourcePosts } from "@/lib/resources-data";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ChevronLeft } from "lucide-react";
@@ -10,9 +10,9 @@ import NewsletterForm from "@/components/newsletter-form";
 export default function ResourcesDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const id = Number.parseInt(params.id as string);
+  const slug = params.slug as string;
 
-  const post = resourcePosts.find((p) => p.id === id);
+  const post = resourcePosts.find((p) => p.slug === slug);
 
   if (!post) {
     return (
