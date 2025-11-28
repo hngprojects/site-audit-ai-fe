@@ -15,11 +15,11 @@ const LandingFooter = () => {
     "/privacy-policy",
     "/terms-of-use",
     "/release",
-    "/blog",
+    "/resources",
   ];
 
   const showFooterAppSection = !(
-    HIDDEN_PATHS.includes(pathname ?? "") || pathname?.includes("/blog/")
+    HIDDEN_PATHS.includes(pathname ?? "") || pathname?.includes("/resources/")
   );
 
   const is625HeightPage = pathname === "/" || pathname === "/how-it-works";
@@ -35,11 +35,11 @@ const LandingFooter = () => {
           pathname === "/privacy-policy" ||
           pathname === "/terms-of-use" ||
           pathname === "/release" ||
-          pathname === "/blog" ||
-          pathname === "/blog/1" ||
-          pathname === "/blog/2" ||
-          pathname === "/blog/3" ||
-          pathname === "/blog/4" ||
+          pathname === "/resources" ||
+          pathname === "/resources/1" ||
+          pathname === "/resources/2" ||
+          pathname === "/resources/3" ||
+          pathname === "/resources/4" ||
           pathname === "/contact"
             ? "hidden"
             : ""
@@ -104,11 +104,11 @@ const LandingFooter = () => {
           pathname === "/privacy-policy" ||
           pathname === "/terms-of-use" ||
           pathname === "/release" ||
-          pathname === "/blog" ||
-          pathname === "/blog/1" ||
-          pathname === "/blog/2" ||
-          pathname === "/blog/3" ||
-          pathname === "/blog/4" ||
+          pathname === "/resources" ||
+          pathname === "/resources/1" ||
+          pathname === "/resources/2" ||
+          pathname === "/resources/3" ||
+          pathname === "/resources/4" ||
           pathname === "/contact"
             ? "pt-16"
             : "pt-40"
