@@ -40,7 +40,8 @@ const LandingFooter = () => {
           pathname === "/blog/2" ||
           pathname === "/blog/3" ||
           pathname === "/blog/4" ||
-          pathname === "/contact"
+          pathname === "/contact" ||
+          pathname === "/squeeze"
             ? "hidden"
             : ""
         }`}
