@@ -28,7 +28,7 @@ const Hero = () => {
 
         {message && (
           <div className="text-center mt-4">
-            <p className={isError ? "text-red-500" : "text-green-500"}>
+            <p className={isError ? "text-[#FF5A3D]" : "text-green-500"}>
               {message}
             </p>
           </div>
