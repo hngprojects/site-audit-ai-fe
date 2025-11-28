@@ -5,19 +5,21 @@ import { Button } from "@/components/ui/button";
 const HeroSection = () => {
   return (
     <section className="w-full bg-white">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 px-4 py-12 lg:py-24 max-w-[1440px]">
+      <div className="container mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 px-4 sm:px-8 md:px-12 py-12 lg:py-24 max-h-[699px] max-w-[1440px]">
         {/* Text Content */}
-        <div className="lg:w-[620px] flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
+        <div className="w-full lg:w-[620px] lg:h-[450px] flex flex-col items-start text-left gap-10">
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
             <h1
               className="font-sans font-bold text-[#1C1C1C] mt-8
-                           text-[32px] leading-[38px] md:text-5xl lg:text-[64px] lg:leading-[76px]"
+                           text-[32px] leading-[38px] md:text-5xl 
+                           lg:text-[64px] lg:leading-[80px] "
             >
               Boost Your Website With A Simple Guided AI Audit
             </h1>
             <p
               className="font-sans font-normal text-[#676767] 
-                          text-[16px] leading-[20px] lg:text-[25px] lg:leading-[30px]"
+                          text-base leading-5 md:text-xl md:leading-6
+                          lg:text-[24px] lg:leading-[30px] lg:w-[620px] "
             >
               Understand how our AI audits your website, uncovers hidden
               problems, and helps you resolve them before they cost you traffic
@@ -29,7 +31,7 @@ const HeroSection = () => {
             size="lg"
             className="bg-[#FF5A3D] hover:bg-[#E85238] text-white
                        w-full h-[56px] px-6 py-4 rounded-[10.725px] mt-2
-                       md:w-[342.71px] lg:w-[155px] font-sans font-medium text-base leading-tight"
+                       md:w-[155px] md:mx-auto lg:w-[155px] lg:mx-0 lg:h-[56px] font-sans font-medium text-base leading-tight"
           >
             <a href="https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link">
               Get the App
@@ -60,12 +62,12 @@ const HeroSection = () => {
           </div>
 
           {/* Desktop Image */}
-          <div className="relative w-full h-[688px] hidden lg:block">
+          <div className="relative w-full lg:w-[636px] h-[688px] top-6 hidden lg:block">
             <Image
               src="/assets/images/how-it-works/how-it-works-hero-complete.png"
               alt="How it works illustration (Desktop)"
               fill
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "cover" }}
             />
           </div>
         </div>
