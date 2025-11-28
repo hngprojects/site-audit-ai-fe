@@ -3,16 +3,21 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { blogPosts } from "@/lib/blog-data";
-import { ArrowRight } from "lucide-react";
+import { resourcePosts } from "@/lib/newsletter-demo-data";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function BlogPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Articles");
+export default function ResourcesPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
 
-  const categories = ["Articles", "News", "Ads"];
-  const filteredPosts = blogPosts.filter(
-    (post) => post.category === selectedCategory
-  );
+  const totalPages = Math.ceil(resourcePosts.length / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const currentPosts = resourcePosts.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -21,11 +26,11 @@ export default function BlogPage() {
         {/* Page Title */}
         <div className="text-center mb-12">
           <h1 className="text-[32px] md:text-[40px] xl:text-5xl font-bold text-[#080C15] mb-10">
-            Blog
+            Resources
           </h1>
 
           {/* Category Filter */}
-          <div className="flex justify-center gap-3 flex-wrap">
+          {/* <div className="flex justify-center gap-3 flex-wrap">
             {categories.map((category) => (
               <button
                 key={category}
@@ -39,12 +44,12 @@ export default function BlogPage() {
                 {category}
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Blog Posts Grid */}
         <div className="space-y-8 md:space-y-12">
-          {filteredPosts.map((post) => (
+          {currentPosts.map((post) => (
             <article
               key={post.id}
               className="grid grid-cols-1 md:grid-cols-3 border-b border-gray-200 last:border-b-0 bg-[#FFF9F8] md:h-[274px] rounded-lg"
@@ -77,11 +82,13 @@ export default function BlogPage() {
                 <div className="flex items-center justify-between">
                   <div className="text-sm md:text-[16px] text-gray-500">
                     <span>Posted on {post.date}</span>
-                    <span className="text-red-500 ml-2">• {post.readTime}</span>
+                    <span className="text-[#FF5A3D] ml-2">
+                      • {post.readTime}
+                    </span>
                   </div>
 
                   {/* Read More Button */}
-                  <Link href={`/blog/${post.id}`}>
+                  <Link href={`/resources/${post.id}`}>
                     <button className="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center hover:bg-blue-950 transition-colors cursor-pointer">
                       <ArrowRight className="w-5 h-5" />
                     </button>
@@ -91,6 +98,58 @@ export default function BlogPage() {
             </article>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-end mt-8">
+            <div className="flex gap-2 items-center">
+              {/* Previous button */}
+              {currentPage > 1 && (
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="px-2 py-1 text-sm font-medium rounded-full bg-none text-[#1A2373] hover:bg-gray-300 transition-colors flex items-center justify-center"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+              )}
+
+              {/* Page numbers - show max 2 at a time */}
+              {Array.from({ length: Math.min(2, totalPages) }, (_, i) => {
+                const pageNum =
+                  Math.max(
+                    1,
+                    Math.min(
+                      totalPages - 1,
+                      currentPage - (currentPage === totalPages ? 1 : 0)
+                    )
+                  ) + i;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => handlePageChange(pageNum)}
+                    className={`px-2 py-1 text-sm font-medium rounded-full transition-colors ${
+                      currentPage === pageNum
+                        ? "bg-[#FF5A3D] text-white"
+                        : "bg-none text-[#1A2373] hover:bg-gray-300"
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+
+              {/* Next button */}
+              {currentPage < totalPages && (
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="px-2 py-1 text-sm font-medium rounded-full bg-none text-[#1A2373] hover:bg-gray-300 transition-colors flex items-center justify-center"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+        )}
       </main>
       {/* App CTA Section */}
       <section className=" mx-auto mt-20 md:mt-28 px-4 md:px-12 xl:px-0 py-12 md:py-16 bg-[#FFF9F8] w-full">

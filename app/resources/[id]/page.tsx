@@ -1,30 +1,31 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { blogPosts } from "@/lib/blog-data";
+import { resourcePosts } from "@/lib/newsletter-demo-data";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft } from "lucide-react";
+import NewsletterForm from "@/components/newsletter-form";
 
-export default function BlogDetailPage() {
+export default function ResourcesDetailPage() {
   const params = useParams();
   const router = useRouter();
   const id = Number.parseInt(params.id as string);
 
-  const post = blogPosts.find((p) => p.id === id);
+  const post = resourcePosts.find((p) => p.id === id);
 
   if (!post) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900">
-            Blog post not found
+            Resource not found
           </h1>
           <button
-            onClick={() => router.push("/blog")}
+            onClick={() => router.push("/resources")}
             className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
           >
-            Back to Blog
+            Back to Resources
           </button>
         </div>
       </div>
@@ -36,18 +37,19 @@ export default function BlogDetailPage() {
       <main className=" max-w-[1344px] mx-auto w-full px-4 md:px-12 2xl:px-0 py-8 md:py-12">
         {/* Back Button */}
         <button
-          onClick={() => router.push("/blog")}
-          className="flex items-center gap-2 text-[1C1C1C] hover:text-red-600 mb-8 md:hidden"
+          onClick={() => router.push("/resources")}
+          className="flex items-center gap-2 text-[#1C1C1C] hover:text-[#FF5A3D] mb-8 md:hidden"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
 
         {/* Back Link - Desktop */}
         <Link
-          href="/blog"
-          className="text-red-500 hover:text-red-600 text-sm font-medium mb-8 hidden md:block"
+          href="/resources"
+          className="text-[#FF5A3D] hover:text-[#FF5A3D] text-sm font-medium mb-8 hidden md:flex  items-center gap-2"
         >
-          Back to Blog
+          <ChevronLeft className="w-4 h-4" />
+          Back to Resources
         </Link>
 
         {/* Title */}
@@ -133,6 +135,9 @@ export default function BlogDetailPage() {
             ))}
           </div>
         </div>
+
+        {/* Newsletter Signup Form */}
+        <NewsletterForm />
       </main>
     </div>
   );
