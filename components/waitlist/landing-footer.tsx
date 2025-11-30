@@ -30,6 +30,7 @@ const LandingFooter = () => {
       <div
         className={`${
           pathname === "/faq" ||
+          pathname === "/squeeze" ||
           pathname === "/about" ||
           pathname === "/cookie-policy" ||
           pathname === "/privacy-policy" ||

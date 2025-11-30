@@ -96,7 +96,7 @@ export default function SignupComponent() {
   }
 
   return (
-    <div className="min-h-fit bg-white flex items-center justify-center p-4 md:my-10">
+    <div className="min-h-fit bg-white flex items-center justify-center p-4 md:my-10 mb-6">
       <form onSubmit={handleSubmit} className="w-full max-w-md">
         <h1 className="text-4xl font-bold text-center text-[#1A2373] mb-8">
           Start your Free Trial Today!
@@ -184,44 +184,6 @@ export default function SignupComponent() {
         >
           {isLoading ? "Signing Up..." : "Sign Up"}
         </Button>
-
-        <div className="flex items-center mb-6 md:text-lg">
-          <div className="flex-1 border-t border-gray-300"></div>
-          <span className="px-3 text-gray-500 text-sm">OR</span>
-          <div className="flex-1 border-t border-gray-300"></div>
-        </div>
-
-        <Button className="w-full border border-gray-300 text-gray-700 font-medium py-3 rounded-lg mb-3 flex items-center justify-center gap-2 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
-          <Image
-            src="/assets/images/squeeze/google.svg"
-            className="w-5 h-5"
-            alt="google"
-            width={10}
-            height={10}
-          />
-          <span className="md:text-lg">Continue with Google</span>
-        </Button>
-
-        <Button className="w-full border border-gray-300 text-gray-700 font-medium py-3 rounded-lg mb-6 flex items-center justify-center gap-2 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
-          <Image
-            src="/assets/images/squeeze/apple.svg"
-            className="w-5 h-5"
-            alt="apple"
-            width={10}
-            height={10}
-          />
-          <span className="md:text-lg">Continue with Apple</span>
-        </Button>
-
-        <p className="text-center text-gray-600 text-sm md:text-lg">
-          Already have an account?{" "}
-          <a
-            href="#"
-            className="text-[#FF5A3D] hover:text-[#FF5A3D90] font-medium"
-          >
-            Sign In
-          </a>
-        </p>
       </form>
     </div>
   );
