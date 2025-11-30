@@ -16,6 +16,7 @@ const LandingFooter = () => {
     "/terms-of-use",
     "/release",
     "/resources",
+    "/squeeze",
   ];
 
   const showFooterAppSection = !(
@@ -101,6 +102,7 @@ const LandingFooter = () => {
         className={`bg-[#0A0A0B] ${footerHeightClass} ${
           pathname === "/faq" ||
           pathname === "/about" ||
+          pathname === "/squeeze" ||
           pathname === "/cookie-policy" ||
           pathname === "/privacy-policy" ||
           pathname === "/terms-of-use" ||
