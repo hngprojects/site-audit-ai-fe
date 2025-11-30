@@ -70,27 +70,28 @@ const LandingFooter = () => {
           </div>
 
           {/* right column */}
-          <div className="hidden sm:block flex-1 relative">
+          <div className=" sm:block flex-1 relative">
             {/* Individual Circles directly positioned */}
-            <div className="absolute w-[150px] h-[150px] right-[60px] top-[60px] md:w-[104px] md:h-[104px] md:right-[100px] md:top-[50px] lg:w-[202px] lg:h-[202px] lg:right-[89px] lg:top-[91px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[220px] h-[220px] right-[30px] top-[30px] md:w-[156px] md:h-[156px] md:right-[75px] md:top-[25px] lg:w-[303px] lg:h-[303px] lg:right-[38.5px] lg:top-[40.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[290px] h-[290px] right-[0px] top-[0px] md:w-[208px] md:h-[208px] md:right-[50px] md:top-[0px] lg:w-[404px] lg:h-[404px] lg:right-[-12px] lg:top-[-10px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[360px] h-[360px] right-[-30px] top-[-30px] md:w-[260px] md:h-[260px] md:right-[25px] md:top-[-25px] lg:w-[505px] lg:h-[505px] lg:right-[-62.5px] lg:top-[-60.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[430px] h-[430px] right-[-60px] top-[-60px] md:w-[312px] md:h-[312px] md:right-[0px] md:top-[-50px] lg:w-[606px] lg:h-[606px] lg:right-[-113px] lg:top-[-111px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[150px] h-[150px] right-[60px] top-[-120px] md:w-[104px] md:h-[104px] md:right-[100px] md:top-[50px] lg:w-[202px] lg:h-[202px] lg:right-[89px] lg:top-[91px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[220px] h-[220px] right-[30px] top-[-154px] md:w-[156px] md:h-[156px] md:right-[75px] md:top-[25px] lg:w-[303px] lg:h-[303px] lg:right-[38.5px] lg:top-[40.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[290px] h-[290px] right-[0px] top-[-184px] md:w-[208px] md:h-[208px] md:right-[50px] md:top-[0px] lg:w-[404px] lg:h-[404px] lg:right-[-12px] lg:top-[-10px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[360px] h-[360px] right-[-30px] top-[-214.6px] md:w-[260px] md:h-[260px] md:right-[25px] md:top-[-25px] lg:w-[505px] lg:h-[505px] lg:right-[-62.5px] lg:top-[-60.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[430px] h-[430px] right-[-60px] top-[-244.08px] md:w-[312px] md:h-[312px] md:right-[0px] md:top-[-50px] lg:w-[606px] lg:h-[606px] lg:right-[-113px] lg:top-[-111px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
             <Image
               src="/assets/images/landing/cta-phones.png"
               alt="Phone mockups"
               width={715.57}
               height={622.06}
-              className="absolute top-[50px] right-[100px] z-10 scale-125 md:right-[60px] md:scale-145 lg:scale-105 lg:right-[25px]"
+              className="absolute top-[50px] right-[100px] z-10 scale-125  md:right-[60px] md:scale-145 lg:scale-105 lg:right-[25px]"
             />
           </div>
           <div className="sm:hidden w-full">
             <Image
               src="/assets/images/landing/cta-phones.png"
               alt="Phone mockups"
-              width={850}
-              height={700}
+              width={412}
+              height={358}
+              className="absolute top-[250px] right-[50px] z-10 scale-130 "
             />
           </div>
         </div>
@@ -114,7 +115,7 @@ const LandingFooter = () => {
             : "pt-40"
         }`}
       >
-        <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12 flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
+        <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-5 md:whitespace-nowrap flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
             <Link href="/" className="hidden xl:flex items-center gap-2">
               <Image
