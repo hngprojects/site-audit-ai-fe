@@ -33,7 +33,7 @@ const HeroSection = () => {
                        w-full h-[56px] px-6 py-4 rounded-[10.725px] mt-2
                        md:w-[155px] md:mx-auto lg:w-[155px] lg:mx-0 lg:h-[56px] font-sans font-medium text-base leading-tight"
           >
-            <a href="https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link">
+            <a href="https://play.google.com/apps/test/RQDSjy_qH8w/ahAO29uNQV0s404Mz1WU1MPt9H2RT0HwXJtCELtPGNC_LHvAnQBRgrGqd0JIzeDQoW6ljvmU7v1UVTOAsTaSJQ3gyi">
               Get the App
             </a>
           </Button>

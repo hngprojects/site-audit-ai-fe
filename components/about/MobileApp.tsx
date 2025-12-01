@@ -46,7 +46,9 @@ const MobileApp = () => {
               show you exactly how to fix them.
             </p>
             <button className="bg-[#FF5A3D] text-white font-medium text-sm py-[14px] px-6 rounded-[12px]">
-              Get you free Audit now
+              <a href="https://play.google.com/apps/test/RQDSjy_qH8w/ahAO29uNQV0s404Mz1WU1MPt9H2RT0HwXJtCELtPGNC_LHvAnQBRgrGqd0JIzeDQoW6ljvmU7v1UVTOAsTaSJQ3gyi">
+                Get you free Audit now
+              </a>
             </button>
           </div>
         </div>
