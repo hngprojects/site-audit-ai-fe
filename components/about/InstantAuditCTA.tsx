@@ -24,7 +24,9 @@ const InstantAuditCTA = () => {
           and boost performance, all in seconds.
         </p>
         <button className="bg-[#FF5A3D] text-white font-medium py-[15.6px] px-[26.8px] rounded-[13.4px] text-[15.6px] flex items-center justify-center w-[259px] md:w-[384px] h-[56px] gap-[11.19px]">
-          Get the App
+          <a href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics">
+            Get the App
+          </a>
         </button>
       </div>
     </section>

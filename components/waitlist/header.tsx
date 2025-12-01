@@ -17,7 +17,7 @@ const WaitlistHeader = () => {
 
   const actionText = "Get the App";
   const actionHref =
-    "https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link";
+    "https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics";
 
   const links = (() => {
     return landing ? navLinksLanding : navLinksWaitlist;
