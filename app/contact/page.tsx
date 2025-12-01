@@ -30,12 +30,12 @@ const ContactPage = () => {
                 <div className="flex flex-col justify-between items-center w-full gap-6">
                   <div className="flex flex-col md:flex-row justify-between items-center w-full gap-4 md:gap-6">
                     <ContactInfo
-                      text="Email us"
+                      text="Email"
                       message="Support@Sitelytics.ai"
                       src="/assets/images/contact/mail.svg"
                     />
                     <ContactInfo
-                      text="Call us"
+                      text="Call"
                       message="+1 (555) 123 4567"
                       src="/assets/images/contact/call.svg"
                     />
@@ -89,14 +89,19 @@ const ContactInfo = ({
   message: string;
 }) => {
   return (
-    <div className="w-full px-4 py-[21.5px] border border-[#C7C8C9] rounded-[12px]">
+    <a
+      href={`${text === "Email" ? "mailto:Support@Sitelytics.ai" : "tel:+1(555)1234567"}`}
+      className="w-full px-4 py-[21.5px] border border-[#C7C8C9] rounded-[12px]"
+    >
       <div className="flex justify-start items-center gap-2">
         <Image src={src} width={24} height={24} alt={`${text} icon`} />{" "}
-        <p className="text-[#1A2373] text-base font-bold leading-5">{text}</p>
+        <p className="text-[#1A2373] text-base font-bold leading-5">
+          {text} us
+        </p>
       </div>
       <p className="text-[#1C1C1C] font-normal text-base leading-5 mt-4">
         {message}
       </p>
-    </div>
+    </a>
   );
 };
