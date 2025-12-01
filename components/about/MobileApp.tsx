@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const MobileApp = () => {
   return (
@@ -29,8 +30,8 @@ const MobileApp = () => {
               is not performing, you lose customers.
             </p>
 
-            <div className="lg:hidden w-full relative">
-              <div className="relative -ml-4">
+            <div className="lg:hidden w-full p-4 relative flex sm:">
+              <div className="relative w-full sm:w-[90%] mx-auto">
                 <Image
                   src="/assets/images/about/mobile-app-composition.png"
                   alt="Mobile App Composition"
@@ -46,11 +47,13 @@ const MobileApp = () => {
               your website in seconds, break down issues in simple language, and
               show you exactly how to fix them.
             </p>
-            <button className="bg-[#FF5A3D] text-white font-medium text-sm py-[14px] px-6 rounded-[12px]">
-              <a href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics">
-                Get you free Audit now
-              </a>
-            </button>
+
+            <Link
+              className="bg-[#FF5A3D] text-white font-medium text-sm py-3.5 px-6 rounded-xl"
+              href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics"
+            >
+              Get you free Audit now
+            </Link>
           </div>
         </div>
       </div>
