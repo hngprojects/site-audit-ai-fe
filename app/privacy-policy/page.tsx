@@ -4,7 +4,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Main Content */}
-      <main className="max-w-[1344px] mx-auto w-full px-4 md:px-12 xl:px-0 py-10">
+      <main className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 md:px-12 py-10">
         {/* Page Title */}
         <div className="md:py-5 text-center">
           <h1 className="text-[32px] md:text-[40px] xl:text-5xl font-bold text-[#080C15] mb-3">
