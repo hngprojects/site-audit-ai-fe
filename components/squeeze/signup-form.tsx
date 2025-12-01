@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import Image from "next/image";
 import { toast } from "sonner";
 import axios from "axios";
 import { submitSignupForm } from "@/lib/api";

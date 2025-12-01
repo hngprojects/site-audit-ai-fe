@@ -63,10 +63,18 @@ const KeyValues = () => {
           {keyValues.map((value, index) => (
             <div
               key={index}
-              className={`flex flex-col p-7 rounded-[10px] ${value.bgClass}`}
+              className="
+    group
+    flex flex-col p-7 rounded-[10px] bg-[#F5F5F5] text-[#1C1C1C]
+    hover:bg-[#1A2373] hover:text-white transition-all
+  "
             >
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center mb-4 ${value.iconBgClass}`}
+                className="
+      w-10 h-10 rounded-full flex items-center justify-center mb-4 
+      bg-[#1A2373] transition-all duration-200 
+      group-hover:bg-[#969ABF]
+    "
               >
                 <Image
                   src={value.icon}
@@ -75,8 +83,14 @@ const KeyValues = () => {
                   height={24}
                 />
               </div>
-              <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
-              <p className="text-sm opacity-90">{value.description}</p>
+
+              <h3 className="text-lg font-semibold mb-2 group-hover:text-white">
+                {value.title}
+              </h3>
+
+              <p className="text-sm opacity-90 group-hover:text-white">
+                {value.description}
+              </p>
             </div>
           ))}
         </div>

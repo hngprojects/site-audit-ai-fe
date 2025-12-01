@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import LandingFooter from "./landing-footer";
-import { SocialLinks } from "./social-links";
 
 const WaitlistFooter = () => {
   const pathname = usePathname();
@@ -17,7 +16,6 @@ const WaitlistFooter = () => {
           &copy;{new Date().getFullYear()} HNG Tech Limited. All rights
           reserved.
         </p>
-        <SocialLinks />
       </div>
     );
   } else if (pathname === "/maintenance") {

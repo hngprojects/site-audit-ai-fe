@@ -15,7 +15,7 @@ const InstantAuditCTA = () => {
 
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center max-w-4xl px-20 space-y-6">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-4xl px-20 space-y-6">
         <h2 className="text-2xl md:text-5xl font-bold text-white leading-tight">
           <span className="text-[#FF5A3D]">Audit</span> Your Website Instantly
         </h2>
@@ -23,9 +23,12 @@ const InstantAuditCTA = () => {
           Download the app and let AI analyze your site, uncover opportunities,
           and boost performance, all in seconds.
         </p>
-        <button className="bg-[#FF5A3D] text-white font-medium py-[15.6px] px-[26.8px] rounded-[13.4px] text-[15.6px] flex items-center justify-center w-[259px] md:w-[384px] h-[56px] gap-[11.19px]">
+        <a
+          className="bg-[#FF5A3D] text-white font-medium py-[0.975rem] px-[1.675rem] rounded-[0.8375rem] text-[0.975rem] flex items-center justify-center w-full max-w-64.75 md:w-[24rem] h-14 gap-[0.699rem]"
+          href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics"
+        >
           Get the App
-        </button>
+        </a>
       </div>
     </section>
   );
