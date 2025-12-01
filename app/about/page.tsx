@@ -2,7 +2,6 @@ import Hero from "@/components/about/Hero";
 import MobileApp from "@/components/about/MobileApp";
 import KeyValues from "@/components/about/KeyValues";
 import InstantAuditCTA from "@/components/about/InstantAuditCTA";
-import React from "react";
 import { Rethink_Sans } from "next/font/google";
 
 const rethinkSans = Rethink_Sans({
@@ -12,7 +11,7 @@ const rethinkSans = Rethink_Sans({
 
 const AboutUsPage = () => {
   return (
-    <div className={rethinkSans.className}>
+    <div className={`${rethinkSans.className}w-screen overflow-x-hidden`}>
       <Hero />
       <MobileApp />
       <KeyValues />

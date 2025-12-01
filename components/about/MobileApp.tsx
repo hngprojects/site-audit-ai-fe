@@ -30,12 +30,13 @@ const MobileApp = () => {
             </p>
 
             <div className="lg:hidden w-full relative">
-              <div className="relative pt-[73.22%] -ml-22 ">
+              <div className="relative -ml-4">
                 <Image
                   src="/assets/images/about/mobile-app-composition.png"
                   alt="Mobile App Composition"
-                  layout="fill"
-                  objectFit="contain"
+                  width={300}
+                  height={300}
+                  className="w-full"
                 />
               </div>
             </div>
