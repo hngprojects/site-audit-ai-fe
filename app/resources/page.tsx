@@ -22,7 +22,7 @@ export default function ResourcesPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Main Content */}
-      <main className="font-sans max-w-[1344px] mx-auto w-full px-4 md:px-12 xl:px-0 py-12 md:py-16">
+      <main className="font-sans max-w-[1440px] mx-auto w-full px-4 sm:px-8 md:px-12 py-12 md:py-16">
         {/* Page Title */}
         <div className="text-center mb-12">
           <h1 className="text-[32px] md:text-[40px] xl:text-5xl font-bold text-[#080C15] mb-10">
