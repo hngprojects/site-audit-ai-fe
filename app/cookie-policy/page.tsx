@@ -6,7 +6,7 @@ export default function CookiePolicyPage() {
   return (
     <main className="flex flex-col bg-white ">
       {/* Main Content */}
-      <div className="max-w-[1344px] mx-auto w-full px-4 md:px-12 xl:px-0 py-10">
+      <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 md:px-12">
         {/* Page Title */}
         <div className="md:py-5 px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-[32px] md:text-[40px] xl:text-5xl font-bold text-gray-900 mb-3">

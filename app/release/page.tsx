@@ -149,9 +149,12 @@ const page = () => {
                 </div>
                 <h3 className="text-[#1C1C1C] text-[18px] leading-5.5 font-semibold">
                   Get feedback? Tell us at{" "}
-                  <span className="block md:inline-flex text-[#FF5A3D] font-medium">
+                  <a
+                    href="mailto:support@sitelytics.ai"
+                    className="text-[#E85238] font-medium hover:underline"
+                  >
                     support@sitelytics.ai
-                  </span>
+                  </a>
                 </h3>
                 <h4 className="text-[#1C1C1C] text-[18px] leading-5.5 font-semibold">
                   Thanks for using Sitelytics!
