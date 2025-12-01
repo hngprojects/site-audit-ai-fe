@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +22,16 @@ const WaitlistHeader = () => {
   const links = (() => {
     return landing ? navLinksLanding : navLinksWaitlist;
   })();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [isOpen]);
 
   return (
     <header
