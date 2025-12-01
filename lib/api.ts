@@ -4,24 +4,6 @@ const WAITLIST_API_URL = process.env.NEXT_PUBLIC_WAITLIST_API_URL;
 const CONTACT_US_API_URL = process.env.NEXT_PUBLIC_CONTACT_US_ENDPOINT;
 const SIGNUP_API_URL = process.env.NEXT_PUBLIC_SIGNUP_API_URL;
 
-if (!WAITLIST_API_URL) {
-  throw new Error(
-    "NEXT_PUBLIC_WAITLIST_API_URL is not defined in environment variables."
-  );
-}
-
-if (!CONTACT_US_API_URL) {
-  throw new Error(
-    "NEXT_PUBLIC_CONTACT_US_ENDPOINT is not defined in environment variables."
-  );
-}
-
-if (!SIGNUP_API_URL) {
-  throw new Error(
-    "NEXT_PUBLIC_SIGNUP_API_URL is not defined in environment variables."
-  );
-}
-
 export const submitWaitlistData = async ({
   email,
   name,
@@ -31,6 +13,11 @@ export const submitWaitlistData = async ({
   name: string;
   description: string;
 }) => {
+  if (!WAITLIST_API_URL) {
+    throw new Error(
+      "NEXT_PUBLIC_WAITLIST_API_URL is not defined in environment variables."
+    );
+  }
   try {
     const response = await axios.post(WAITLIST_API_URL + "/waitlist", {
       name,
@@ -52,12 +39,16 @@ export const submitContactForm = async ({
   email: string;
   message: string;
 }) => {
+  if (!CONTACT_US_API_URL) {
+    throw new Error(
+      "NEXT_PUBLIC_CONTACT_US_ENDPOINT is not defined in environment variables."
+    );
+  }
   try {
     const response = await axios.post(CONTACT_US_API_URL, {
       full_name: fullName,
       email,
       message,
-      page: "Newsletter",
     });
     return response.data;
   } catch (error) {
@@ -74,6 +65,11 @@ export const submitSignupForm = async ({
   username: string;
   password: string;
 }) => {
+  if (!SIGNUP_API_URL) {
+    throw new Error(
+      "NEXT_PUBLIC_SIGNUP_API_URL is not defined in environment variables."
+    );
+  }
   try {
     const response = await axios.post(SIGNUP_API_URL, {
       email,
