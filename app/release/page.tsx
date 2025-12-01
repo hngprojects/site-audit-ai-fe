@@ -109,7 +109,7 @@ const page = () => {
                     ))}
                   </ul>
                 </div>
-                <div
+                {/* <div
                   className="relative w-full h-[343px] md:h-[463px] lg:h-[640px rounded-[12px] cursor-pointer"
                   style={{
                     backgroundImage: `url('/assets/images/release/version-one-video.svg')`,
@@ -126,7 +126,7 @@ const page = () => {
                       height={45.51}
                     />
                   </span>
-                </div>
+                </div> */}
                 <div className="space-y-6">
                   <h4 className="text-[#1C1C1C] text-[24px] leading-7 font-bold">
                     Limitations
