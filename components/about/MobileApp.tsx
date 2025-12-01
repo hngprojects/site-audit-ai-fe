@@ -30,12 +30,13 @@ const MobileApp = () => {
             </p>
 
             <div className="lg:hidden w-full relative">
-              <div className="relative pt-[73.22%] -ml-22 ">
+              <div className="relative -ml-4">
                 <Image
                   src="/assets/images/about/mobile-app-composition.png"
                   alt="Mobile App Composition"
-                  layout="fill"
-                  objectFit="contain"
+                  width={300}
+                  height={300}
+                  className="w-full"
                 />
               </div>
             </div>
@@ -46,7 +47,9 @@ const MobileApp = () => {
               show you exactly how to fix them.
             </p>
             <button className="bg-[#FF5A3D] text-white font-medium text-sm py-[14px] px-6 rounded-[12px]">
-              Get you free Audit now
+              <a href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics">
+                Get you free Audit now
+              </a>
             </button>
           </div>
         </div>

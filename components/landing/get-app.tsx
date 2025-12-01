@@ -5,7 +5,7 @@ import React from "react";
 export const GetApp = () => {
   const buttons = [
     {
-      href: "https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link",
+      href: "https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics",
       imgSrc: "/assets/images/google-play.svg",
       alt: "Google Play",
       line1: "Get it on",

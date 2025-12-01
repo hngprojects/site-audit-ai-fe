@@ -32,18 +32,22 @@ export default function NewsletterForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Submit handler started.");
 
     if (!formData.fullName || !formData.email || !formData.challenge) {
       toast.error("Please fill out all fields.");
+      console.log("Validation failed: a field is empty.");
       return;
     }
 
     if (!validateEmail(formData.email)) {
       toast.error("Please enter a valid email address.");
+      console.log("Validation failed: invalid email format.");
       return;
     }
 
     setIsLoading(true);
+    console.log("Submitting form with data:", formData);
     try {
       const result = await submitContactForm({
         fullName: formData.fullName,
@@ -51,7 +55,10 @@ export default function NewsletterForm() {
         message: formData.challenge,
       });
 
-      if (result.status_code === 201) {
+      console.log("API call finished. Result:", result);
+
+      if (result && result.status_code === 201) {
+        console.log("API returned success (201). Navigating to /squeeze...");
         toast.success(result.message);
         setFormData({
           fullName: "",
@@ -60,12 +67,17 @@ export default function NewsletterForm() {
         });
         router.push("/squeeze");
       } else {
-        toast.error(result.message || "An error occurred. Please try again.");
+        console.log("API did not return success (201). Result:", result);
+        toast.error(
+          (result && result.message) || "An error occurred. Please try again."
+        );
       }
     } catch (error) {
+      console.error("An error occurred in the try-catch block:", error);
       let errorMessage =
         "An unexpected error occurred. Please try again later.";
       if (axios.isAxiosError(error) && error.response) {
+        console.error("Axios error response data:", error.response.data);
         errorMessage = error.response.data.message || error.message;
       } else if (error instanceof Error) {
         errorMessage = error.message;
@@ -73,6 +85,7 @@ export default function NewsletterForm() {
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
+      console.log("Submit handler finished.");
     }
   };
 

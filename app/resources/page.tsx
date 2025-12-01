@@ -165,7 +165,7 @@ export default function ResourcesPage() {
         {/* Download Buttons */}
         <div className="flex flex-row justify-center gap-4 mt-6 md:mt-0">
           <Link
-            href="https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link"
+            href=" https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics"
             className="bg-black text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
           >
             <Image
@@ -180,7 +180,7 @@ export default function ResourcesPage() {
             </div>
           </Link>
           <Link
-            href="https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link"
+            href="https://testflight.apple.com/join/hUyFtNDN"
             className="bg-black  text-white px-2 py-1 xl:px-6 xl:py-3 rounded-lg flex items-center gap-2 text-xs md:text-[11px]"
           >
             <Image
