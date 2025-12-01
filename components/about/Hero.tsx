@@ -48,13 +48,13 @@ const Hero = () => {
           </div>
 
           {/* Image */}
-          <div className="lg:w-1/2 flex justify-center">
+          <div className="lg:w-1/2 flex justify-center sm:w-full">
             <Image
               src="/assets/images/about/hero.jpg"
               alt="People working in an office"
               width={306}
               height={204}
-              className="sm:h-51 md:h-108.5 lg:h-108.25 object-cover rounded-xl border-[0.375rem] border-[#FFEFEC] md:w-162.75 lg:w-162.25"
+              className="sm:w-full md:h-108.5 lg:h-108.25 rounded-xl border-[0.375rem] border-[#FFEFEC] md:w-162.75 lg:w-162.25"
             />
           </div>
         </div>
