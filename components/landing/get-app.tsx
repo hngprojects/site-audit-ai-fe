@@ -5,7 +5,7 @@ import React from "react";
 export const GetApp = () => {
   const buttons = [
     {
-      href: "https://play.google.com/apps/test/RQDSjy_qH8w/ahAO29uNQV0s404Mz1WU1MPt9H2RT0HwXJtCELtPGNC_LHvAnQBRgrGqd0JIzeDQoW6ljvmU7v1UVTOAsTaSJQ3gyi",
+      href: "https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics",
       imgSrc: "/assets/images/google-play.svg",
       alt: "Google Play",
       line1: "Get it on",
