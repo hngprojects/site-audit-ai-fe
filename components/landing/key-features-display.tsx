@@ -36,7 +36,7 @@ const KeyFeaturesDisplay = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-20">
+    <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-[80px]">
       {/*  ====================== MObile Tabs ======================  */}
 
       <div className="block relative lg:hidden w-full" ref={dropdownRef}>
