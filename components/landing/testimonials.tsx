@@ -86,8 +86,8 @@ const Testimonials = () => {
   );
 
   return (
-    <section className="bg-white py-12 md:py-20 font-sans">
-      <div className="container mx-auto px-3 sm:px-8 md:px-12">
+    <section className="max-w-[1344px] mx-auto bg-white py-12 md:py-20 font-sans">
+      <div className="px-3 sm:px-8 md:px-12 xl:px-0">
         <div className="block md:flex md:justify-between md:items-end mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl md:text-4xl font-bold text-[#1C1C1C] mb-4">
