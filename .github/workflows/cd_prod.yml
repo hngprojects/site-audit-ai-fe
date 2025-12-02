@@ -1,0 +1,258 @@
+name: CD Prod Frontend
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]  
+    types: [completed]
+
+concurrency:
+  group: cd-prod-frontend
+  cancel-in-progress: true
+
+jobs:
+  prod-deployment:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' }}
+    runs-on: self-hosted
+    env:
+      DEPLOY_ENV: prod
+      DEPLOY_HOST: ${{ secrets.PROD_HOST }}
+      DEPLOY_USER: ${{ secrets.PROD_SSH_USER }}
+      DEPLOY_PATH: ${{ secrets.PROD_APP_DIR }}
+      SERVICE_NAME: ${{ secrets.PROD_SERVICE_NAME }}
+      SERVER_NAME: ${{ secrets.PROD_DOMAIN }}
+      APP_PORT: ${{ secrets.PROD_APP_PORT }}
+      APP_URL: ${{ secrets.PROD_APP_URL }}
+      ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
+      NGINX_LOG_PREFIX: sitemate-prod-fe
+      NODE_VERSION: '20'
+      EMAIL: ${{ secrets.PROD_SSL_EMAIL }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install 
+
+      - name: Install envsubst
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext-base
+
+      - name: Prepare config templates
+        env:
+          APP_ROOT: ${{ env.DEPLOY_PATH }}
+        run: |
+          if [ -z "$SERVER_NAME" ] || [ -z "$APP_PORT" ]; then
+            echo "::error::SERVER_NAME or APP_PORT secrets missing for $DEPLOY_ENV"
+            exit 1
+          fi
+          SERVICE_USER_VALUE="${SERVICE_USER:-$DEPLOY_USER}"
+          SERVICE_GROUP_VALUE="${SERVICE_GROUP:-$SERVICE_USER_VALUE}"
+          export SERVER_NAME APP_PORT APP_ROOT NGINX_LOG_PREFIX DEPLOY_ENV
+          export SERVICE_USER="$SERVICE_USER_VALUE"
+          export SERVICE_GROUP="$SERVICE_GROUP_VALUE"
+                  
+          envsubst '$SERVER_NAME $APP_PORT $APP_ROOT $NGINX_LOG_PREFIX' < deploy/nginx/site-audit-ai-fe.conf.tpl > deploy/nginx/site-audit-ai-fe.conf
+          envsubst '$SERVICE_USER $SERVICE_GROUP $APP_PORT $APP_ROOT $DEPLOY_ENV $SERVICE_NAME' < deploy/systemd/site-audit-ai-fe.service.tpl > deploy/systemd/site-audit-ai-fe.service
+          echo "Configuration files generated successfully"
+
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PROD_SSH_KEY }}
+              
+      - name: Add remote host to known hosts
+        run: |
+          ssh-keyscan -p "${SSH_PORT:-22}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+          echo  Testing SSH Connection
+          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "echo 'SSH connection successful' && whoami"
+
+      - name: Copy nginx config
+        run: |
+          echo "Copying nginx configuration to server..."
+          scp -P "${SSH_PORT:-22}" deploy/nginx/site-audit-ai-fe.conf "$DEPLOY_USER@$DEPLOY_HOST:/tmp/site-audit-ai-fe.conf"
+
+      - name: Copy systemd service
+        run: |
+          echo "Copying systemd service to server..."
+          scp -P "${SSH_PORT:-22}" deploy/systemd/site-audit-ai-fe.service "$DEPLOY_USER@$DEPLOY_HOST:/tmp/site-audit-ai-fe.service"
+
+      - name: Build Next.js Application
+        run: |
+          cat << EOF > .env
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_WAITLIST_API_URL: ${{ secrets.NEXT_PUBLIC_WAITLIST_API_URL }}
+          EOF
+          pnpm run build
+
+      - name: Save Next.js Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/package.json', '**/pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+   
+      - name: Clean and prepare remote directory
+        run: |
+          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "DEPLOY_PATH='$DEPLOY_PATH' DEPLOY_USER='$DEPLOY_USER' bash -s" <<'EOF'
+          set -euo pipefail
+          APP_DIR="$DEPLOY_PATH"
+          BACKUP_DIR="${APP_DIR}_backup"
+
+          echo 'Backing up existing deployment...'
+          if [ -d "$BACKUP_DIR" ]; then
+            echo "Removing previous backup at $BACKUP_DIR"
+            sudo rm -rf "$BACKUP_DIR"
+          fi
+
+          if [ -d "$APP_DIR" ]; then
+            sudo cp -r "$APP_DIR" "$BACKUP_DIR" && echo "Backup created at $BACKUP_DIR" || echo 'Backup skipped'
+          else
+            echo 'No existing deployment to backup'
+          fi
+
+          sudo mkdir -p "$APP_DIR"
+          sudo chown -R "$DEPLOY_USER:$DEPLOY_USER" "$APP_DIR"
+          sudo chmod 755 "$APP_DIR"
+          echo 'Remote directory prepared successfully'
+          EOF
+      
+      - name: Copy build artifacts to server
+        run: |
+          set -euo pipefail
+          rm -f build.tgz
+
+          artifacts=(.next public package.json pnpm-lock.yaml .env)
+          [ -f tsconfig.json ] && artifacts+=(tsconfig.json)
+          next_configs=(next.config.*)
+          [ ${#next_configs[@]} -gt 0 ] && artifacts+=("${next_configs[@]}")
+
+          tar -czf build.tgz "${artifacts[@]}"
+          scp -P "${SSH_PORT:-22}" build.tgz "$DEPLOY_USER@$DEPLOY_HOST:/tmp/build.tgz"
+
+          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "DEPLOY_PATH='$DEPLOY_PATH' bash -s" <<'EOF'
+          set -euo pipefail
+          rm -rf "$DEPLOY_PATH"
+          mkdir -p "$DEPLOY_PATH"
+
+          tar -xzf /tmp/build.tgz -C "$DEPLOY_PATH"
+          rm /tmp/build.tgz
+          EOF
+
+      - name: Setup and restart services on server
+        run: |
+          ssh -p "${SSH_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "DEPLOY_PATH='$DEPLOY_PATH' SERVER_NAME='$SERVER_NAME' EMAIL='$EMAIL' SERVICE_NAME='$SERVICE_NAME' DEPLOY_ENV='$DEPLOY_ENV' APP_PORT='$APP_PORT' bash -s" <<'EOF'
+            set -euo pipefail
+
+            APP_DIR="${DEPLOY_PATH}"
+            SERVICE="${SERVICE_NAME}"
+            SERVER_NAME="${SERVER_NAME}"
+            EMAIL="${EMAIL}"
+
+            sudo apt-get update -y
+            sudo apt-get install -y nginx certbot python3-certbot-nginx curl
+
+            cd "$APP_DIR"
+            sudo chown -R "$USER:$USER" "$APP_DIR"
+
+            echo 'Installing pnpm...'
+            if ! command -v pnpm >/dev/null 2>&1; then
+              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              export PNPM_HOME="$HOME/.local/share/pnpm"
+              export PATH="$PNPM_HOME:$PATH"
+            fi
+
+            echo 'Installing dependencies with pnpm...'
+            pnpm install                       
+            
+            # Configure Nginx
+            echo "Configuring nginx..."
+            NGINX_SITE="/etc/nginx/sites-available/${SERVICE}.conf"
+            sudo mv /tmp/site-audit-ai-fe.conf "$NGINX_SITE"
+            sudo ln -sf "$NGINX_SITE" "/etc/nginx/sites-enabled/${SERVICE}.conf"
+
+            export SERVER_NAME
+            sudo certbot --nginx \
+              -d ${SERVER_NAME} \
+              --non-interactive \
+              --agree-tos \
+              --email ${EMAIL} \
+              --redirect 
+            
+            sudo nginx -t
+            sudo systemctl reload nginx
+            
+            # Configure and restart systemd service
+            echo "Configuring systemd service..."
+            sudo mv /tmp/site-audit-ai-fe.service "/etc/systemd/system/${SERVICE}.service"
+            sudo systemctl daemon-reload
+            sudo systemctl enable "${SERVICE}"
+            sudo systemctl restart "$SERVICE"
+            
+            # Wait for service to start
+            echo "Waiting for service to start..."
+            sleep 10
+            
+            # Local health check
+            LOCAL_HEALTH_URL="http://127.0.0.1:${APP_PORT}"
+            echo "Checking local health endpoint at $LOCAL_HEALTH_URL"
+            for attempt in $(seq 1 5); do
+              if STATUS_CODE=$(curl -sk -o /dev/null -w "%{http_code}" "$LOCAL_HEALTH_URL" 2>/dev/null); then
+                if [ "$STATUS_CODE" = "200" ] || [ "$STATUS_CODE" = "304" ]; then
+                  echo "Local health check succeeded (status $STATUS_CODE)"
+                  break
+                fi
+              fi
+              echo "Local attempt $attempt failed. Retrying..."
+              sleep 5
+            done
+            
+            echo "Service setup completed on server"
+          EOF
+
+      - name: Verify health endpoint
+        run: |
+          if [ -z "$APP_URL" ]; then
+            echo "::error::APP_URL secret missing for $DEPLOY_ENV"
+            exit 1
+          fi
+          HEALTH_URL="${APP_URL%/}"
+          echo "Checking external health endpoint at $HEALTH_URL"
+          for attempt in $(seq 1 10); do
+            if STATUS_CODE=$(curl -sk -o /dev/null -w "%{http_code}" "$HEALTH_URL" 2>/dev/null); then
+              if [ "$STATUS_CODE" = "200" ] || [ "$STATUS_CODE" = "304" ]; then
+                echo "Health check succeeded (status $STATUS_CODE)"
+                exit 0
+              else
+                echo "Health check returned status: $STATUS_CODE"
+              fi
+            else
+              echo "Health check failed to connect"
+            fi
+            echo "Attempt $attempt failed. Retrying in 10 seconds..."
+            sleep 10
+          done
+          echo "::error::Service did not pass health check after 10 attempts"
+          exit 1
+
+      - name: Notify deployment
+        if: always()
+        run: |
+          echo "Deployed $GITHUB_SHA to $DEPLOY_ENV (${APP_URL})"

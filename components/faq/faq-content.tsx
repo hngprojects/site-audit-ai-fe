@@ -27,7 +27,7 @@ export function FAQContent() {
               onClick={() =>
                 scrollToSection(category.replace(/\s+/g, "-").toLowerCase())
               }
-              className="px-6 py-4 text-sm rounded-lg font-medium transition-colors whitespace-nowrap border-2 border-gray-300 text-black hover:bg-gray-100 cursor-pointer"
+              className="px-6 py-4 text-sm rounded-lg grid place-content-center font-medium transition-colors whitespace-nowrap border-2 border-gray-300 text-black hover:bg-gray-100 cursor-pointer"
             >
               {category}
             </button>

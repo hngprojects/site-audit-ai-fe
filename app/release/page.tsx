@@ -109,7 +109,7 @@ const page = () => {
                     ))}
                   </ul>
                 </div>
-                <div
+                {/* <div
                   className="relative w-full h-[343px] md:h-[463px] lg:h-[640px rounded-[12px] cursor-pointer"
                   style={{
                     backgroundImage: `url('/assets/images/release/version-one-video.svg')`,
@@ -126,7 +126,7 @@ const page = () => {
                       height={45.51}
                     />
                   </span>
-                </div>
+                </div> */}
                 <div className="space-y-6">
                   <h4 className="text-[#1C1C1C] text-[24px] leading-7 font-bold">
                     Limitations
@@ -149,9 +149,12 @@ const page = () => {
                 </div>
                 <h3 className="text-[#1C1C1C] text-[18px] leading-5.5 font-semibold">
                   Get feedback? Tell us at{" "}
-                  <span className="block md:inline-flex text-[#FF5A3D] font-medium">
+                  <a
+                    href="mailto:support@sitelytics.ai"
+                    className="text-[#E85238] font-medium hover:underline"
+                  >
                     support@sitelytics.ai
-                  </span>
+                  </a>
                 </h3>
                 <h4 className="text-[#1C1C1C] text-[18px] leading-5.5 font-semibold">
                   Thanks for using Sitelytics!

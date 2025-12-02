@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { socialIcons } from "@/lib/social-icon-data";
+// import { socialIcons } from "@/lib/social-icon-data";
 import { footerLinks } from "@/lib/footer-links-data";
 import { GetApp } from "../landing/get-app";
 
@@ -15,32 +15,54 @@ const LandingFooter = () => {
     "/privacy-policy",
     "/terms-of-use",
     "/release",
-    "/blog",
+    "/resources",
+    "/squeeze",
   ];
 
   const showFooterAppSection = !(
-    HIDDEN_PATHS.includes(pathname ?? "") || pathname?.includes("/blog/")
+    HIDDEN_PATHS.includes(pathname ?? "") || pathname?.includes("/resources/")
   );
+
+  const is625HeightPage = pathname === "/" || pathname === "/how-it-works";
+  const footerHeightClass = is625HeightPage ? "h-[px]" : "h-[px]";
 
   return (
     <footer className="relative">
       <div
-        className={`${pathname === "/faq" || pathname === "/about" || pathname === "/cookie-policy" || pathname === "/privacy-policy" || pathname === "/terms-of-use" || pathname === "/release" || pathname === "/blog" || pathname === "/contact" ? "hidden" : ""}`}
+        className={`${
+          pathname === "/faq" ||
+          pathname === "/squeeze" ||
+          pathname === "/about" ||
+          pathname === "/cookie-policy" ||
+          pathname === "/privacy-policy" ||
+          pathname === "/terms-of-use" ||
+          pathname === "/release" ||
+          pathname === "/resources" ||
+          pathname === "/resources/1" ||
+          pathname === "/resources/2" ||
+          pathname === "/resources/3" ||
+          pathname === "/resources/4" ||
+          pathname === "/contact"
+            ? "hidden"
+            : ""
+        }`}
       >
         <div
           id="footer-app"
-          className="bg-[#E85238] rounded-[30px] max-w-[1050px] mx-auto relative top-[50px] font-sans overflow-hidden
-             h-[380px] mb-[-40px] z-10
-             flex flex-col sm:flex-row gap-5 sm:items-stretch sm:justify-between"
+          className="bg-[#E85238] rounded-[16px] max-w-[305px] h-[474px] mx-auto relative top-[28px] font-sans overflow-hidden
+             md:max-w-[578px] md:h-[216px] md:rounded-[15px]
+             lg:max-w-[1050px] lg:h-[380px] lg:rounded-[30px]
+             mb-[-40px] z-10
+             flex flex-col md:flex-row gap-5 md::items-stretch md:justify-between"
         >
           {/* left column */}
-          <div className="sm:w-[60%] py-8 px-4 sm:py-4 sm:px-6 flex flex-col h-full gap-6 md:px-10 md:py-12">
+          <div className="sm:w-[60%] md:w-full md:max-w-[313px] p-4 flex flex-col h-full gap-3 md:p-6 md:gap-0 lg:w-1/2 lg:max-w-[519px] lg:h-[266px] lg:p-10 lg:pt-16 lg:gap-6">
             <div>
-              <h2 className="text-[32px] sm:text-[48px] font-bold text-white leading-tight sm:leading-[56px]">
+              <h2 className="text-3xl leading-[38px] sm:text-[32px] md:text-2xl md:max-w-[303px] md:h-[56px] md:leading-7 lg:text-5xl lg:max-w-[519px] lg:h-[112px] lg:leading-[56px] xl:text-5xl font-bold text-white sm:leading-[56px]">
                 Audit Your Website <br /> Instantly
               </h2>
 
-              <p className="text-sm leading-5 lg:text-[18px] max-w-[497px] text-white mt-4 sm:leading-[22px]">
+              <p className="text-sm md:text-[12px] md:max-w-[313px] md:h-[60px] md:leading-4 lg:text-[17px] lg:max-w-[497px] lg:h-[62px] lg:leading-[22px] max-w-[497px] text-white md:mt-2 lg:mt-2 sm:leading-[22px]">
                 Download the app and let AI analyze your site, uncover
                 opportunities, and boost performance, all in seconds.
               </p>
@@ -50,37 +72,53 @@ const LandingFooter = () => {
           </div>
 
           {/* right column */}
-          <div className="hidden sm:block flex-1 relative">
+          <div className=" sm:block flex-1 relative">
             {/* Individual Circles directly positioned */}
-            <div className="absolute w-[202px] h-[202px] right-[89px] top-[91px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[303px] h-[303px] right-[38.5px] top-[40.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[404px] h-[404px] right-[-12px] top-[-10px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[505px] h-[505px] right-[1050px - (607.5px + 505px)] right-[-62.5px] top-[-60.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-            <div className="absolute w-[606px] h-[606px] right-[1050px - (557px + 606px)] right-[-113px] top-[-111px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
-
+            <div className="absolute w-[150px] h-[150px] right-[60px] top-[-120px] md:w-[104px] md:h-[104px] md:right-[100px] md:top-[50px] lg:w-[202px] lg:h-[202px] lg:right-[89px] lg:top-[91px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[220px] h-[220px] right-[30px] top-[-154px] md:w-[156px] md:h-[156px] md:right-[75px] md:top-[25px] lg:w-[303px] lg:h-[303px] lg:right-[38.5px] lg:top-[40.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[290px] h-[290px] right-[0px] top-[-184px] md:w-[208px] md:h-[208px] md:right-[50px] md:top-[0px] lg:w-[404px] lg:h-[404px] lg:right-[-12px] lg:top-[-10px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[360px] h-[360px] right-[-30px] top-[-214.6px] md:w-[260px] md:h-[260px] md:right-[25px] md:top-[-25px] lg:w-[505px] lg:h-[505px] lg:right-[-62.5px] lg:top-[-60.5px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
+            <div className="absolute w-[430px] h-[430px] right-[-60px] top-[-244.08px] md:w-[312px] md:h-[312px] md:right-[0px] md:top-[-50px] lg:w-[606px] lg:h-[606px] lg:right-[-113px] lg:top-[-111px] rounded-full border-[0.9px] border-[#FCB1A2]/30" />
             <Image
               src="/assets/images/landing/cta-phones.png"
               alt="Phone mockups"
               width={715.57}
               height={622.06}
-              className="absolute top-[50px] right-[100px] z-10 scale-145"
+              className="absolute top-[50px] right-[100px] z-10 scale-125  md:right-[60px] md:scale-145 lg:scale-105 lg:right-[25px]"
             />
           </div>
           <div className="sm:hidden w-full">
             <Image
               src="/assets/images/landing/cta-phones.png"
               alt="Phone mockups"
-              width={850}
-              height={700}
+              width={412}
+              height={358}
+              className="absolute top-[250px] right-[50px] z-10 scale-130 "
             />
           </div>
         </div>
       </div>
 
       <section
-        className={`bg-[#0A0A0B] h-[625px] ${pathname === "/faq" || pathname === "/cookie-policy" || pathname === "/privacy-policy" ? "pt-16" : "pt-40"}`}
+        className={`bg-[#0A0A0B] ${footerHeightClass} ${
+          pathname === "/faq" ||
+          pathname === "/about" ||
+          pathname === "/squeeze" ||
+          pathname === "/cookie-policy" ||
+          pathname === "/privacy-policy" ||
+          pathname === "/terms-of-use" ||
+          pathname === "/release" ||
+          pathname === "/resources" ||
+          pathname === "/resources/1" ||
+          pathname === "/resources/2" ||
+          pathname === "/resources/3" ||
+          pathname === "/resources/4" ||
+          pathname === "/contact"
+            ? "pt-16"
+            : "pt-40"
+        }`}
       >
-        <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-12  flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
+        <div className="flex items-start justify-between max-w-[1440px] mx-auto font-sans py-8 px-11 md:px-5 md:whitespace-nowrap flex-col sm:flex-row md:justify-between md:mb-20 gap-8">
           <div>
             <Link href="/" className="hidden xl:flex items-center gap-2">
               <Image
@@ -113,7 +151,7 @@ const LandingFooter = () => {
               />
             </Link>
           </div>
-          <div className="flex flex-col sm:flex-row  gap-8 sm:gap-20">
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-20 ">
             {footerLinks.map((column) => (
               <div key={column.title}>
                 <h3 className="text-lg md:text-[16px] xl:text-[32px] text-[#FEFFFF] font-bold sm:mb-[16.45px]">
@@ -124,7 +162,7 @@ const LandingFooter = () => {
                     <li key={link.name}>
                       <Link
                         href={link.href}
-                        className="text-sm lg:text-[20px] text-[#B9B9B9] font-medium hover:text-white"
+                        className="text-sm md:text-md lg:text-[20px] text-[#B9B9B9] font-medium hover:text-white"
                       >
                         {link.name}
                       </Link>
@@ -145,27 +183,6 @@ const LandingFooter = () => {
               &copy;{new Date().getFullYear()} HNG Tech Limited. All rights
               reserved.
             </p>
-            <nav>
-              <ul className="flex gap-4">
-                {socialIcons.map(({ icon: Icon, name, link: address }) => (
-                  <li
-                    key={name}
-                    className="bg-[#FF5A3D] w-7 h-7 xl:w-[38.38px] xl:h-[38.38px] flex items-center justify-center rounded-full hover:bg-[#FF5A3D]/80"
-                    aria-label={name}
-                  >
-                    <Link href={address}>
-                      <Image
-                        className="md:w-5 md:h-5 w-4 h-4 text-white"
-                        src={Icon}
-                        alt={`${name} icon`}
-                        width={8}
-                        height={8}
-                      />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
         </div>
 

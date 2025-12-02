@@ -31,14 +31,14 @@ const StepItem = ({
       </div>
 
       {/* Image Content */}
-      <div className="flex-1 w-full">
+      <div className="flex-1 w-full ">
         <div className="relative w-full h-[255px] md:h-[388px] bg-[#EFEFF1] rounded-xl flex items-center justify-center overflow-hidden">
           <Image
             src={imageUrl}
             alt={title}
             width={260}
             height={525}
-            className="w-auto h-full object-contain"
+            className="w-auto h-full object-contain absolute top-6"
           />
         </div>
       </div>

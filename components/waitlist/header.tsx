@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,11 +17,21 @@ const WaitlistHeader = () => {
 
   const actionText = "Get the App";
   const actionHref =
-    "https://drive.google.com/drive/u/2/folders/1O40Rnk4bMHYN9vEcyQYzrnNaUgO3m-zs?usp=drive_link";
+    "https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics";
 
   const links = (() => {
     return landing ? navLinksLanding : navLinksWaitlist;
   })();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [isOpen]);
 
   return (
     <header
