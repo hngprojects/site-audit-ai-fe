@@ -7,7 +7,7 @@ import Hero from "@/components/landing/hero";
 
 const Home = () => {
   return (
-    <main>
+    <main className="flex flex-col gap-[10vh]">
       <Hero />
       <BuiltFor />
       <HowITWorks />
