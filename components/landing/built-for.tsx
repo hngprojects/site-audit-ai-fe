@@ -8,7 +8,7 @@ const BuiltFor = () => {
   return (
     <section
       id="built-for"
-      className="max-w-[1344px] mx-auto pt-10 md:pt-20 pb-6 md:pb-25 px-4 md:px-12 2xl:px-0 relative min-h-screen font-sans"
+      className="max-w-[1344px] mx-auto px-4 md:px-12 2xl:px-0 relative font-sans"
     >
       <div className=" mx-auto flex flex-col items-center justify-center gap-4 md:gap-10 px-0  ">
         <div className="flex flex-col gap-2 md:gap-4 items-center text-center">
