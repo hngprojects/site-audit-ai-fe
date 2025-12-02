@@ -104,39 +104,39 @@ export default function NewsletterForm() {
           onSubmit={handleSubmit}
           className="space-y-6 max-w-[652px] mx-auto"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="text-left md:text-lg">
               <label
                 htmlFor="fullName"
-                className="block text-sm font-medium text-[#494949] mb-2"
+                className="block text-sm font-medium text-[#494949] mb-2 md:text-lg"
               >
                 Full Name
               </label>
-              <Input
+              <input
                 type="text"
                 id="fullName"
                 name="fullName"
                 placeholder="Enter your name"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent outline-none transition-colors placeholder:text-[#B9B9B9]"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent"
                 value={formData.fullName}
                 onChange={handleChange}
                 disabled={isLoading}
               />
             </div>
 
-            <div className="text-left">
+            <div className="text-left md:text-lg">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-[#494949] mb-2"
+                className="block text-sm font-medium text-[#494949] mb-2 md:text-lg"
               >
                 Email
               </label>
-              <Input
+              <input
                 type="email"
                 id="email"
                 name="email"
                 placeholder="user@gmail.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent outline-none transition-colors placeholder:text-[#B9B9B9]"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent"
                 value={formData.email}
                 onChange={handleChange}
                 disabled={isLoading}
@@ -144,19 +144,19 @@ export default function NewsletterForm() {
             </div>
           </div>
 
-          <div className="text-left">
+          <div className="text-left mb-6 md:text-lg">
             <label
               htmlFor="challenge"
-              className="block text-sm font-medium text-[#494949] mb-2"
+              className="block text-sm font-medium text-[#494949] mb-2 md:text-lg"
             >
               What is your biggest website challenge?
             </label>
-            <Input
+            <input
               type="text"
               id="challenge"
               name="challenge"
               placeholder="Describe your main challenge"
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent outline-none transition-colors placeholder:text-[#B9B9B9]"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent"
               value={formData.challenge}
               onChange={handleChange}
               disabled={isLoading}
@@ -165,7 +165,7 @@ export default function NewsletterForm() {
 
           <Button
             type="submit"
-            className="w-full md:w-auto px-18 py-3 cursor-pointer bg-[#FF5A3D] text-white font-semibold rounded-lg hover:bg-[#FF5A3D]/90 transition-colors focus:ring-2 focus:ring-[#FF5A3D] focus:ring-offset-2 outline-none"
+            className="w-full md:w-auto px-18 py-6 cursor-pointer bg-[#FF5A3D] text-white font-semibold rounded-lg hover:bg-[#FF5A3D]/90 transition-colors focus:ring-2 focus:ring-[#FF5A3D] focus:ring-offset-2 outline-none md:text-lg"
             disabled={isLoading}
           >
             {isLoading ? "Submitting..." : "Keep Me Updated"}
