@@ -58,11 +58,9 @@ export const submitContactForm = async ({
 
 export const submitSignupForm = async ({
   email,
-  username,
   password,
 }: {
   email: string;
-  username: string;
   password: string;
 }) => {
   if (!SIGNUP_API_URL) {
@@ -71,6 +69,7 @@ export const submitSignupForm = async ({
     );
   }
   try {
+    const username = email.split("@")[0];
     const response = await axios.post(SIGNUP_API_URL, {
       email,
       username,
