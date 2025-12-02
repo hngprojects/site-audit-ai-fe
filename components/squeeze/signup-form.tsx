@@ -11,6 +11,7 @@ import Link from "next/link";
 export default function SignupComponent() {
   const [formData, setFormData] = useState({
     email: "",
+    username: "",
     password: "",
   });
   const [passwordError, setPasswordError] = useState<string[]>([]);
@@ -52,6 +53,7 @@ export default function SignupComponent() {
 
     setIsLoading(true);
     try {
+      console.log("Submitting signup form with data:", formData);
       const result = await submitSignupForm(formData);
       if (result.status_code === 201) {
         toast.success(result.message);
@@ -114,6 +116,25 @@ export default function SignupComponent() {
             placeholder="Enter your Email"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent"
             value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="mb-6 md:text-lg">
+          <label
+            htmlFor="username"
+            className="block text-gray-700 text-sm font-medium mb-2 md:text-lg"
+          >
+            Enter your username
+          </label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Enter your username"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF5A3D] focus:border-transparent"
+            value={formData.username}
             onChange={handleChange}
             required
           />
