@@ -100,7 +100,7 @@ export default function SignupComponent() {
           Start your Free Trial Today!
         </h1>
 
-        <div className="mb-6">
+        <div className="mb-6 md:text-lg">
           <label
             htmlFor="email"
             className="block text-gray-700 text-sm font-medium mb-2 md:text-lg"
@@ -119,7 +119,7 @@ export default function SignupComponent() {
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 md:text-lg">
           <label
             htmlFor="password"
             className="block text-gray-700 text-sm font-medium mb-2 md:text-lg"
@@ -140,7 +140,7 @@ export default function SignupComponent() {
             <button
               type="button"
               aria-label="Show Password"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 md:text-lg"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -158,7 +158,7 @@ export default function SignupComponent() {
 
         <Button
           type="submit"
-          className="w-full bg-[#FF5A3D] hover:bg-[#FF5A3D90] text-white font-semibold py-3 rounded-lg mb-6 transition-colors md:text-lg cursor-pointer"
+          className="w-full bg-[#FF5A3D] hover:bg-[#FF5A3D]/90 transition-colors focus:ring-2 focus:ring-[#FF5A3D] focus:ring-offset-2 outline-none text-white font-semibold py-6 rounded-lg mb-6 md:text-lg cursor-pointer text-base"
           disabled={isLoading}
         >
           {isLoading ? "Signing Up..." : "Sign Up"}
