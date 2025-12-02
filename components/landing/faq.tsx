@@ -21,7 +21,10 @@ const Faq = ({ faqData }: FaqProps) => {
   const dataToUse = faqData && faqData.length > 0 ? faqData : faqData1;
 
   return (
-    <section id={faqData ? "#FAQ" : ""} className="bg-white mb-10 font-sans">
+    <section
+      id={faqData ? "#FAQ" : ""}
+      className="bg-white py-16 lg:py-[100px] font-sans"
+    >
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col items-center text-center mb-16">
           <h2 className="text-3xl lg:text-[40px] font-bold text-[#1C1C1C] mb-4">
