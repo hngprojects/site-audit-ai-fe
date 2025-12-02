@@ -4,7 +4,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <section className="max-w-[1440px] mx-auto font-sans">
+    <section className="max-w-[1440px] h-screen mx-auto font-sans">
       <div className="px-4 md:px-8 lg:px-0 lg:pl-12 pt-10 md:pt-15 lg:pt-20 flex flex-col lg:flex-row justify-between items-center gap-5 md:gap-16 lg:gap-5">
         <div className="flex flex-col items-center  lg:items-start gap-5 md:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           {/* hero text content  */}
@@ -45,12 +45,12 @@ const Hero = () => {
         </div>
 
         {/* hero image  */}
-        <div className="w-full relative lg:w-auto flex justify-center lg:justify-start min-w-[294px] md:min-w-[680px] lg:min-w-[687px]">
+        <div className="w-full relative lg:w-auto  min-w-[294px] md:min-w-[680px] lg:min-w-[687px]">
           <Image
             src="/assets/images/landing/hand-phone-mobile.svg"
             alt="Hero Image"
             width={500}
-            height={687}
+            height={660}
             className="w-full full object-contain"
           />
           <div className="" />
