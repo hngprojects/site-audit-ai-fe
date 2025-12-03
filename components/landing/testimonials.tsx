@@ -11,7 +11,7 @@ const TestimonialCard = ({
 }: {
   testimonial: (typeof testimonialsData)[0];
 }) => (
-  <div className="flex flex-col font-sans justify-between p-4 border border-[#E8E9F1] rounded-2xl h-[268px]">
+  <div className="flex flex-col font-sans justify-between p-4 border border-[#E8E9F1] rounded-2xl max-h-[600px]">
     <div className="flex-grow">
       <div className="flex justify-between items-start mb-4">
         <Image

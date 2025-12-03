@@ -6,7 +6,7 @@ const HowITWorks = () => {
     <section
       id="how-it-works"
       //   need to change padding bottom after animation
-      className="max-w-[1344px] flex items-center justify-center mx-auto font-sans px-5  md:px-12 2xl:px-0 pt-10 md:pt-15 pb-6 md:pb-20 lg:pb-[105px] scroll-mt-20"
+      className="max-w-[1344px] max-h-[800px] flex items-center justify-center mx-auto font-sans px-5  md:px-12 2xl:px-0 pt-10 md:pt-15 pb-6 md:pb-20 lg:pb-[105px] scroll-mt-20"
     >
       <div className=" w-full mx-auto flex flex-col items-center gap-6 md:gap-16">
         <div className="flex flex-col gap-2 md:gap-4 text-center max-w-[754px]">

@@ -4,7 +4,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <section className="max-w-[1440px] h-screen mx-auto font-sans">
+    <section className="max-w-[1440px] max-h-[900px] mx-auto font-sans">
       <div className="px-4 md:px-8 lg:px-0 lg:pl-12 pt-10 md:pt-15 lg:pt-20 flex flex-col lg:flex-row justify-between items-center gap-5 md:gap-16 lg:gap-5">
         <div className="flex flex-col items-center  lg:items-start gap-5 md:gap-10 max-w-[632px] w-full lg:w-auto text-center lg:text-left">
           {/* hero text content  */}
