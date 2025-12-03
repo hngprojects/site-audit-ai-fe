@@ -137,7 +137,7 @@ export const faqData1 = [
   {
     question: "How accurate are the audits and reports?",
     answer:
-      "We combine AI analysis andindustry best practices to give you trusted, reliable insights",
+      "We combine AI analysis and industry best practices to give you trusted, reliable insights",
   },
   {
     question: "Can I fix issues via the app?",

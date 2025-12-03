@@ -52,7 +52,7 @@ const MobileApp = () => {
               className="bg-[#FF5A3D] text-white font-medium text-sm py-3.5 px-6 rounded-xl"
               href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics"
             >
-              Get you free Audit now
+              Get your free Audit now
             </Link>
           </div>
         </div>

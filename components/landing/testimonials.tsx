@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { testimonialsData } from "@/lib/testimonials-data";
 import { cn } from "@/lib/utils";
+import ArrowLeftIcon from "./icons/ArrowLeftIcon";
+import ArrowRightIcon from "./icons/ArrowRightIcon";
 
 const TestimonialCard = ({
   testimonial,
@@ -29,7 +31,7 @@ const TestimonialCard = ({
       <p className="text-[#1C1C1C] text-base leading-6">{testimonial.quote}</p>
     </div>
     <div className="border-t border-[#BBBCBC] pt-4">
-      <p className="font-semibold text-xl md:text-2xl text-[#1C1C1C]">
+      <p className="font-semibold sm:text-[16px] md:text-[16px] lg:text-[20px] text-[#1C1C1C]">
         {testimonial.name}
       </p>
       <p className="text-sm text-[#494949]">{testimonial.title}</p>
@@ -86,8 +88,8 @@ const Testimonials = () => {
   );
 
   return (
-    <section className="bg-white py-12 md:py-20 font-sans">
-      <div className="container mx-auto px-3 sm:px-8 md:px-12">
+    <section className="max-w-[1440px] mx-auto bg-white py-12 md:py-20 font-sans px-4 sm:px-8 md:px-12">
+      <div className="">
         <div className="block md:flex md:justify-between md:items-end mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-2xl md:text-4xl font-bold text-[#1C1C1C] mb-4">
@@ -108,11 +110,11 @@ const Testimonials = () => {
                 "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
               })}
             >
-              <Image
-                src="/assets/images/landing/arrow-left.svg"
-                alt="Previous"
-                width={24}
-                height={24}
+              <ArrowLeftIcon
+                className={cn("w-6 h-6", {
+                  "text-white": canGoPrev,
+                  "text-[#979797]": !canGoPrev,
+                })}
               />
             </button>
             <button
@@ -123,11 +125,11 @@ const Testimonials = () => {
                 "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
               })}
             >
-              <Image
-                src="/assets/images/landing/arrow-right.svg"
-                alt="Next"
-                width={24}
-                height={24}
+              <ArrowRightIcon
+                className={cn("w-6 h-6", {
+                  "text-white": canGoNext,
+                  "text-[#979797]": !canGoNext,
+                })}
               />
             </button>
           </div>
@@ -173,11 +175,11 @@ const Testimonials = () => {
               "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
             })}
           >
-            <Image
-              src="/assets/images/landing/arrow-left.svg"
-              alt="Previous"
-              width={24}
-              height={24}
+            <ArrowLeftIcon
+              className={cn("w-6 h-6", {
+                "text-white": canGoPrev,
+                "text-[#979797]": !canGoPrev,
+              })}
             />
           </button>
           <button
@@ -188,11 +190,11 @@ const Testimonials = () => {
               "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
             })}
           >
-            <Image
-              src="/assets/images/landing/arrow-right.svg"
-              alt="Next"
-              width={24}
-              height={24}
+            <ArrowRightIcon
+              className={cn("w-6 h-6", {
+                "text-white": canGoNext,
+                "text-[#979797]": !canGoNext,
+              })}
             />
           </button>
         </div>

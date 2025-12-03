@@ -1,54 +1,47 @@
 import React from "react";
-import Image from "next/image";
+import ZoomOutIcon from "./icons/ZoomOutIcon";
+import ForwardIcon from "./icons/ForwardIcon";
+import BagIcon from "./icons/BagIcon";
+import VerifiedIcon from "./icons/VerifiedIcon";
+import ExpertSupportIcon from "./icons/ExpertSupportIcon";
+import ArrowUpIcon from "./icons/ArrowUpIcon";
 
 const keyValues = [
   {
-    icon: "/assets/icons/about/zoom-out.svg",
+    icon: ZoomOutIcon,
     title: "Clarity First",
     description:
       "We turn complex website issues into simple, human-friendly explanations anyone can understand.",
-    bgClass: "bg-[#1A2373] text-white",
-    iconBgClass: "bg-[#969ABF]",
   },
   {
-    icon: "/assets/icons/about/forward.svg",
+    icon: ForwardIcon,
     title: "Speed & Efficiency",
     description:
       "Our AI scans your website in seconds so you can spot problems and fix them faster than ever.",
-    bgClass: "bg-[#F5F5F5] text-[#1C1C1C]",
-    iconBgClass: "bg-[#1A2373]",
   },
   {
-    icon: "/assets/icons/about/bag.svg",
+    icon: BagIcon,
     title: "Built for Businesses",
     description:
       "We design with the everyday business owner in mind, no tech background needed.",
-    bgClass: "bg-[#F5F5F5] text-[#1C1C1C]",
-    iconBgClass: "bg-[#1A2373]",
   },
   {
-    icon: "/assets/icons/about/verified.svg",
+    icon: VerifiedIcon,
     title: "Trust & Transparency",
     description:
       "No hidden jargon, no confusion. You always know what’s wrong, why it matters, and how to fix it.",
-    bgClass: "bg-[#F5F5F5] text-[#1C1C1C]",
-    iconBgClass: "bg-[#1A2373]",
   },
   {
-    icon: "/assets/icons/about/icon.svg",
+    icon: ExpertSupportIcon,
     title: "Expert Support on Demand",
     description:
       "When you need hands-on help, we connect you to vetted, reliable professionals instantly.",
-    bgClass: "bg-[#F5F5F5] text-[#1C1C1C]",
-    iconBgClass: "bg-[#1A2373]",
   },
   {
-    icon: "/assets/icons/about/arrow-up.svg",
+    icon: ArrowUpIcon,
     title: "Continuous Improvement",
     description:
       "Your website should grow with your business. Sitelytics helps you improve it step-by-step, anytime.",
-    bgClass: "bg-[#F5F5F5] text-[#1C1C1C]",
-    iconBgClass: "bg-[#1A2373]",
   },
 ];
 
@@ -60,39 +53,33 @@ const KeyValues = () => {
           Our Key Values: the foundation of our work
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {keyValues.map((value, index) => (
-            <div
-              key={index}
-              className="
-    group
-    flex flex-col p-7 rounded-[10px] bg-[#F5F5F5] text-[#1C1C1C]
-    hover:bg-[#1A2373] hover:text-white transition-all
-  "
-            >
+          {keyValues.map((value, index) => {
+            const IconComponent = value.icon;
+            return (
               <div
-                className="
-      w-10 h-10 rounded-full flex items-center justify-center mb-4 
-      bg-[#1A2373] transition-all duration-200 
-      group-hover:bg-[#969ABF]
-    "
+                key={index}
+                className="group flex flex-col p-7 rounded-[10px] bg-[#F5F5F5] text-[#1C1C1C] hover:bg-[#1A2373] hover:text-white transition-all"
               >
-                <Image
-                  src={value.icon}
-                  alt={value.title}
-                  width={24}
-                  height={24}
-                />
+                <div
+                  className="
+        w-10 h-10 rounded-full flex items-center justify-center mb-4 
+        bg-[#1A2373] transition-all duration-200 
+        group-hover:bg-white text-white group-hover:text-[#1A2373]
+      "
+                >
+                  <IconComponent className="w-6 h-6" />
+                </div>
+
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-white">
+                  {value.title}
+                </h3>
+
+                <p className="text-sm opacity-90 group-hover:text-white">
+                  {value.description}
+                </p>
               </div>
-
-              <h3 className="text-lg font-semibold mb-2 group-hover:text-white">
-                {value.title}
-              </h3>
-
-              <p className="text-sm opacity-90 group-hover:text-white">
-                {value.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
