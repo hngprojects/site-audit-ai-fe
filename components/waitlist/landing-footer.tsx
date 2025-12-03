@@ -180,7 +180,7 @@ const LandingFooter = () => {
             className=" font-sans  flex flex-col items-center justify-center gap-6 min:h-32 md:flex-row md:justify-between border-b border-b-[#f5e9e9]/45 md:my-6 py-8 "
           >
             <p className="text-[#f5e9e9] text-sm md:text-[16px]">
-              &copy;{new Date().getFullYear()} HNG Tech Limited. All rights
+              &copy;{new Date().getFullYear()} Sitelytics 2025. All rights
               reserved.
             </p>
           </div>
