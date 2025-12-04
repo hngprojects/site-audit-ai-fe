@@ -25,7 +25,7 @@ const InstantAuditCTA = () => {
         </p>
         <a
           className="bg-[#FF5A3D] text-white font-medium py-[0.975rem] px-[1.675rem] rounded-[0.8375rem] text-[0.975rem] flex items-center justify-center w-full max-w-64.75 md:w-[24rem] h-14 gap-[0.699rem]"
-          href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics"
+          href="https://play.google.com/store/apps/details?id=net.emerj.sitelytics"
         >
           Get the App
         </a>

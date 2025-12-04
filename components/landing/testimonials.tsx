@@ -105,10 +105,13 @@ const Testimonials = () => {
             <button
               onClick={handlePrev}
               aria-disabled={!canGoPrev}
-              className={cn("p-2 rounded-full transition-colors duration-300", {
-                "bg-[#FF5A3D]": canGoPrev,
-                "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
-              })}
+              className={cn(
+                "p-2 rounded-full transition-colors duration-300 cursor-pointer",
+                {
+                  "bg-[#FF5A3D]": canGoPrev,
+                  "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
+                }
+              )}
             >
               <ArrowLeftIcon
                 className={cn("w-6 h-6", {
@@ -120,10 +123,13 @@ const Testimonials = () => {
             <button
               onClick={handleNext}
               aria-disabled={!canGoNext}
-              className={cn("p-2 rounded-full transition-colors duration-300", {
-                "bg-[#FF5A3D]": canGoNext,
-                "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
-              })}
+              className={cn(
+                "p-2 rounded-full transition-colors duration-300 cursor-pointer",
+                {
+                  "bg-[#FF5A3D]": canGoNext,
+                  "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
+                }
+              )}
             >
               <ArrowRightIcon
                 className={cn("w-6 h-6", {
@@ -170,10 +176,13 @@ const Testimonials = () => {
           <button
             onClick={handlePrev}
             aria-disabled={!canGoPrev}
-            className={cn("p-2 rounded-full transition-colors duration-300", {
-              "bg-[#FF5A3D]": canGoPrev,
-              "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
-            })}
+            className={cn(
+              "p-2 rounded-full transition-colors duration-300 cursor-pointer",
+              {
+                "bg-[#FF5A3D]": canGoPrev,
+                "bg-[#E0E1E2] cursor-not-allowed": !canGoPrev,
+              }
+            )}
           >
             <ArrowLeftIcon
               className={cn("w-6 h-6", {
@@ -185,10 +194,13 @@ const Testimonials = () => {
           <button
             onClick={handleNext}
             aria-disabled={!canGoNext}
-            className={cn("p-2 rounded-full transition-colors duration-300", {
-              "bg-[#FF5A3D]": canGoNext,
-              "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
-            })}
+            className={cn(
+              "p-2 rounded-full transition-colors duration-300 cursor-pointer",
+              {
+                "bg-[#FF5A3D]": canGoNext,
+                "bg-[#E0E1E2] cursor-not-allowed": !canGoNext,
+              }
+            )}
           >
             <ArrowRightIcon
               className={cn("w-6 h-6", {

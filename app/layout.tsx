@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   description:
     "an easy-to-use app that checks your website's health. It finds problems, suggests quick fixes, and helps your website perform better - no tech skills needed.",
   icons: {
-    icon: "/assets/images/Logo.svg",
-    shortcut: "/assets/images/Logo.svg",
+    icon: "/assets/images/s-logo.png",
+    shortcut: "/assets/images/s-logo.png",
     apple: "/assets/images/Logo.svg",
   },
   openGraph: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Sitelytics",
     images: [
       {
-        url: "https://staging.tokugawa.emerj.net/assets/images/meta-image.png",
+        url: "https://sitelytics.app/assets/images/meta-image.png",
         width: 1200,
         height: 630,
         alt: "Sitelytics - Website audit with AI",
