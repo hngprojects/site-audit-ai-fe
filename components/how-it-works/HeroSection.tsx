@@ -40,7 +40,7 @@ const HeroSection = () => {
                        w-full h-14 px-6 py-4 rounded-[10.725px] mt-2
                        md:w-[155px] md:mx-auto lg:w-[155px] lg:mx-0 lg:h-14 font-sans font-medium text-base leading-tight"
           >
-            <a href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics">
+            <a href="https://play.google.com/store/apps/details?id=net.emerj.sitelytics">
               Get the App
             </a>
           </Button>

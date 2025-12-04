@@ -56,7 +56,7 @@ const LandingFooter = () => {
              flex flex-col md:flex-row gap-5 md::items-stretch md:justify-between"
         >
           {/* left column */}
-          <div className="sm:w-[60%] md:w-full md:max-w-[313px] p-4 flex flex-col h-full gap-3 md:p-6 md:gap-0 lg:w-1/2 lg:max-w-[519px] lg:h-[266px] lg:p-10 lg:pt-16 lg:gap-6">
+          <div className="w-full md:max-w-[313px] p-4 flex flex-col h-full gap-3 md:p-6 md:gap-0 lg:w-1/2 lg:max-w-[519px] lg:h-[266px] lg:p-10 lg:pt-16 lg:gap-6">
             <div>
               <h2 className="text-3xl leading-[38px] sm:text-[32px] md:text-2xl md:max-w-[303px] md:h-[56px] md:leading-7 lg:text-5xl lg:max-w-[519px] lg:h-[112px] lg:leading-[56px] xl:text-5xl font-bold text-white sm:leading-[56px]">
                 Audit Your Website <br /> Instantly
@@ -84,10 +84,10 @@ const LandingFooter = () => {
               alt="Phone mockups"
               width={715.57}
               height={622.06}
-              className="absolute top-[50px] right-[100px] z-10 scale-125  md:right-[60px] md:scale-145 lg:scale-105 lg:right-[25px]"
+              className="absolute top-[50px] right-[100px] z-10 scale-125  md:right-[60px] md:scale-145 lg:scale-105 lg:right-[25px] hidden md:block"
             />
           </div>
-          <div className="sm:hidden w-full">
+          <div className="md:hidden w-full h-1/2">
             <Image
               src="/assets/images/landing/cta-phones.png"
               alt="Phone mockups"
