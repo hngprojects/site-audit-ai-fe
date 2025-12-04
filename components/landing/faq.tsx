@@ -49,7 +49,7 @@ const Faq = ({ faqData }: FaqProps) => {
                 </AccordionTrigger>
                 <AccordionContent
                   className="pr-16 text-gray-600 text-base"
-                  style={{ whiteSpace: "pre-line" }}
+                  style={{ whiteSpace: "pre-wrap" }}
                 >
                   {item.answer}
                 </AccordionContent>
