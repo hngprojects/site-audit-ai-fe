@@ -109,24 +109,9 @@ const page = () => {
                     ))}
                   </ul>
                 </div>
-                {/* <div
-                  className="relative w-full h-[343px] md:h-[463px] lg:h-[640px rounded-[12px] cursor-pointer"
-                  style={{
-                    backgroundImage: `url('/assets/images/release/version-one-video.svg')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div className="bg-black/90 w-full h-full rounded-[12px]" />
-                  <span className="p-[9.5px] bg-white rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
-                    <Image
-                      src="/play.svg"
-                      alt="play-icon"
-                      width={45.51}
-                      height={45.51}
-                    />
-                  </span>
-                </div> */}
+                <div className="relative w-full h-[343px] md:h-[463px] lg:h-[640px] rounded-[12px] flex items-center justify-center bg-gray-200 text-gray-500 text-2xl font-bold">
+                  Coming Soon
+                </div>
                 <div className="space-y-6">
                   <h4 className="text-[#1C1C1C] text-[24px] leading-7 font-bold">
                     Limitations
