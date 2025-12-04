@@ -17,7 +17,7 @@ const WaitlistHeader = () => {
 
   const actionText = "Get the App";
   const actionHref =
-    "https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics";
+    "https://play.google.com/store/apps/details?id=net.emerj.sitelytics";
 
   const links = (() => {
     return landing ? navLinksLanding : navLinksWaitlist;

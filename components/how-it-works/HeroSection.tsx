@@ -4,10 +4,17 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="w-full bg-white">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 px-4 sm:px-8 md:px-12 py-12 lg:py-24 max-h-[699px] max-w-[1440px]">
+    <section
+      className="max-w-[1344px] mx-auto w-full bg-white xl:min-h-[650px] relative bg-right bg-no-repeat
+           lg:bg-[url('/assets/images/how-it-works/how-it-works-hero-complete.png')]
+           lg:bg-size-[50%_auto] xl:bg-contain"
+      style={{
+        backgroundPosition: "right center",
+      }}
+    >
+      <div className="mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12  sm:px-8 md:px-12 py-12 lg:py-24 max-w-[1344px]">
         {/* Text Content */}
-        <div className="w-full lg:w-[620px] lg:h-[450px] flex flex-col items-start text-left gap-10">
+        <div className="px-4 sm:px-0 w-full lg:w-[620px] lg:h-[450px] flex flex-col items-start text-left gap-10">
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-6">
             <h1
               className="font-sans font-bold text-[#1C1C1C] mt-8
@@ -30,10 +37,10 @@ const HeroSection = () => {
             asChild
             size="lg"
             className="bg-[#FF5A3D] hover:bg-[#E85238] text-white
-                       w-full h-[56px] px-6 py-4 rounded-[10.725px] mt-2
-                       md:w-[155px] md:mx-auto lg:w-[155px] lg:mx-0 lg:h-[56px] font-sans font-medium text-base leading-tight"
+                       w-full h-14 px-6 py-4 rounded-[10.725px] mt-2
+                       md:w-[155px] md:mx-auto lg:w-[155px] lg:mx-0 lg:h-14 font-sans font-medium text-base leading-tight"
           >
-            <a href="https://play.google.com/store/apps/details?id=com.tokugawa.sitelytics">
+            <a href="https://play.google.com/store/apps/details?id=net.emerj.sitelytics">
               Get the App
             </a>
           </Button>
@@ -42,7 +49,7 @@ const HeroSection = () => {
         {/* Image Content */}
         <div className="flex-1 w-full">
           {/* Mobile Image */}
-          <div className="relative w-full h-[339px] md:hidden">
+          <div className="relative w-full h-[339px] sm:hidden">
             <Image
               src="/assets/images/how-it-works/how-it-works-hero-mobile.png"
               alt="How it works illustration (Mobile)"
@@ -52,22 +59,12 @@ const HeroSection = () => {
           </div>
 
           {/* Tablet Image */}
-          <div className="relative w-full h-[414px] hidden md:block lg:hidden">
+          <div className="relative w-full h-[414px] hidden sm:block lg:hidden">
             <Image
               src="/assets/images/how-it-works/how-it-works-hero-tablet.png"
               alt="How it works illustration (Tablet)"
               fill
               style={{ objectFit: "contain" }}
-            />
-          </div>
-
-          {/* Desktop Image */}
-          <div className="relative w-full lg:w-[636px] h-[688px] top-6 hidden lg:block">
-            <Image
-              src="/assets/images/how-it-works/how-it-works-hero-complete.png"
-              alt="How it works illustration (Desktop)"
-              fill
-              style={{ objectFit: "cover" }}
             />
           </div>
         </div>

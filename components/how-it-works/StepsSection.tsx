@@ -35,7 +35,7 @@ const stepsData = [
 const StepsSection = () => {
   return (
     <section className="bg-white py-16 lg:py-24">
-      <div className="container mx-auto px-3 sm:px-8 md:px-12 lg:px-12">
+      <div className="max-w-[1344px] mx-auto px-3 sm:px-8 md:px-12 2xl:px-0">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-[40px] lg:leading-[48px] font-bold text-[#1C1C1C]">
