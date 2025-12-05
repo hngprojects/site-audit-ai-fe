@@ -422,13 +422,6 @@ function ResultsContent() {
               })}
             </div>
 
-            {/* CTA Section */}
-            <div className="mt-8 p-4 bg-amber-50 rounded-xl border border-amber-100">
-              <p className="text-sm text-amber-800 text-center">
-                Get your Sales up with a free review from an expert.
-              </p>
-            </div>
-
             {/* Continue Button */}
             <Button
               onClick={() => setShowModal(true)}
