@@ -142,7 +142,7 @@ export const faqData1 = [
   {
     question: "Can I fix issues via the app?",
     answer:
-      "You can’t edit your website directly inside the app, but you can fix issues in two ways:\n1. Follow the step-by-step recommendations we provide (written for non-technical users).\n2. Hire a verified professional from inside the app to fix everything for you.\nThe app highlights priority issues and gives clear instructions so you always know what to do next.",
+      "You can’t edit your website directly inside the app, but you can fix issues in two ways:\n\t\t1. Follow the step-by-step recommendations we provide (written for non-technical users).\n\t\t2. Hire a verified professional, send us an email.\nThe app highlights priority issues and gives clear instructions so you always know what to do next.",
   },
   {
     question: "Do I need technical skills to use the app?",

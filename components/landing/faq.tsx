@@ -25,7 +25,7 @@ const Faq = ({ faqData }: FaqProps) => {
       id={faqData ? "#FAQ" : ""}
       className="bg-white py-16 lg:py-[100px] font-sans"
     >
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container mx-auto px-4 md:px-8 max-h-[850px]">
         <div className="flex flex-col items-center text-center mb-16">
           <h2 className="text-3xl lg:text-[40px] font-bold text-[#1C1C1C] mb-4">
             Frequently Asked Questions
@@ -49,7 +49,7 @@ const Faq = ({ faqData }: FaqProps) => {
                 </AccordionTrigger>
                 <AccordionContent
                   className="pr-16 text-gray-600 text-base"
-                  style={{ whiteSpace: "pre-line" }}
+                  style={{ whiteSpace: "pre-wrap" }}
                 >
                   {item.answer}
                 </AccordionContent>
