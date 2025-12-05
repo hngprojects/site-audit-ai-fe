@@ -102,16 +102,6 @@ function ResultsContent() {
   const [expandedIssue, setExpandedIssue] = useState<string | null>(null);
   const [markedIssues, setMarkedIssues] = useState<Set<string>>(new Set());
 
-  // Show modal after a delay
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!emailSubmitted) {
-        setShowModal(true);
-      }
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [emailSubmitted]);
-
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -421,21 +411,27 @@ function ResultsContent() {
                 );
               })}
             </div>
-
-            {/* CTA Section */}
+            {/*Cta */}
             <div className="mt-8 p-4 bg-amber-50 rounded-xl border border-amber-100">
               <p className="text-sm text-amber-800 text-center">
-                Get your Sales up with a free review from an expert.
+                Get your Sales up with a free review from an expert
               </p>
             </div>
 
             {/* Continue Button */}
             <Button
               onClick={() => setShowModal(true)}
-              className="w-full mt-6 bg-[#FF5A3D] hover:bg-[#FF5A3D]/90 text-white py-6 text-lg rounded-xl"
+              className="w-full mt-6 bg-[#FF5A3D] hover:bg-[#FF5A3D]/90 text-white py-6 text-lg rounded-xl cursor-pointer"
             >
-              Continue
+              Request Review
             </Button>
+            <p className="text-center mt-3">Or</p>
+            <Link
+              href="https://play.google.com/store/apps/details?id=net.emerj.sitelytics"
+              className="w-full border-2 border-[#FF5A3D] py-3 px-7 text-[#1C1C1C] hover:bg-gray-50 rounded-xl mt-3  text-center block mx-auto text-lg"
+            >
+              Scan more pages
+            </Link>
           </div>
         </div>
       </main>

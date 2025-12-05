@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const CallToActionButtonHeader = ({
   landing,
@@ -11,13 +12,17 @@ export const CallToActionButtonHeader = ({
   actionHref: string;
   onclick?: () => void;
 }) => {
+  const pathname = usePathname();
+
   return (
     <div className=" flex flex-col sm:flex-row sm:space-x-4 items-center">
       <Link
-        href={"/scan"}
-        className="w-full bg-[#FF5A3D] py-3 px-7 text-white rounded-xl mt-3 sm:mt-0 md:w-[90%] text-center sm:w-[unset]"
+        href={`${pathname === "/scan" || pathname.includes("/scan/") ? "https://play.google.com/store/apps/details?id=net.emerj.sitelytics" : "/scan"}`}
+        className="w-full bg-[#FF5A3D] py-3 px-7 text-white rounded-xl mt-3 sm:mt-0  text-center sm:w-[unset]"
       >
-        Scan Now
+        {pathname === "/scan" || pathname.includes("/scan/")
+          ? "Get the App"
+          : "Scan Now"}
       </Link>
       {landing && (
         <Link
