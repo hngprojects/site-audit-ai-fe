@@ -16,15 +16,12 @@ interface ScanStep {
 
 export default function ScanPage() {
   const router = useRouter();
+  const [jobId, setJobId] = useState("");
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
   const [scanState, setScanState] = useState<ScanState>("idle");
   const [scannedUrl, setScannedUrl] = useState("");
-  const [scanSteps, setScanSteps] = useState<ScanStep[]>([
-    { label: "Analyzing for Critical SEO Errors...", completed: false },
-    { label: "Checking for Costly Speed Issues...", completed: false },
-    { label: "Finding broken links", completed: false },
-  ]);
+  const [scanSteps, setScanSteps] = useState<ScanStep[]>([]);
   const [progressPercent, setProgressPercent] = useState(0);
 
   const validateUrl = (input: string): boolean => {
@@ -78,21 +75,85 @@ export default function ScanPage() {
     return urlToFormat;
   };
 
-  const handleStartScan = () => {
+  const handleStartScan = async () => {
     if (!validateUrl(url)) return;
 
     const formattedUrl = formatDisplayUrl(url);
     setScannedUrl(formattedUrl);
     setScanState("scanning");
     setProgressPercent(0);
-    setScanSteps([
-      { label: "Analyzing for Critical SEO Errors...", completed: false },
-      { label: "Checking for Costly Speed Issues...", completed: false },
-      { label: "Finding broken links", completed: false },
-    ]);
+
+    setScanSteps([]); // clear previous steps
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SCAN_API_URL}/api/v1/scan/start-scan-sse?url=${encodeURIComponent(
+          formattedUrl
+        )}`,
+        { method: "POST" }
+      );
+
+      if (!response.ok || !response.body) {
+        throw new Error("Scan failed to start");
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+
+      const readStream = async () => {
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split("\n");
+
+          for (const line of lines) {
+            if (!line.startsWith("data:")) continue;
+
+            try {
+              const json = JSON.parse(line.replace("data:", "").trim());
+
+              console.log("SSE received:", json);
+
+              const message = json?.message;
+
+              if (json?.job_id) {
+                setJobId(json?.job_id);
+              }
+
+              if (message) {
+                console.log("Scan message:", message);
+
+                setScanSteps((prev) => [
+                  ...prev,
+                  { label: message, completed: true },
+                ]);
+
+                setProgressPercent(
+                  Math.min(100, ((scanSteps.length + 1) / 3) * 100)
+                );
+              }
+
+              if (json.event === "scan_error") {
+                console.log("Scan error");
+                setScanState("error");
+                setError("Scan failed. Please try again.");
+              }
+            } catch (err) {
+              console.error("Failed to parse SSE line:", line, err);
+            }
+          }
+        }
+      };
+
+      readStream();
+    } catch (err) {
+      console.error("Scan error:", err);
+      setScanState("error");
+    }
   };
 
-  // Simulate scanning progress
   useEffect(() => {
     if (scanState !== "scanning") return;
 
@@ -108,9 +169,8 @@ export default function ScanPage() {
         stepIndex++;
       } else {
         clearInterval(stepInterval);
-        // For now, simulate completion
         setTimeout(() => {
-          router.push(`/scan/results?url=${encodeURIComponent(scannedUrl)}`);
+          router.push(`/scan/results?url=${jobId}`);
         }, 500);
       }
     }, 2000);
@@ -122,11 +182,7 @@ export default function ScanPage() {
     setScanState("idle");
     setError("");
     setProgressPercent(0);
-    setScanSteps([
-      { label: "Analyzing for Critical SEO Errors...", completed: false },
-      { label: "Checking for Costly Speed Issues...", completed: false },
-      { label: "Finding broken links", completed: false },
-    ]);
+    setScanSteps([]);
   };
 
   const handleScanAnother = () => {
@@ -242,7 +298,7 @@ export default function ScanPage() {
               {/* Social proof */}
               <div className="mt-8 p-4 bg-amber-50 rounded-xl border border-amber-100">
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
                     <svg
                       className="w-4 h-4 text-amber-600"
                       viewBox="0 0 24 24"
