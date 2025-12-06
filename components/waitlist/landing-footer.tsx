@@ -31,6 +31,7 @@ const LandingFooter = () => {
       <div
         className={`${
           pathname === "/faq" ||
+          pathname === "/admin" ||
           pathname.includes("/scan/") ||
           pathname === "/scan" ||
           pathname === "/squeeze" ||
@@ -104,6 +105,7 @@ const LandingFooter = () => {
       <section
         className={`bg-[#0A0A0B] ${footerHeightClass} ${
           pathname === "/faq" ||
+          pathname === "/admin" ||
           pathname === "/scan" ||
           pathname === "/about" ||
           pathname === "/squeeze" ||
